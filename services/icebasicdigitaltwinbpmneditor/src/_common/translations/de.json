@@ -1,0 +1,37 @@
+{
+  "GLOBAL": {
+    "Busy": "beschäftigt",
+    "Cancel": "Abbrechen",
+    "No": "Nein",
+    "Yes": "Ja"
+  },
+  "ALIGN_DISTRIBUTE": {
+    "DialogTitle": "Ausrichtung / Verteilung",
+    "Align": "Ausrichtung",
+    "Distribute": "Verteilung",
+    "Left": "Linksbündig",
+    "Right": "Rechtsbündig",
+    "Top": "Oben",
+    "Bottom": "Unten",
+    "Center": "Zentriert",
+    "Middle": "Mittig",
+    "Horizontal": "Horizontal",
+    "Vertical": "Vertikal"
+  },
+  "DIALOGS": {
+    "SaveChanges": "Änderungen speichern?"
+  },
+  "PROPERTIES": {},
+  "SIMULATION": {},
+  "TOOLBAR": {
+    "New": "Neu",
+    "Export": "Export",
+    "ExportToBpmn": "Export als BPMN-Datei",
+    "ExportToSvg": "Export als SVG-Datei",
+    "FitToWindow": "ans Fenster anpassen",
+    "Open": "Öffnen",
+    "Save": "Speichern",
+    "Search": "Suchen",
+    "OpenFromStore": "Aus Store öffnen"
+  }
+}

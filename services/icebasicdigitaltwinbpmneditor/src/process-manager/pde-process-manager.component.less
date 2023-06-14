@@ -1,0 +1,94 @@
+
+@process-manager-tabs-height: 42px;
+//hide bpmn io logo
+a.bjs-powered-by {
+    display: none!important;
+}
+
+.dropdown-menu-left {
+  left: -133px; 
+}
+
+.urlOverflow {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+a {
+  cursor: pointer;
+}
+
+
+//this is the main process manager, that holds all objects
+pde-process-manager {
+
+    .flex;
+    .flex-column;
+
+    height: 100%;
+
+    // header goes here
+    //panel to hold tabs, processes, right and bottom windows
+    .main-panel {
+
+        // use row layout, take all space left
+        .flex-auto;
+        .flex-row;
+
+        .central-panel {
+
+            // use column layout, take all space left
+            .flex-auto;
+            .flex-column;
+
+            border-right: 1px solid @panel-border-color;
+            background-color: @panel-background;
+
+            padding: 0 @panel-padding;
+
+            .process-tabs {
+
+                .flex-auto;
+                .flex-row;
+                .flex-justify-between;
+                .flex-align-middle;
+
+                max-height: @process-manager-tabs-height;
+                height: @process-manager-tabs-height;
+
+                & .process-tabs-container {
+                    max-height: @process-manager-tabs-height;
+                    height: @process-manager-tabs-height;
+                    line-height: @process-manager-tabs-height;
+                    overflow: hidden;
+                }
+
+                .process-tabs-menu {
+                    .flex-row;
+                }
+
+                & .process-tab-title {
+                    padding: 5px;
+                }
+            }
+
+            .process-panels {
+
+                .flex-auto;
+
+                // support position absolute of modelers
+                position: relative;
+
+                margin-bottom: @panel-padding;
+
+                // process modeler goes here
+            }
+
+            //status panel goes here
+        }
+    }
+}
+
+
+@import "process-messages/pde-process-messages.component.less";

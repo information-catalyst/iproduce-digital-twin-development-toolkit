@@ -1,0 +1,37 @@
+.modal-header
+  h6.modal-title.text-center Request optimisation
+.modal-body
+
+  .form-group
+    .alert.alert-description
+      | You're about to request composition of an optimised service plan for the current process model
+      br
+      | Please select a Dead Line value
+
+  form.form-horizontal
+
+    .form-group
+      .col-sm-4.col-sm-offset-4
+        button.btn.btn-sm.btn-block.btn-success(type="button" ng-click="$close(1)") 1 minute
+
+    .form-group
+      .col-sm-4.col-sm-offset-4
+        button.btn.btn-sm.btn-block.btn-success(type="button" ng-click="$close(10)") 10 minutes
+
+        //.date-picker
+        //div(uib-datepicker ng-model="dateValue" class="dp-inline" show-weeks="false")
+        //.col-sm-4
+        //div(uib-timepicker ng-model="timeValue" show-meridian="false")
+
+
+
+.modal-footer
+  .col-md-8.col-md-offset-2.text-center
+    .col-md-6
+      //button.btn.btn-sm.btn-block.btn-success(type="button" ng-click="$close({dateValue:dateValue,timeValue:timeValue})")
+      //  | Continue
+      //  i.fa.fa-trash.margin-l--soft
+    .col-md-6
+      button.btn.btn-sm.btn-block.btn-warning(ng-click="$close(null)")
+        | Cancel
+        i.fa.fa-ban.margin-l--soft

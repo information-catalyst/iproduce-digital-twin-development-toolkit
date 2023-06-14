@@ -1,0 +1,22 @@
+uib-tab-heading
+  span COMFORT INPUT
+.margin-t--normal
+  div(ng-repeat="annotation in $ctrl.newAnnotations")
+    .form-group(ng-class="{'has-error': !annotation.url}")
+      label.control-label.col-sm-2 URL
+      .col-sm-8
+        input.form-control(type="text" ng-model="annotation.url" placeholder="Please type a url" autofocus required)
+      .col-sm-2.text-right
+        button.btn.btn-xs.btn-danger(ng-hide="$first" ng-click="$ctrl.removeAnnotation(annotation)")
+          i.fa.fa-remove
+    .form-group(ng-class="{'has-error': !annotation.concept}")
+      label.control-label.col-sm-2 Concept
+      .col-sm-8
+        input.form-control(type="text" ng-model="annotation.concept" placeholder="Please type a concept" required)
+      .col-sm-2
+    hr
+  .row
+    .col-md-12.text-center
+      button.btn.btn-success.btn-sm(ng-click="$ctrl.addAnnotation()")
+        i.fa.fa-plus
+        |  additional {{$ctrl.resolve.title}}

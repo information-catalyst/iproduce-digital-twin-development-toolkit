@@ -1,0 +1,28 @@
+.panel-body.flex-auto.flex-column.no-padding(ng-if="$ctrl.isSelectedGroup('outputs')")
+
+  .flex.flex-column(style="padding:6px 15px;", ng-show="!$ctrl.readOnly")
+    .form-group(style="margin-bottom:0")
+      .col-sm-4
+        a(ng-click="$ctrl.addOutput()" style="cursor:pointer")
+          i.fa.fa-plus
+          | &nbsp;Add output
+      .col-sm-4
+        a.text-danger(ng-if="$ctrl.isOutputSelected()" ng-click="$ctrl.removeSelectedOutput()" style="cursor:pointer")
+          i.fa.fa-minus
+          | &nbsp;Remove selected
+      .col-sm-4
+        .pull-right
+          a.text-danger(ng-click="$ctrl.clearOutputs()" ng-if="$ctrl.hasOutputs()" style="cursor:pointer")
+            i.fa.fa-remove
+            | &nbsp;Clear all
+
+  .flex-auto.flex-column.scrollable-y.scrollbar-macosx(jquery-scrollbar)
+    table.table.table-condensed.table-striped
+      tr(ng-repeat="output in $ctrl.outputs track by $index" ng-class="{'active':$ctrl.isOutputSelected(output)}" ng-click="$ctrl.selectOutput(output)")
+        td(style="width:20px;")
+          div(ng-show="$ctrl.isOutputSelected(output)")
+            i.fa.fa-caret-right
+        td
+          div
+            strong(ng-bind="output.element.name")
+          div(ng-bind="output.element.value")

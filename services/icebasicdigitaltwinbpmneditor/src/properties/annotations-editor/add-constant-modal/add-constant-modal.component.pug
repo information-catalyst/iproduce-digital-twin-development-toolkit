@@ -1,0 +1,9 @@
+.modal-header
+  h6.modal-title.text-center Add/Edit a constant value
+.modal-body
+  form.form-horizontal(name="$ctrl.addConstantForm")
+    .row: .col-md-12: input.form-control(autofocus type="text" ng-model="$ctrl.constant" placeholder="Constant Value" required)
+.modal-footer
+  button.btn.btn-default(ng-click="$ctrl.dismiss()") Cancel
+  button.btn.btn-success(ng-click="$ctrl.closeModal()" ng-disabled="$ctrl.addConstantForm.$invalid") Save Constant
+  

@@ -1,0 +1,5 @@
+.flex-auto.scrollable-y.scrollbar-macosx(jquery-scrollbar)
+  table.table.table-bordered.table-condensed.table-striped.table-hover(style="border-top:none;")
+    tbody
+      tr(ng-repeat="warning in $ctrl.importWarnings track by $index", style="cursor:pointer")
+        td(ng-bind="warning.message")

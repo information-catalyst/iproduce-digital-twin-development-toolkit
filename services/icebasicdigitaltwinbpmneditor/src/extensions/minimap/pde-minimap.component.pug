@@ -1,0 +1,13 @@
+.djs-minimap-toggle
+  .btn.btn-xs.btn-primary.btn-block(ng-click="$ctrl.toggleMap()") Minimap
+
+.djs-minimap-map
+
+  svg(id="minimap-svg", width="100%", height="100%")
+
+    //elements group
+    g(id="minimap-elements-group")
+
+    //viewport group
+    g
+      rect.djs-minimap-viewport(fill="rgba(170, 208, 245, 0.25)")

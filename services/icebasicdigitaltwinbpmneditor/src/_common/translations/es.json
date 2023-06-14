@@ -1,0 +1,45 @@
+{
+  "GLOBAL": {
+    "Busy": "En curso",
+    "Cancel": "Cancelar",
+    "No": "No",
+    "Yes": "Si"
+  },
+
+  "ALIGN_DISTRIBUTE": {
+    "DialogTitle": "Alinear / Distribuir",
+    "Align": "Alinear",
+    "Distribute": "Distribuir",
+    "Left": "Izquierda",
+    "Right": "Derecha",
+    "Top": "Arriba",
+    "Bottom": "Abajo",
+    "Center": "Centro",
+    "Middle": "Medio",
+    "Horizontal": "Horizontal",
+    "Vertical": "Vertical"
+  },
+
+  "DIALOGS": {
+    "SaveChanges": "¿Guardar cambios?"
+  },
+
+  "PROPERTIES": {
+  },
+
+  "SIMULATION": {
+  },
+
+  "TOOLBAR": {
+    "New": "Nuevo",
+    "Export": "Exportar",
+    "ExportToBpmn": "Exportar a BPMN",
+    "ExportToSvg": "Exportar a SVG",
+    "FitToWindow": "Ajustar a pantalla",
+    "Open": "Abrir",
+    "Save": "Guardar",
+    "Search": "Buscar",
+    "OpenFromStore":"Abierto desde la tienda"
+  }
+
+}

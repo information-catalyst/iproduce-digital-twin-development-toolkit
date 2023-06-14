@@ -1,0 +1,30 @@
+
+
+// remove resize arrow
+textarea {
+    resize: none;
+    &.form-control {
+        padding-left:0!important;
+        padding-right:0!important;
+    }
+}
+
+textarea,
+textarea.form-control,
+input.form-control,
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+[type=text].form-control,
+[type=password].form-control,
+[type=email].form-control,
+[type=tel].form-control,
+[contenteditable].form-control {
+  font-size: @font-size-base;
+}
+
+select,
+select.form-control {
+  font-size: @font-size-base;
+}

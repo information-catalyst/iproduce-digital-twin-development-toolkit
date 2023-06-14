@@ -1,0 +1,27 @@
+table.table.table-condensed.no-border.margin-t--normal(ng-show="!$ctrl.loading && $ctrl.activeServiceType === 'matching' && $ctrl.services.length > 0 && !$ctrl.showDefaults")
+  tr
+    th.col-md-1
+    th.col-md-7
+      a(href='' ng-click="$ctrl.sortType = 'name'; $ctrl.sortReverse=!$ctrl.sortReverse")
+        span.margin-r--soft Service Name
+        span.fa.fa-caret-down(ng-show="$ctrl.sortType == 'name' && $ctrl.sortReverse")
+        span.fa.fa-caret-up(ng-show="$ctrl.sortType == 'name' && !$ctrl.sortReverse")
+    th.col-md-2.text-center
+      a(href='' ng-click="$ctrl.sortType = 'similarity'; $ctrl.sortReverse=!$ctrl.sortReverse")
+        span.margin-r--soft Similarity
+        span.fa.fa-caret-down(ng-show="$ctrl.sortType == 'similarity' && $ctrl.sortReverse")
+        span.fa.fa-caret-up(ng-show="$ctrl.sortType == 'similarity' && !$ctrl.sortReverse")
+    th.col-md-2
+
+.flex-auto.flex-column.scrollable.marketplace-table(ng-show="!$ctrl.loading && $ctrl.activeServiceType === 'matching' && $ctrl.services.length > 0 && !$ctrl.showDefaults")
+  table.table.table-striped.table-condensed.table-hover
+    tr.service(draggable="{{$ctrl.isDraggable(service)}}" ng-repeat="service in $ctrl.services | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:$ctrl.search track by $index" ng-class="$ctrl.selectedService === service? 'active' : ''" ng-click="$ctrl.selectedService = service; $ctrl.hoveredService = service;" ng-mouseenter="$ctrl.showServiceDetail = true; $ctrl.selectedService? return : $ctrl.hoveredService = service;" ng-mouseleave="$ctrl.selectedService? return : $ctrl.showServiceDetail = false;")
+      td.col-md-1.text-center
+        img.service-icon--small(ng-src="{{$ctrl.getIconSrc(service)}}")
+      td.col-md-7 {{service.name}}
+      td.col-md-2.text-center {{service.similarity | number: 2}}
+      td.col-md-2.text-center
+        button.btn.btn-xs.btn-success(ng-click="$ctrl.replaceServiceWith(service)") Select
+
+div.margin-t--normal(ng-show="!$ctrl.loading && $ctrl.activeServiceType === 'matching' && $ctrl.services.length === 0")
+  p.text-center No matching services found.

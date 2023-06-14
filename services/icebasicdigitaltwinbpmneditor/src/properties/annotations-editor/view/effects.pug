@@ -1,0 +1,26 @@
+.panel-body.flex-auto.flex-column.no-padding(ng-if="$ctrl.isSelectedGroup('effects')")
+
+  .flex.flex-column(style="padding:6px 15px;", ng-show="!$ctrl.readOnly")
+    .form-group(style="margin-bottom:0")
+      .col-sm-4
+        a(ng-click="$ctrl.addEffect()" style="cursor:pointer")
+          i.fa.fa-plus
+          | &nbsp;Add effect
+      .col-sm-4
+        a.text-danger(ng-if="$ctrl.isEffectSelected()" ng-click="$ctrl.removeSelectedEffect()" style="cursor:pointer")
+          i.fa.fa-minus
+          | &nbsp;Remove selected
+      .col-sm-4
+        .pull-right
+          a.text-danger(ng-click="$ctrl.clearEffects()" ng-if="$ctrl.hasEffects()" style="cursor:pointer")
+            i.fa.fa-remove
+            | &nbsp;Clear all
+
+  .flex-auto.flex-column.scrollable-y.scrollbar-macosx(jquery-scrollbar)
+    table.table.table-condensed.table-striped
+      tr(ng-repeat="effect in $ctrl.getEffects() track by $index" ng-class="{'active':$ctrl.isEffectSelected(effect)}" ng-click="$ctrl.selectEffect(effect)")
+        td(style="width:20px;")
+          div(ng-show="$ctrl.isEffectSelected(effect)")
+            i.fa.fa-caret-right
+        td
+          div(ng-bind="effect.value")

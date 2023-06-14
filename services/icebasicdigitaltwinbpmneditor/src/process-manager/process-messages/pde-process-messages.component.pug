@@ -1,0 +1,5 @@
+.process-message(ng-repeat="message in $ctrl.messages")
+  .alert(ng-class="{'alert-warning': $ctrl.isWarningMessage(message), 'alert-info': $ctrl.isInformationMessage(message) }")
+    i.fa(ng-class="{'fa-warning': $ctrl.isWarningMessage(message), 'fa-question-circle': $ctrl.isInformationMessage(message) }")
+    | &nbsp;
+    small(ng-bind="message.title")

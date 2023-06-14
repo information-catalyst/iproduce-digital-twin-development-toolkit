@@ -1,0 +1,54 @@
+.panel.panel-primary
+  .panel-heading
+    .row
+      .col-md-6
+        span
+          i.fa.fa-arrow-circle-right
+          |  List of Marketplace Services
+      .col-md-6
+        .pull-right
+          span.btn.btn-link.btn-xs(ng-click="$ctrl.toggleDefaults()")
+            i.fa.fa-puzzle-piece
+          span.btn.btn-link.btn-xs(ng-click="$ctrl.getServices()")
+            i.fa.fa-refresh
+  .panel-body.no-scroll.no-padding.no-border.flex-column.flex-auto
+
+    // FILTER SEARCH
+    .col-md-10.col-md-offset-1.margin-b--soft.margin-t--soft(ng-show="!$ctrl.showDefaults")
+      .form-group
+        .input-group
+          .input-group-addon
+            i.fa.fa-search
+          input.form-control(type="text" ng-model="$ctrl.search.name" placeholder="filter by service name..")
+    // ABSTRACT/CONCRETE SELECTION
+    .col-md-10.col-md-offset-1(ng-show="!$ctrl.showDefaults")
+      .btn-group.btn-group-justified
+        .btn.btn-sm(ng-click="$ctrl.getServices()" ng-class="$ctrl.activeServiceType === 'all'? 'btn-primary active' : 'btn-default'")
+          | All
+          i.fa.fa-asterisk.margin-l--soft
+        .btn.btn-sm(ng-click="$ctrl.getAbstractServices()" ng-class="$ctrl.activeServiceType === 'abstract'? 'btn-primary active' : 'btn-default'")
+          | abstract
+          i.fa.fa-puzzle-piece.margin-l--soft
+        .btn.btn-sm(ng-click="$ctrl.getConcreteServices()" ng-class="$ctrl.activeServiceType === 'concrete'? 'btn-primary active' : 'btn-default'")
+          | concrete
+          i.fa.fa-cog.margin-l--soft
+        .btn.btn-sm(ng-disabled="!$ctrl.isSelectionMarketplaceService()" ng-click="$ctrl.getMatchingServices()" ng-class="$ctrl.activeServiceType === 'matching'? 'btn-primary active' : 'btn-default'")
+          | match
+          i.fa.fa-rocket.margin-l--soft
+    .col-md-12.margin-t--normal(ng-show="$ctrl.showErrorCRI")
+      .text-center
+        button.close(type="button" ng-click="$ctrl.showErrorCRI = false;")
+          span &times;
+        span.text-danger Cannot get Matching Services:
+        br
+        span Process first needs to be saved in the Process Store.
+    
+    // LOADING SPINNER
+    .flex-column.flex-auto.flex-center(ng-show="$ctrl.loading")
+      div.loader(loader-css="line-scale-party")
+
+    // List-Group View
+    include view/table.pug
+    include view/table-matching.pug
+    include view/detail.pug
+    include view/defaults.pug

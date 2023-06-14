@@ -1,0 +1,58 @@
+@code-editor-toolbar-height: 30px;
+
+pde-code-editor {
+
+  position: relative;
+  .flex-auto;
+  .flex-column;
+
+  .code-editor-container {
+
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+
+    .code-editor-toolbar {
+
+      display: none;
+      position: absolute;
+      padding: 2px 0px;
+      background-color: @panel-background;
+
+      & > form > input {
+        background-color: white;
+      }
+
+    }
+
+    .code-editor-outer {
+
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+
+      .code-editor-inner {
+        position: relative;
+        height: 100%;
+      }
+
+    }
+
+
+    // add toolbar styles
+    &.with-toolbar {
+
+      & > .code-editor-toolbar {
+        display: block;
+        top: 0; left: 0; right: 0; 
+        height: @code-editor-toolbar-height;
+      }
+
+      & > .code-editor-outer {
+        top: @code-editor-toolbar-height;
+      }
+
+    }
+
+
+  }
+
+}

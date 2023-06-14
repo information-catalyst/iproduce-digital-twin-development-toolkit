@@ -1,0 +1,16 @@
+.modal-header
+  h6.modal-title.text-center Delete Process from CloudStorage
+
+.modal-body
+  p.text-center Do you really want to delete this process from cloudstorage?
+
+.modal-footer
+  .row
+    .col-md-6
+      button.btn.btn-sm.btn-block.btn-danger(type="button" ng-click="$ctrl.close()")
+        | Yes, delete it
+        i.fa.fa-trash.margin-l--soft
+    .col-md-6
+      button.btn.btn-sm.btn-block.btn-warning(ng-click="$ctrl.dismiss()")
+        | Cancel
+        i.fa.fa-ban.margin-l--soft

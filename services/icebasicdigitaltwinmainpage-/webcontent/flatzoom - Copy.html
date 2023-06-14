@@ -1,0 +1,175 @@
+<head>
+	<title>Demo Flat</title>
+	<!-- load JQuery -->    
+    <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+	
+	<!-- Websocket JS -->
+	<script src="js/reconnecting-websocket.min.js"></script>
+	<link rel="shortcut icon" href="img/ice.png">
+	<link href="css/drum.css" rel="stylesheet">
+	<script src="js/flat.js"></script>
+	
+
+
+<style>
+.wrapper { 
+/*
+	width: 640px; 
+	height: 512px; 
+*/
+	width: 50%; 
+	height: 48%; 
+	padding: 0; 
+	overflow: hidden; 
+	position:relative;
+}
+
+
+/*
+.scaled-frame { width: 1280px; height: 1024px; border: 0px; }
+*/
+
+.scaled-frame { width: 1880px; height: 900px; border: 0px; }
+
+.scaled-frame {
+ /* 
+    zoom: 0.71;
+    -moz-transform: scale(0.5);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.5);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.5);
+    -webkit-transform-origin: 0 0;
+*/    
+    transform: scale(0.5);
+    transform-origin: top left;
+/* add border to iframe */
+	border-width: 3px;
+	border-radius: 3px;
+	border-color: black;
+	border-style:solid;
+	background: white;
+
+}
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+ .scaled-frame  { zoom: 1;  }
+}
+*/
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.grid2x2 {
+  min-height: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+/*
+.grid2x2 > div {
+  display: flex; 
+  flex-basis: calc(50% - 40px);  
+  justify-content: center;
+  flex-direction: column;
+}
+.grid2x2 > div > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+*/
+.box { margin: 0px; }
+/*
+.box1 { background-color: red; }
+.box2 { background-color: orange; }
+.box3 { background-color: purple; }
+.box4 { background-color: grey; }
+*/
+.box1 { background-color: white; }
+.box2 { background-color: white; }
+.box3 { background-color: white; }
+.box4 { background-color: white; }
+
+
+.wrapper{
+	position:relative;
+}
+
+.frameControls {
+/*	
+  width: 100%;
+  height: 100%;
+*/  
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+
+
+.overlayzoom{
+  width: 94%;
+  height: 94%;
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  z-index: 15;
+  opacity: 0.95;
+}
+
+
+.hiddenpadding{
+	position:relative;
+ 	margin: 0px;
+	width: 50%; 
+	height: 48%; 
+	padding: 0; 
+	overflow: hidden; 
+	display: none;
+}
+
+
+
+</style>
+</head>
+
+<div class = "outter grid2x2">
+
+	<div class="wrapper box box1">
+		<iframe id="digitaltwinframe" class="scaled-frame" src="http://icemain.hopto.org:7081/crane101.html?place=7"></iframe>
+		<div class="frameControls">		<button class="nav Reload" >Reload</button><button class="nav Zoom" >Zoom</button></div>
+	</div>
+	<div class="wrapper box box2">
+		<iframe id="grafana" class="scaled-frame" src="http://icemain.hopto.org:7066/d/sav8LXomz/process-data-simple?refresh=10s&orgId=1&var-states=All&var-Process=All&var-machines=All&from=now-30m&to=now"></iframe>
+		<div class="frameControls">		<button class="nav Reload" >Reload</button><button class="nav Zoom" >Zoom</button></div>
+	</div>
+
+	<div class="hiddenpadding" id="hidden1"></div>
+
+	<div class="wrapper box box3">
+		<iframe id="videoframe" class="scaled-frame" src="http://icemain.hopto.org:7073/factory/webcam.html"></iframe>
+		<div class="frameControls">		<button class="nav Reload" >Reload</button><button class="nav Zoom" >Zoom</button></div>
+	</div>
+	<div class="wrapper box box4">
+		<iframe id="peFrame" class="scaled-frame" src="http://icemain.hopto.org:7080/front/pe"></iframe>
+		<div class="frameControls">		<button class="nav Reload" >Reload</button><button class="nav Zoom" >Zoom</button></div>
+	</div>
+
+
+
+	<nav id="navbar">
+
+		<button id="start" class="btn btn-primary">Start</button> 
+        
+        <select id="ProcessSelect">
+            <option selected disabled>Select Process To Start</option>
+        </select>
+        <div id="ProcessSelectStatus">Status</div>
+	</nav>
+
+
+</div>
+

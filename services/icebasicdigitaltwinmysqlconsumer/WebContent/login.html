@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+                
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/Forms.css" />
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+                
+        <title>ICE Data Platform</title>
+    </head>
+    <body>
+<div style=" position: absolute; top: 0px; right: 0px;">
+    <img src="resources/ice.png"/>
+</div>
+        <div class="container">
+        <h1 class="col-xs-offset-4"> ice Backend Home </h1>
+        <br><br><br>
+         <div class="col-xs-8 col-xs-offset-4">
+        <p>To register or login enter a username and password</p>
+         </div>
+        <br><br>
+        <div class="col-xs-8 col-xs-offset-4">
+            <input type="text" id="uname" placeholder="Enter Username" name="uname" required>
+        </div>
+        <br>
+         <div class="col-xs-8 col-xs-offset-4">
+            <input type="password" id="pass" placeholder="Enter Password" name="pass" required>
+        </div>
+        <br><br>
+          <div class="col-xs-8 col-xs-offset-4">
+            <input type="button" value="submit" id="Submit">
+        </div>
+        
+        <div class="col-xs-8 col-xs-offset-4">
+            <p style="color: red;" id="invalidCreds" /hidden>Invalid Username or Password </p>
+        </div>
+        
+          <div class=" col-xs-8 col-xs-offset-4">
+                        <br><input id="New" type="button" value='Create New Data Structure'/hidden>
+		</div>
+       
+          <div class=" col-xs-8 col-xs-offset-4">
+                       <br><input  id="Edit" type="button" value='Edit Existing Data Structure'/hidden>
+		</div>
+         
+             <div class="col-xs-12">
+            
+        <p> &nbsp </p>
+<p> &nbsp </p>
+<p class="text-center">
+    ICE Data Platform<br>
+    <a href="www.informationcatalyst.com" target="_blank">www.informationcatalyst.com</a><br>
+    2017
+</p>
+        </div>
+        </div>
+        
+        <script>
+            $("#Submit").click(function(){
+            
+            //Check to see if fields are filled in
+            if($("#uname").val() != "" && $("#pass").val() != "")
+            {
+             var output= "select * from formsubmit.users where Username='"+$("#uname").val()+"' AND Password='"+$("#pass").val()+"';";
+            $.ajax({
+            url: 'login.jsp',
+            type: 'POST',
+            data: {"data" : output},
+         
+            success: function(msg) {
+              
+                if(msg.search("Existing")>0) //look up how to look for contains Existing
+                {
+                  $("#Edit").show();
+                }
+                else{
+                $("#invalidCreds").text("Username and Password does not exist, try again or create new data structure");
+                $("#invalidCreds").show();
+                    }
+            },
+            error: function(request,error){
+                alert("Error:  "+error);
+            }});
+            
+            
+            //if doesn't exist then just show new
+            $("#New").show();
+            }
+            else
+            {
+            $("#invalidCreds").show();   
+            $("#invalidCreds").text("Invalid Username or Password, try again or create new data structure");
+            }
+            });
+            
+            
+            
+            $("#New").click(function(){
+            window.location.href='Register.html?uname='+$("#uname").val()+'&pass='+$("#pass").val();
+             });
+            
+             $("#Edit").click(function(){
+            window.location.href='existingUser.jsp?uname='+$("#uname").val()+'&pass='+$("#pass").val();
+             });
+        </script>
+        
+    </body>
+</html>

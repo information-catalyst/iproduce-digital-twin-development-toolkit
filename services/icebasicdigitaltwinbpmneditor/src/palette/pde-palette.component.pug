@@ -1,0 +1,15 @@
+.palette-container(ng-if="$ctrl.isActive()")
+
+  .drag-handler(movable)
+
+  .palette-item(ng-repeat="tool in $ctrl.paletteTools" ng-class="{'active': tool.isActive() }" ng-click="tool.click($event)"
+    data-group="tools" /* this attr is required for bpmn tools manager */  uib-tooltip="{{tool.tooltip}}" tooltip-append-to-body="true" tooltip-placement="right")
+    .palette-entry(ng-class="tool.iconClassName")
+
+  .palette-item(ng-repeat="group in $ctrl.paletteGroups" ng-class="group.className", tooltip-append-to-body="true" uib-tooltip="Drag and Drop to the Canvas" tooltip-placement="right")
+    .palette-item-description
+      | {{group.name}}&nbsp;
+    .palette-entry(ng-class="group.default.iconClassName" style="position:relative" data-action="{{group.default.dataAction}}" draggable="true" )
+
+  .palette-item(ng-repeat="entry in $ctrl.extraElements" tooltip-append-to-body="true" uib-tooltip="Drag and Drop to the Canvas" tooltip-placement="right")
+    .palette-entry(ng-class="entry.iconClassName" data-action="{{entry.dataAction}}" draggable="true")

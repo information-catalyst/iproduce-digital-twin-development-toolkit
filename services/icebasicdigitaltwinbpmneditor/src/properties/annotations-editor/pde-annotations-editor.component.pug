@@ -1,0 +1,30 @@
+
+.panel.panel-primary.panel-flex
+  .panel-heading
+    span Annotations
+  .panel-body(style="padding:0")
+
+    .flex.flex-column
+      ul.nav.nav-tabs.nav-justified
+        li(ng-class="{'active':$ctrl.isSelectedGroup('inputs')}")
+          a(ng-click="$ctrl.selectGroup('inputs')",style="cursor:pointer;")
+            | Inputs
+            span.badge(ng-bind="$ctrl.getTotalInputs()")
+        li(ng-class="{'active':$ctrl.isSelectedGroup('outputs')}")
+          a(ng-click="$ctrl.selectGroup('outputs')",style="cursor:pointer;")
+            | Outputs
+            span.badge(ng-bind="$ctrl.getTotalOutputs()")
+        li(ng-class="{'active':$ctrl.isSelectedGroup('preconditions')}")
+          a(ng-click="$ctrl.selectGroup('preconditions')",style="cursor:pointer;")
+            | Preconditions
+            span.badge(ng-bind="$ctrl.getTotalPreconditions()")
+        li(ng-class="{'active':$ctrl.isSelectedGroup('effects')}")
+          a(ng-click="$ctrl.selectGroup('effects')",style="cursor:pointer;")
+            | Effects
+            span.badge(ng-bind="$ctrl.getTotalEffects()")
+
+    include view/inputs.pug
+    include view/outputs.pug
+    include view/preconditions.pug
+    include view/effects.pug
+    a.btn.btn-default(ng-href="{{$ctrl.getSvaEditHref()}}" target="_blank") Edit in SVA

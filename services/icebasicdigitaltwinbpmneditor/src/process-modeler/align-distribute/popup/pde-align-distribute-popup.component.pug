@@ -1,0 +1,46 @@
+.modal-header
+  h5.modal-title.text-center(translate="ALIGN_DISTRIBUTE.DialogTitle")
+
+.modal-body
+
+  .row
+
+    .col-sm-6
+
+      .row
+        .col-sm-12
+          h6(translate="ALIGN_DISTRIBUTE.Align")
+          hr 
+
+      .row(ng-repeat="alignOperation in $ctrl.alignOperations")
+        .col-sm-12
+          .btn.btn-sm.btn-default.btn-block(ng-click="$ctrl.doAction(alignOperation)", ng-disabled="!$ctrl.canAlign()")
+            span
+              i.fa(ng-class="alignOperation.iconClass")
+            span &nbsp;
+            span(ng-bind="alignOperation.name")
+
+        hr
+
+    .col-sm-6
+
+      h6(translate="ALIGN_DISTRIBUTE.Distribute")
+      hr 
+
+      .row(ng-repeat="distributeOperation in $ctrl.distributeOperations")
+        .col-sm-12
+          .btn.btn-sm.btn-default.btn-block(ng-click="$ctrl.doAction(distributeOperation)", ng-disabled="!$ctrl.canDistribute()")
+            span
+              i.fa(ng-class="distributeOperation.iconClass")
+            span &nbsp;
+            span(ng-bind="distributeOperation.name")
+
+        hr
+
+
+
+.modal-footer
+  .text-center
+    button.btn.btn-sm.btn-warning(type="button", ng-click="$ctrl.dismiss()")
+      span(translate="GLOBAL.Cancel")
+      i.fa.fa-ban.margin-l--soft

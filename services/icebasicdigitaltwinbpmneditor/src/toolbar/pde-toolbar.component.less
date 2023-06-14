@@ -1,0 +1,65 @@
+@main-header-height:40px;   
+
+pde-toolbar {
+
+    .flex-row;
+    .flex-align-middle;
+    .navbar-inverse;
+
+    height: @main-header-height;
+    padding: 0 6px;
+
+    pde-toolbar-button-group {
+      
+      .flex-row;
+
+      &:not(:first-child) {
+        margin-left: 10px;
+      }
+
+      // Prevent double borders when buttons are next to each other
+      .toolbar-group-container + .toolbar-group-container {
+        margin-left: -1px;
+      }
+
+      .toolbar-group-container .btn {
+        .box-shadow(none);
+      }
+
+      // copied from bootstrap btn group
+      .toolbar-group-container:not(:first-child):not(:last-child) .btn {
+        border-radius: 0;
+      }
+
+      // Set corners individual because sometimes a single button can be in a .btn-group and we need :first-child and :last-child to both match
+      .toolbar-group-container:first-child:not(:last-child) .btn {
+        .border-right-radius(0);
+      }
+
+      // Need .dropdown-toggle since :last-child doesn't apply, given that a .dropdown-menu is used immediately after it
+      .toolbar-group-container:last-child:not(:first-child) .btn {
+        .border-left-radius(0);
+      }
+
+      // On active and open, don't show outline
+      .toolbar-group-container .dropdown-toggle:active,
+      .toolbar-group-container .btn-group.open .dropdown-toggle {
+        outline: 0;
+      }
+
+
+    }
+
+    pde-toolbar-button {
+      display: block;
+
+      & .btn {
+        text-transform: initial;
+      }
+
+      img {
+        max-height: 16px;
+      }
+    }
+
+}

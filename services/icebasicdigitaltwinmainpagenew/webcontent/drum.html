@@ -1,0 +1,62 @@
+<!-- 
+
+Based on rotating carousel
+https://www.sitepoint.com/building-3d-rotating-carousel-css-javascript/
+
+-->
+
+<head>
+	<title>Demo Wheel</title>
+	<link href="css/drum.css" rel="stylesheet">
+	<script src="js/drum.js"></script>
+
+</head>
+
+<body>
+
+<h2>Live demonstration of Smart Factory Concepts</h2>
+<div class="carousel">
+	<figure class="carousel-container">
+    	<div  class="carousel-container-item first-item"  >
+    		<iframe id="digitaltwinframe" src="http://192.168.0.15:7081/crane101.html?place=1"></iframe>
+    	</div>
+    	<div  class="carousel-container-item "  >
+    		<iframe id="pdeFrame" name="pdeFrame" src="http://192.168.0.15:7080/pde"></iframe>
+    	</div>
+    	<div  class="carousel-container-item "  >
+    		<iframe id="grafana" src="http://192.168.0.15:7066/d/w24U8uZik/process-data?orgId=1&from=now-15m&to=now&refresh=5s&var-machine=All&var-states=All&var-Process=All"></iframe>
+    	</div>
+    	<div  class="carousel-container-item "  >
+<!--
+    		<iframe id="videoframe" src="https://192.168.0.15:7076/view.html"></iframe>
+-->
+    		<iframe id="videoframe" src="http://icemain.hopto.org:7073/factory/webcam.html"></iframe>
+
+
+    	</div>
+    	<div  class="carousel-container-item "  >
+    		<iframe id="webdashframe" src="http://192.168.0.15:7063"></iframe>
+    	</div>
+    	<div  class="carousel-container-item "  >
+			<img src="img/f3-02.png" alt="">
+    	</div>
+		<img class="carousel-container-item" src="img/architecture.png" alt="">
+    	<div  class="carousel-container-item "  >
+			<img src="img/f3-02.png" alt="">
+    	</div>
+	</figure>
+	<nav>
+		<button class="nav prev">Prev</button>
+		<button class="nav next">Next</button>
+		<button class="nav run" >On/Off</button>
+
+
+		<select id="ddlViewBy" name="cars">
+		  <option value="3DFactory4_001">3DFactory4_001</option>
+		  <option value="mainfactory-single-warehousec2">mainfactory-single-warehousec2</option>
+		</select>
+	</nav>
+</div>
+
+	
+</body>

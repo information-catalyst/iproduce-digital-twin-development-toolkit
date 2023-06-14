@@ -1,0 +1,12 @@
+// dropdown button
+.btn-group.btn-group-sm(uib-dropdown, ng-show="$ctrl.data.isVisible()")
+  button.btn.btn-default(type="button", uib-dropdown-toggle)
+    span(ng-bind="$ctrl.data.getText()")
+    span &nbsp;
+    i.fa(ng-if="$ctrl.data.getIcon", ng-class="$ctrl.data.getIcon()")
+  ul.dropdown-menu(uib-dropdown-menu)
+    li(ng-repeat="ch in $ctrl.data.children")
+      a(ng-click="ch.clickAction()")
+        i.fa(ng-if="ch.getIcon", ng-class="ch.getIcon()") &nbsp;
+        span(ng-bind="ch.getText()")
+

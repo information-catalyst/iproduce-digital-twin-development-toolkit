@@ -1,0 +1,28 @@
+table.table.table-condensed.no-border.margin-t--normal(ng-if="!$ctrl.loading && $ctrl.activeServiceType !== 'matching' && !$ctrl.showDefaults")
+  tr
+    th.col-md-1
+    th.col-md-7
+      a(href='' ng-click="$ctrl.sortType = 'name'; $ctrl.sortReverse=!$ctrl.sortReverse")
+        span.margin-r--soft Service Name
+        span.fa.fa-caret-down(ng-show="$ctrl.sortType == 'name' && $ctrl.sortReverse")
+        span.fa.fa-caret-up(ng-show="$ctrl.sortType == 'name' && !$ctrl.sortReverse")
+    th.col-md-2.text-center Type
+    th.col-md-2.text-center
+      a(href='' ng-click="$ctrl.sortType = 'draft'; $ctrl.sortReverse=!$ctrl.sortReverse")
+        span.margin-r--soft Draft
+        span.fa.fa-caret-down(ng-show="$ctrl.sortType == 'draft' && $ctrl.sortReverse")
+        span.fa.fa-caret-up(ng-show="$ctrl.sortType == 'draft' && !$ctrl.sortReverse")
+
+
+
+.flex-auto.flex-column.scrollable.marketplace-table.scrollbar-macosx(ng-if="!$ctrl.loading && $ctrl.activeServiceType !== 'matching' && !$ctrl.showDefaults" jquery-scrollbar)
+  table.table.table-striped.table-condensed.table-hover
+    tr.service(draggable="{{$ctrl.isDraggable(service)}}" ng-repeat="service in $ctrl.services | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:$ctrl.search track by $index" ng-class="$ctrl.selectedService === service? 'active' : ''" ng-click="$ctrl.selectedService = service; $ctrl.hoveredService = service;" ng-mouseenter="$ctrl.showServiceDetail = true; $ctrl.selectedService? return : $ctrl.hoveredService = service;" ng-mouseleave="$ctrl.selectedService? return : $ctrl.showServiceDetail = false;")
+      td.col-md-1.text-center
+        img.service-icon--small(ng-src="{{$ctrl.getIconSrc(service)}}")
+      td.col-md-7 {{service.name}}
+      td.col-md-2.text-center
+        span.label(ng-class="$ctrl.isAbstractService(service)? 'label-default' : 'label-primary'")
+          | {{$ctrl.isAbstractService(service)? 'A' : 'C'}}
+      td.col-md-2.text-center
+        i.fa(ng-class="service.draft? 'fa-check' : 'fa-times'")

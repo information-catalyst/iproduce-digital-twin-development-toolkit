@@ -1,0 +1,14 @@
+.modal-header
+  h6.modal-title.text-center Save changes?
+.modal-body.text-center
+  i.fa.fa-cloud-upload(style="font-size: 80px;")
+  p The current process has changes and differs from the process saved in the Process Store.
+  p As the service matching uses the process stored in the Process Store, do you want to save the changes first to consider it on service matching?
+.modal-footer
+  .text-center
+    button.btn.btn-sm.btn-primary(type="button" ng-click="$close('yes')")
+      |  Yes
+    button.btn.btn-sm.btn-default(type="button" ng-click="$close('no')")
+      |  No
+    button.btn.btn-sm.btn-default(type="button" ng-click="$dismiss()")
+      |  Cancel

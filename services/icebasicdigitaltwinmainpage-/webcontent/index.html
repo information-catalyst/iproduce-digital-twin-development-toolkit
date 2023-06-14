@@ -1,0 +1,173 @@
+<head>
+  <title>ICE Digital Twin Landing Page</title>
+  <!-- Configuration js file for the lading page -->
+  <script src="config.js"></script>
+  <!-- load JQuery -->
+  <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+  <!-- Websocket JS -->
+  <script src="js/reconnecting-websocket.min.js"></script>
+  <link rel="shortcut icon" href="img/ice.png" />
+  <!-- Main CSS file for the landing page-->
+  <link href="css/layout.css" rel="stylesheet" />
+  <!-- websocket -->
+  <script src="js/websocket.js"></script>
+  <!-- Landing page js file -->
+  <script src="js/flat.js"></script>
+  <script src="js/iframe.config.js"></script>
+</head>
+<div class="outter grid2x2" id="iframes">
+  <!-- <div id="digitaltwinframe-container"></div>
+  <div id="grafanaframe-container"></div>
+  <div class="hiddenpadding" id="hidden1"></div>
+  <div id="videoframe-container"></div>
+  <div id="peframe-container"></div> -->
+
+  <!-- <div class="wrapper box box1">
+    <iframe
+      id="digitaltwinframe"
+      class="scaled-frame"
+      src="http://icemain.hopto.org:7081/crane101.html?place=7"
+    ></iframe>
+    <div class="frameControls">
+      <button class="nav Reload">Reload</button
+      ><button class="nav Zoom">Zoom</button>
+    </div>
+  </div>
+  <div class="wrapper box box2">
+    <iframe
+      id="grafana"
+      class="scaled-frame"
+      src="http://icemain.hopto.org:7066/d/sav8LXomz/process-data-simple?refresh=10s&orgId=1&var-states=All&var-Process=All&var-machines=All&from=now-30m&to=now"
+    ></iframe>
+    <div class="frameControls">
+      <button class="nav Reload">Reload</button
+      ><button class="nav Zoom">Zoom</button>
+    </div>
+  </div>
+  <div class="hiddenpadding" id="hidden1"></div>
+  <div class="wrapper box box3">
+    <iframe
+      id="videoframe"
+      class="scaled-frame"
+      src="http://icemain.hopto.org:7073/factory/webcam.html"
+    ></iframe>
+    <div class="frameControls">
+      <button class="nav Reload">Reload</button
+      ><button class="nav Zoom">Zoom</button>
+    </div>
+  </div>
+  <div class="wrapper box box4">
+    <iframe
+      id="peFrame"
+      class="scaled-frame"
+      src="http://icemain.hopto.org:7080/front/pe"
+    ></iframe>
+    <div class="frameControls">
+      <button class="nav Reload">Reload</button
+      ><button class="nav Zoom">Zoom</button>
+    </div>
+  </div> -->
+</div>
+<div>
+  <nav class="statusbar" id="navbar">
+    <button id="start" class="btn btn-primary">Start</button>
+    <select id="ProcessSelect">
+      <option selected disabled>Select Process To Start</option>
+    </select>
+    <div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
+    <div id="ProcessSelectTitle">Process fetch</div>
+    <div class="space">&nbsp;</div>
+    <div id="ProcessSelectStatus">Status</div>
+    <div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
+    <div class="space">&nbsp;</div>
+    <div id="GrafanaTitle">Grafana</div>
+    <div class="space">&nbsp;</div>
+    <div id="GrafanaStatus">Status</div>
+  </nav>
+</div>
+
+<script>
+  $(document).ready(function () {
+    const $frameControls = $("<div>", {
+      class: "frameControls",
+    });
+    const $reloadButton = $("<button>", {
+      class: "nav Reload",
+      text: "Reload",
+    });
+    const $zoomButton = $("<button>", {
+      class: "nav Zoom",
+      text: "Zoom",
+    });
+
+    $frameControls.append($reloadButton, $zoomButton);
+    // console.log(iframes.panel1.show);
+    // console.log(iframes.panel2.show);
+    // console.log(iframes.panel3.show);
+    // console.log(iframes.panel4.show);
+
+    if (iframes.panel1.show == true) {
+      const defaultPlace = iframes.panel1.defaultPlace;
+      const $digitaltwinframeWrapper = $("<div>", {
+        class: "wrapper box box1",
+      });
+      const $digitaltwinframe = $("<iframe>", {
+        id: "digitaltwinframe",
+        class: "scaled-frame",
+        src: `http://icemain.hopto.org:7081/crane101.html?place=${defaultPlace}`,
+      });
+
+      $digitaltwinframeWrapper.append($digitaltwinframe, $frameControls);
+      $("#iframes").append($digitaltwinframeWrapper);
+    }
+
+    if (iframes.panel2.show) {
+      const $grafanaframeWrapper = $("<div>", {
+        class: "wrapper box box2",
+      });
+      const $grafanaframe = $("<iframe>", {
+        id: "grafana",
+        class: "scaled-frame",
+        src: "http://localhost:7066/d/sav8LXomz/process-data-simple?refresh=10s&orgId=1&var-states=All&var-Process=All&var-machines=All&from=now-30m&to=now",
+      });
+      $grafanaframeWrapper.append($grafanaframe, $frameControls);
+      $("#iframes").append($grafanaframeWrapper);
+    }
+
+    const $hiddenpadding = $("<div>", {
+      id: "hidden1",
+      class: "hiddenpadding",
+    });
+
+    $("#iframes").append($hiddenpadding);
+
+    if (iframes.panel3.show) {
+      const $videoframeWrapper = $("<div>", {
+        class: "wrapper box box3",
+      });
+      const $videoframe = $("<iframe>", {
+        id: "videoframe",
+        class: "scaled-frame",
+        src: iframes.panel3.link,
+      });
+      $videoframeWrapper.append($videoframe, $frameControls);
+      $("#iframes").append($videoframeWrapper);
+    }
+
+    if (iframes.panel4.show) {
+      const $peframeWrapper = $("<div>", {
+        class: "wrapper box box4",
+      });
+      const $peframe = $("<iframe>", {
+        id: "peFrame",
+        class: "scaled-frame",
+        src: "http://icemain.hopto.org:7080/front/pe",
+      });
+      $peframeWrapper.append($peframe, $frameControls);
+      $("#iframes").append($peframeWrapper);
+    }
+  });
+</script>

@@ -1,0 +1,12 @@
+.modal-header
+  h6.modal-title.text-center Sync
+.modal-body
+  .text-center
+    i.fa.fa-refresh
+    p Some of the CREMA-Services that are used in this Process have been changed in the Marketplace.
+    p How do you want to react on this?
+  
+.modal-footer
+  //- button.btn.btn-primary(ng-click="$ctrl.closeModal('update')") update services
+  button.btn.btn-success(ng-click="$ctrl.closeModal('clone')") Create a clone of this Process with updated services
+  button.btn.btn-default(ng-click="$ctrl.dismiss()") Cancel

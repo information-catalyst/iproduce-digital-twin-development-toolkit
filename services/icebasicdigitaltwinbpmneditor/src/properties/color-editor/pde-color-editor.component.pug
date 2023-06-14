@@ -1,0 +1,6 @@
+.form-group.form-group-sm
+  label.control-label.col-sm-2(ng-bind="$ctrl.propertyLabel")
+  .col-sm-10
+    button.btn(type="button", colorpicker="hex", style="min-width:40px;min-height:30px;",
+      ng-style="{'background-color':$ctrl.selectedColor}", ng-disabled="$ctrl.readOnly"
+      colorpicker-close-on-select, ng-model="$ctrl.selectedColor", ng-change="$ctrl.colorChanged()")

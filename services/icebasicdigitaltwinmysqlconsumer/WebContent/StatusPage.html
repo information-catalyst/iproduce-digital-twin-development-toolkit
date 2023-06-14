@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Status Page</title>
+<meta charset="utf-8">
+<style> /* set the CSS */
+body {
+    background-color: #ccc;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+
+.header{
+    background-color: #eee;
+    height:40px;
+    color:#555;
+    text-align: center;
+    line-height: 40px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    font-weight: 400;
+    font-size: 1.5em;
+    text-shadow: 1px 1px #fff;
+    border-bottom: 1px solid #eaeaea;
+}
+
+
+
+</style>
+
+<style type="text/css" media="print">
+  @page { size: landscape; }
+</style>
+
+<!-- load JQuery -->    
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+
+<!--Custom Data formatting-->
+<script src="js/date.format.js"></script>
+
+<!-- BOOTSTRAP JS -->
+<script src="js/bootstrap.min.js"></script>
+         
+
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="shortcut icon" href="resources/ice.png">
+
+</head>
+<body>
+        <div style=" position: absolute; top: 0px; right: 0px;">
+    <img src="resources/ice.png"/>
+            </div>
+
+<div class="container">
+      <section id="widget-grid" class="">
+        <div class="page-header">
+        </div>
+      </section>
+
+    <button id="startData" class="btn btn-primary hidden">Start Processing Readings</button> 
+    <!--<button id="startDataHistoric" class="btn btn-primary">Start Process With Historic Readings</button>--> 
+    <button id="stopData" class="btn btn-primary hidden">Stop Processes</button> 
+    <h3 id="currentprocessingStatus">Loading...</h3>
+    <br><br>
+    
+    <button id="startBpmndata" class="btn btn-primary hidden" onclick="bpmndataStartClicked()">Consume BPMNDATA topic</button>
+    <button id="stopBpmndata" class="btn btn-primary hidden" onclick="bpmndataStopClicked()">Stop Consuming BPMNDATA topic</button>
+    <h3 id="currentbpmndataStatus">Loading...</h3>
+    
+    <br><br>
+    <button id="startCommands" class="btn btn-primary hidden" onclick="commandsStartClicked()">Consume COMMANDS topic</button>
+    <button id="stopCommands" class="btn btn-primary hidden" onclick="commandsStopClicked()">Stop Consuming COMMANDS topic</button>
+    <h3 id="currentcommandsStatus">Loading...</h3>
+    <br><br>
+    
+
+        </div> 
+    
+<script>
+    
+    function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+    //var id = getParameterByName('id');
+    
+    function bpmndataStartClicked()
+    {
+        $.ajax({
+        type: "post",
+        url: "KafkaConsumer.jsp?topic=bpmndata",
+    success: function(msg) {
+        console.log(msg);
+        },
+        error: function(request,error){
+            alert(error);
+        }});
+    }
+    
+    function bpmndataStopClicked()
+    {
+        $.ajax({
+        type: "post",
+        url: "StopProcessReadings.jsp?topic=bpmndata",
+    success: function(msg) {
+        console.log(msg);
+        },
+        error: function(request,error){
+            alert(error);
+        }});
+    }
+    
+    function commandsStartClicked()
+    {
+        $.ajax({
+        type: "post",
+        url: "KafkaConsumer.jsp?topic=commands",
+    success: function(msg) {
+        console.log(msg);
+        },
+        error: function(request,error){
+            alert(error);
+        }});
+    }
+    
+    function commandsStopClicked()
+    {
+        $.ajax({
+        type: "post",
+        url: "StopProcessReadings.jsp?topic=commands",
+    success: function(msg) {
+        console.log(msg);
+        },
+        error: function(request,error){
+            alert(error);
+        }});
+    }
+    
+    function getStatus(topic){
+        $.ajax({
+        type: "post",
+        url: "GetProcessStatus.jsp?topic="+topic,
+    success: function(msg) {
+        console.log(msg);
+        var tt = msg.split("</h1>")[1];
+        tt = tt.split("</body>")[0];
+        if(count == 0)
+        {
+            $("#currentprocessingStatus").text("Current Status: "+tt);
+            if(tt.indexOf("false")>= 0)
+            {
+                if($("#startData").hasClass("hidden"))
+                {
+                    $("#startData").removeClass("hidden");
+                }
+                if(!$("#stopData").hasClass("hidden"))
+                {
+                    $("#stopData").addClass("hidden");
+                }
+            }
+            if(tt.indexOf("true")>= 0)
+            {
+                if($("#stopData").hasClass("hidden"))
+                {
+                    $("#stopData").removeClass("hidden");
+                }
+                if(!$("#startData").hasClass("hidden"))
+                {
+                    $("#startData").addClass("hidden");
+                }
+            }
+        }
+        if(count == 1)
+        {
+            $("#currentbpmndataStatus").text("Current Status: "+tt);
+            if(tt.indexOf("false")>= 0)
+            {
+                if($("#startBpmndata").hasClass("hidden"))
+                {
+                    $("#startBpmndata").removeClass("hidden");
+                }
+                if(!$("#stopBpmndata").hasClass("hidden"))
+                {
+                    $("#stopBpmndata").addClass("hidden");
+                }
+            }
+            if(tt.indexOf("true")>= 0)
+            {
+                if($("#stopBpmndata").hasClass("hidden"))
+                {
+                    $("#stopBpmndata").removeClass("hidden");
+                }
+                if(!$("#startBpmndata").hasClass("hidden"))
+                {
+                    $("#startBpmndata").addClass("hidden");
+                }
+            }
+        }
+        if(count == 2)
+        {
+            $("#currentcommandsStatus").text("Current Status: "+tt);
+            count = -1;
+            if(tt.indexOf("false")>= 0)
+            {
+                if($("#startCommands").hasClass("hidden"))
+                {
+                    $("#startCommands").removeClass("hidden");
+                }
+                if(!$("#stopCommands").hasClass("hidden"))
+                {
+                    $("#stopCommands").addClass("hidden");
+                }
+            }
+            if(tt.indexOf("true")>= 0)
+            {
+                if($("#stopCommands").hasClass("hidden"))
+                {
+                    $("#stopCommands").removeClass("hidden");
+                }
+                if(!$("#startCommands").hasClass("hidden"))
+                {
+                    $("#startCommands").addClass("hidden");
+                }
+            }
+        }
+        count++;
+        },
+        error: function(request,error){
+            alert(error);
+        }});
+    }
+    
+    var topics = ["processing", "bpmndata", "commands"];
+    var count =0;
+    
+    setInterval(function() {
+        getStatus(topics[count]);
+    }, 2000);
+    
+    
+        $('#stopData').on('click', function() {
+
+        $.ajax({
+        type: "post",
+        url: "StopProcessReadings.jsp?topic=processing",
+    success: function(msg) {
+        console.log(msg);
+        },
+        error: function(request,error){
+            alert(error);
+        }});
+        });
+        
+//        $('#startDataHistoric').on('click', function() {
+//
+//        $.ajax({
+//        type: "post",
+//        url: "ProcessReadings.jsp?historic=true",
+//    success: function(msg) {
+//        console.log(msg);
+//        },
+//        error: function(request,error){
+//            alert(error);
+//        }});
+//        });
+        
+        $('#startData').on('click', function() {
+
+        $.ajax({
+        type: "post",
+        url: "ProcessReadings.jsp",
+    success: function(msg) {
+        console.log(msg);
+        },
+        error: function(request,error){
+            alert(error);
+        }});
+        });
+
+    
+</script>
+
+
+<div class="modal"><!-- Place at bottom of page --></div> 
+           <p class="text-center" style="position:absolute; left:40%;"><br><br>
+    ICE Data Platform<br>
+    <a href="http://www.informationcatalyst.com">http://www.informationcatalyst.com</a><br>
+    2016
+    </p>
+</body>
+</html>

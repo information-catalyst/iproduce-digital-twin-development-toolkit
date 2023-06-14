@@ -1,0 +1,16 @@
+/.vs
+/.vscode
+/node_modules
+/dist/
+.typingsrc
+/docs/~*.*
+/bin
+/obj
+/Properties
+project.lock.json
+/*xproj.user
+web.config
+readme.markdown
+.gitlab-ci.yml
+npm-debug.log
+/coverage

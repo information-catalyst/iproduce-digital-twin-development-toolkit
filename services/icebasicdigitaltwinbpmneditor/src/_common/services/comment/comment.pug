@@ -1,0 +1,12 @@
+ul
+  li(ng-repeat="comment in $ctrl.comments")
+    span {{comment.name}} {{comment.id}}
+    button.pull-right.btn.btn-danger.btn-xs(ng-click="$ctrl.deleteTest(comment)")
+      i.fa.fa-remove
+
+// button.btn.btn-primary(ng-click="$ctrl.getTest()") Get
+// button.btn.btn-primary(ng-click="$ctrl.getAllTest()") Get All
+// button.btn.btn-primary(ng-click="$ctrl.createTest()") Create
+// button.btn.btn-primary(ng-click="$ctrl.updateTest()") Update
+// button.btn.btn-primary(ng-click="$ctrl.saveTest()") Save
+// button.btn.btn-primary(ng-click="$ctrl.deleteTest()") Delete

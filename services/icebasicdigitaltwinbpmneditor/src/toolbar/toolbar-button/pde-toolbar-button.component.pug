@@ -1,0 +1,8 @@
+// regular button
+.btn.btn-sm.btn-default(ng-show="$ctrl.data.isVisible()"
+  ng-disabled="$ctrl.data.isDisabled()", ng-click="$ctrl.data.clickAction()", ng-class="{ 'active': $ctrl.data.isActive() }")
+
+  i.fa(ng-if="$ctrl.data.getIcon", ng-class="$ctrl.data.getIcon()")
+  img(ng-if="$ctrl.data.getImage", ng-src="{{$ctrl.data.getImage()}}")
+  span &nbsp;
+  span(ng-if="$ctrl.data.getText", ng-bind="$ctrl.data.getText()")

@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+  <title>Kafka Web Dash</title>
+  <meta charset="utf-8">
+  <link href="shared.css" rel="stylesheet">
+  <script type="text/javascript" src="icewsclient.js"></script>
+</head>
+<body>
+  <!-- <h1>JavaScript Kafka dashboard/logger.</h1> -->
+  <p class="mdn-disclaimer">Web interface to kafka via a websocket based interface.</p>
+  <!-- <h2> Last Message</h2> -->
+  <div class="row box">
+    <div id="lastmessage"  class="col fixed-content"></div>
+    <div class="col wrapright"><button onclick="clearStatus()">Clear Status</button></div>
+  </div>
+  ,<!-- <h2> Message Log</h2> -->
+
+<div class="cols">
+  <!-- COMMANDS -->
+  <div class="row zoom">
+    <div class="col box zoom">
+      <div class="row">
+        <div id="logTitle"  class="col fixed-content">COMMANDS </div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logbox" class="scrollable-content"></div>
+    </div>
+
+     <div class="col box zoom">
+      <div class="row">
+        <div id="logTitleC"  class="col fixed-content">COMMANDS Crane</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxC" class="scrollable-content"></div>
+    </div>
+
+     <div class="col box zoom">
+      <div class="row">
+        <div id="logTitleA"  class="col fixed-content">COMMANDS Conveyor A</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxA" class="scrollable-content"></div>
+    </div>
+
+    <div class="col box zoom">
+      <div class="row">
+        <div id="logTitleB"  class="col fixed-content">COMMANDS Conveyor B</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxB" class="scrollable-content"></div>
+    </div>
+  </div>
+
+  <!-- IO -->
+  <div class="row zoom">
+    <div class="col box zoom">
+      <div class="row">
+        <div id="logTitleIO"  class="col fixed-content">IO Status </div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxIO" class="short-scrollable-content"></div>
+    </div>
+
+     <div class="col box zoom">
+      <div class="row">
+        <div id="logTitleIOC"  class="col fixed-content">IO Crane</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxIOC" class="short-scrollable-content"></div>
+    </div>
+
+     <div class="col box zoom">
+      <div class="row">
+        <div id="logTitleIOA"  class="col fixed-content">IO Conveyor A</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxIOA" class="short-scrollable-content"></div>
+    </div>
+
+    <div class="col box zoom">
+      <div class="row">
+        <div id="logTitleIOB"  class="col fixed-content">IO Conveyor B</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxIOB" class="short-scrollable-content"></div>
+    </div>
+  </div>
+
+
+
+  <!-- LOGS -->
+  <div class="row zoom">
+
+    <div class="col box zoom">
+      <div class="row">
+        <div id="logTitle2"  class="col fixed-content">LOGS</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxLogs" class="scrollable-content"></div>
+    </div>
+
+    <div class="col box zoom">
+      <div class="row">
+        <div id="logTitle2c"  class="col fixed-content">LOGS</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxLogsc" class="scrollable-content"></div>
+    </div>
+
+    <div class="col box zoom">
+      <div class="row">
+        <div id="logTitle2a"  class="col fixed-content">LOGS</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxLogsa" class="scrollable-content"></div>
+    </div>
+
+    <div class="col box zoom">
+      <div class="row">
+        <div id="logTitle2b"  class="col fixed-content">LOGS</div>
+        <div class="col wrapright"><button onclick="clearLog()">Clear</button></div>
+      </div>
+      <div id="logboxLogsb" class="scrollable-content"></div>
+    </div>
+
+
+  </div>
+  
+</div>
+
+
+</body>
+</html>

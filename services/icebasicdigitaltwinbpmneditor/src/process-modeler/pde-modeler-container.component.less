@@ -1,0 +1,67 @@
+pde-modeler-container
+{
+    // position must be absolute before canvas, to support BPMNJS (avoids Matrix transform error from BPMNJS lib)
+    position: absolute;
+    .flex-auto;
+    .flex-column;
+
+    top: 0; left: 0; right: 0; bottom: 0;
+    overflow: hidden;
+
+
+    & > .canvas-busy {
+
+        .flex-auto;
+        .flex-column;
+        .flex-center;
+
+        position: absolute;
+        top: 0;left: 0;right: 0;bottom: 0;
+        background-color: white;
+        z-index: @z-index-modeler;
+    }
+
+
+    & > .canvas-messages {
+
+        .flex-column;
+        & > .alert {
+            padding:5px;
+        }
+    }
+
+
+
+    & > .editor-container {
+
+        .flex-auto;
+        .flex-column;
+
+        background-color: white;
+        border: 1px solid @panel-border-color;
+        position: relative;
+
+
+        & > .canvas-panel
+        {
+            position:absolute;
+            top: 0;left: 0;right: 0;bottom: 0;
+        }
+
+        & > .xml-panel {
+          .flex-auto;
+          .flex-column;
+        }
+
+    }
+
+
+}
+
+@import "~diagram-js/assets/diagram-js.css";
+@import "~bpmn-js/assets/bpmn-font/css/bpmn.css";
+
+
+.djs-search-container {
+  z-index: @z-index-search;
+}

@@ -1,0 +1,208 @@
+div.serviceDetail(ng-class="{'expanded' : $ctrl.panelExpanded}" ng-show="$ctrl.showServiceDetail" ng-mouseenter="$ctrl.showServiceDetail = true;" ng-mouseleave="$ctrl.selectedService? return : $ctrl.showServiceDetail = false;")
+  .panel.panel-flex(ng-class="$ctrl.selectedService? 'panel-primary' : 'panel-default'" ng-if="$ctrl.hoveredService")
+    // PANEL HEADING
+    .panel-heading
+      .row
+        .col-md-2
+          // empty
+        .col-md-8.text-center
+          i.fa.fa-info-circle.margin-r--soft
+          span Service Detail
+        .col-md-2.text-right
+          button.btn.btn-default.btn-xs.margin-r--soft(ng-click="$ctrl.panelExpanded = !$ctrl.panelExpanded")
+            i.fa(ng-class="$ctrl.panelExpanded? 'fa-compress' : 'fa-expand'")
+          button.btn.btn-default.btn-xs(ng-click="$ctrl.showServiceDetail = false; $ctrl.selectedService = null;")
+            i.fa.fa-times
+    .panel-body(style="overflow-x:hidden")
+
+      // service preview image/icon
+      .row.text-center.margin-b--normal
+        img#service-icon.service-icon(ng-src="{{$ctrl.getIconSrc($ctrl.hoveredService)}}")
+      // service data
+
+
+      .row
+        .col-md-12
+          // GENERAL SERVICE INFORMATION
+          .panel.panel-default
+            .panel-heading.text-center
+              i.fa.fa-info.margin-r--soft
+              span General Service Information
+            .panel-body
+              .row
+                .col-md-3: strong Service ID:
+                .col-md-9: .urlOverflow {{$ctrl.hoveredService.serviceID}}
+              .row
+                .col-md-3: strong Name:
+                .col-md-9: .urlOverflow {{$ctrl.hoveredService.name}}
+              .row
+                .col-md-3: strong Type:
+                .col-md-9
+                  span.label(ng-class="$ctrl.isAbstractService($ctrl.hoveredService)? 'label-default' : 'label-primary'")
+                    | {{$ctrl.isAbstractService($ctrl.hoveredService)? 'Abtract' : 'Concrete'}}
+              .row(ng-if="$ctrl.hoveredService.owner")
+                .col-md-3: strong Owner:
+                .col-md-9: .urlOverflow {{$ctrl.hoveredService.owner}}
+              .row(ng-if="$ctrl.hoveredService.description")
+                .col-md-3: strong Description:
+                .col-md-9: div {{$ctrl.hoveredService.description}}
+              .row(ng-if="$ctrl.hoveredService.activationDate")
+                .col-md-3: strong Activation-Date:
+                .col-md-9: .urlOverflow {{$ctrl.hoveredService.activationDate | date: 'medium'}}
+              .row
+                .col-md-3: strong Last update:
+                .col-md-9: .urlOverflow {{$ctrl.hoveredService.last_update | date:'medium'}}
+
+          hr
+          // ADDITIONAL SERVICE INFORMATION
+          .panel.panel-default
+            .panel-heading.text-center
+              i.fa.fa-plus.margin-r--soft
+              span Additional Service Information
+            .panel-body
+              .row
+                .col-md-3: strong Draft:
+                .col-md-9: i.fa(ng-class="$ctrl.hoveredService.draft? 'fa-check' : 'fa-times'")
+              .row(ng-if="!$ctrl.isAbstractService($ctrl.hoveredService)")
+                .col-md-3: strong Software:
+                .col-md-9: .urlOverflow {{$ctrl.hoveredService.serviceSoftware}}
+              .row(ng-if="$ctrl.hoveredService.type.inputs.length > 0")
+                .col-md-3: strong Type-Inputs:
+                .col-md-9
+                  span.type-label--input(ng-repeat="input in $ctrl.hoveredService.type.inputs track by $index") {{input}}
+              .row(ng-if="$ctrl.hoveredService.type.outputs.length > 0")
+                .col-md-3: strong Type-Outputs:
+                .col-md-9
+                  span.type-label--output(ng-repeat="output in $ctrl.hoveredService.type.outputs track by $index") {{output}}
+              .row(ng-if="$ctrl.hoveredService.linkedConcepts.length > 0")
+                .col-md-12
+                  strong Linked Concepts:
+                .col-md-12
+                  table.table.table-condensed.linked-concepts
+                    thead
+                      tr
+                        td Name
+                        td Parent
+                        td.col-md-2 Popularity
+                    tbody
+                      tr(ng-repeat="concept in $ctrl.hoveredService.linkedConcepts track by $index")
+                        td.urlOverflow {{concept.name}}
+                        td {{concept.parent}}
+                        td.col-md-2 {{concept.popularity}}
+              .row(ng-if="$ctrl.hoveredService.serviceSchema.length > 0")
+                .col-md-3: strong Schema:
+                .col-md-9: p {{$ctrl.hoveredService.serviceSchema}}
+          hr
+          .panel.panel-default(ng-if="$ctrl.hoveredService.QoS")
+              .panel-heading.text-center
+                i.fa.fa-share-alt.margin-r--soft
+                span QoS
+              .panel-body
+                table.table.table-condensed.cursor--initial
+                  tr
+                    th.col-md-3 Key
+                    th.col-md-3 Value
+                    th.col-md-6 URL
+                  tr(ng-repeat="qos in $ctrl.hoveredService.parsedQos track by $index")
+                    td.col-md-3: span.type-label--precondition {{qos.key}}
+                    td.col-md-3: span.type-label--effect {{qos.value}}
+                    td.col-md-6 {{qos.url}}
+          hr
+          // ANNOTATION INFORMATION
+          .panel.panel-default
+            .panel-heading.text-center
+              i.fa.fa-pencil.margin-r--soft
+              span Annotations
+            .panel-body
+              uib-tabset(active="$ctrl.activeAnnotationTab" justified="true")
+                uib-tab(index="0")
+                  uib-tab-heading
+                    span INPUTS
+                    .label.label-success.margin-l--soft {{$ctrl.hoveredService.annotation.inputs.semantic.length}}
+                  .padding-t--10
+                    p.text-center.well.well-sm(ng-if="$ctrl.hoveredService.annotation.inputs.textual && $ctrl.hoveredService.annotation.inputs.textual != 'null'")
+                      small {{$ctrl.hoveredService.annotation.inputs.textual}}
+                    p.text-center.help-block(ng-if="$ctrl.hoveredService.annotation.inputs.semantic.length === 0")
+                      | No inputs defined for this service
+                    table.table.table-condensed.cursor--initial(ng-if="$ctrl.hoveredService.annotation.inputs.semantic.length > 0")
+                      tr
+                        th.col-md-1.text-center #
+                        th.col-md-1 Name
+                        th.col-md-10 URL
+                      tr(ng-repeat="input in $ctrl.hoveredService.annotation.inputs.semantic track by $index")
+                        td.col-md-1.text-center {{$index + 1}}
+                        td.col-md-1: span.type-label--input {{$ctrl.getInputOutputName(input[0])}}
+                        td.col-md-10 {{$ctrl.getInputOutputUrl(input[0])}}
+                uib-tab(index="1")
+                  uib-tab-heading
+                    span OUTPUTS
+                    .label.label-warning.margin-l--soft {{$ctrl.hoveredService.annotation.outputs.semantic.length}}
+                  .padding-t--10
+                    p.text-center.well.well-sm(ng-if="$ctrl.hoveredService.annotation.outputs.textual && $ctrl.hoveredService.annotation.outputs.textual != 'null'")
+                      small {{$ctrl.hoveredService.annotation.outputs.textual}}
+                    p.text-center.help-block(ng-if="$ctrl.hoveredService.annotation.outputs.semantic.length === 0")
+                      | No outputs defined for this service
+                    table.table.table-condensed.cursor--initial(ng-if="$ctrl.hoveredService.annotation.outputs.semantic.length > 0")
+                      tr
+                        th.col-md-1.text-center #
+                        th.col-md-1 Name
+                        th.col-md-10 URL
+                      tr(ng-repeat="output in $ctrl.hoveredService.annotation.outputs.semantic track by $index")
+                        td.col-md-1.text-center {{$index + 1}}
+                        td.col-md-1: span.type-label--output {{$ctrl.getInputOutputName(output[0])}}
+                        td.col-md-10 {{$ctrl.getInputOutputUrl(output[0])}}
+                uib-tab(index="2")
+                  uib-tab-heading
+                    span PRECONDITIONS
+                    .label.label-info.margin-l--soft {{$ctrl.hoveredService.annotation.preconditions.parsedToArray.length}}
+                  .padding-t--10
+                    p.text-center.well.well-sm(ng-if="$ctrl.hoveredService.annotation.preconditions.textual && $ctrl.hoveredService.annotation.preconditions.textual != 'null'")
+                      small {{$ctrl.hoveredService.annotation.preconditions.textual}}
+                    p.text-center.help-block(ng-if="$ctrl.hoveredService.annotation.preconditions.parsedToArray.length === 0")
+                      | No preconditions defined for this service
+                    table.table.table-condensed.cursor--initial(ng-if="$ctrl.hoveredService.annotation.preconditions.parsedToArray.length > 0")
+                      tr
+                        th.col-md-1.text-center #
+                        th.col-md-5 Concept/Relationship
+                        th.col-md-6 URL
+                      tr(ng-repeat="precondition in $ctrl.hoveredService.annotation.preconditions.parsedToArray track by $index")
+                        td.col-md-1.text-center {{$index + 1}}
+                        td.col-md-5: span.type-label--precondition {{$ctrl.getPreconditionEffectName(precondition)}}
+                        td.col-md-6 {{$ctrl.getPreconditionEffectUrl(precondition)}}
+                uib-tab(index="3")
+                  uib-tab-heading
+                    span EFFECTS
+                    .label.label-danger.margin-l--soft {{$ctrl.hoveredService.annotation.effects.parsedToArray.length}}
+                  .padding-t--10
+                    p.text-center.well.well-sm(ng-if="$ctrl.hoveredService.annotation.effects.textual && $ctrl.hoveredService.annotation.effects.textual != 'null'")
+                      small {{$ctrl.hoveredService.annotation.effects.textual}}
+                    p.text-center.help-block(ng-if="$ctrl.hoveredService.annotation.effects.parsedToArray.length === 0")
+                      | No effects defined for this service
+                    table.table.table-condensed.cursor--initial(ng-if="$ctrl.hoveredService.annotation.effects.parsedToArray.length > 0")
+                      tr
+                        th.col-md-1.text-center #
+                        th.col-md-5 Concept/Relationship
+                        th.col-md-6 URL
+                      tr(ng-repeat="effect in $ctrl.hoveredService.annotation.effects.parsedToArray track by $index")
+                        td.col-md-1.text-center {{$index + 1}}
+                        td.col-md-5: span.type-label--effect {{$ctrl.getPreconditionEffectName(effect)}}
+                        td.col-md-6 {{$ctrl.getPreconditionEffectUrl(effect)}}
+
+    .panel-footer
+      // BUTTONS
+      .row
+        .col-md-4
+          button.btn.btn-default(ng-click="$ctrl.showServiceDetail = false; $ctrl.selectedService = null;")
+            i.fa.fa-ban.margin-r--soft
+            | Close
+        .col-md-4.text-center
+          a.btn.btn-warning(ng-href="{{$ctrl.hoveredService.svaEditHref}}" target="_blank") 
+            i.fa.fa-pencil.margin-r--soft
+            | Edit
+        .col-md-4.text-right
+          button.btn.btn-success(ng-show="$ctrl.activeServiceType === 'matching'" ng-click="$ctrl.replaceServiceWith($ctrl.hoveredService)")
+            i.fa.fa-unlink.margin-r--soft
+            | Select for Replacement
+
+
+          // currently empty

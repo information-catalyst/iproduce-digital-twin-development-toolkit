@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "target": "es6",
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "noEmit": true,
+    "noEmitOnError": false
+  },
+  "atom": {
+    "rewriteTsconfig": false
+  },
+  "buildOnSave": false,
+  "compileOnSave": false,
+  "include": [
+    "./src/**/*.ts",
+    "./typings/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

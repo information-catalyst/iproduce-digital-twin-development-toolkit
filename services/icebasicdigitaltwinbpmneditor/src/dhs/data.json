@@ -1,0 +1,91 @@
+[
+  {
+    "id": 0,
+    "uri": "http://www.crema-project.eu/ontology/wp8/tenneco.owl#Robot",
+    "type": "http://www.w3.org/2002/07/owl#Class",
+    "ontology": "http://localhost:3030/MAIN/data/Tenneco",
+    "comment": "Some comment",
+    "label": "Some label",
+    "popularity": 4.838709677419355,
+    "relevance": 100,
+    "usages": 3
+  },
+  {
+    "id": 1,
+    "uri": "http://www.crema-project.eu/ontology/wp8/tenneco.owl#Robot_Current_Status",
+    "type": "http://www.w3.org/2002/07/owl#Class",
+    "ontology": "http://localhost:3030/MAIN/data/Tenneco",
+    "comment": "Some comment",
+    "label": "Some label",
+    "popularity": 1.6129032258064515,
+    "relevance": 33.333333333333336,
+    "usages": 1
+  },
+  {
+    "id": 2,
+    "uri": "http://www.crema-project.eu/ontology/wp8/tenneco.owl#Robot_Current_Status",
+    "type": "http://www.w3.org/2002/07/owl#Class",
+    "ontology": "http://localhost:3030/MAIN/data/Tenneco",
+    "comment": "Some comment",
+    "label": "Some label",
+    "popularity": 1.6129032258064515,
+    "relevance": 33.333333333333336,
+    "usages": 1
+  },
+  {
+    "id": 3,
+    "uri": "http://www.crema-project.eu/ontology/wp8/tenneco.owl#Robot_Current_Status",
+    "type": "http://www.w3.org/2002/07/owl#Class",
+    "ontology": "http://localhost:3030/MAIN/data/Tenneco",
+    "comment": "Some comment",
+    "label": "Some label",
+    "popularity": 1.6129032258064515,
+    "relevance": 33.333333333333336,
+    "usages": 1
+  },
+  {
+    "id": 4,
+    "uri": "http://www.crema-project.eu/ontology/wp8/tenneco.owl#Robot_Current_Status",
+    "type": "http://www.w3.org/2002/07/owl#Class",
+    "ontology": "http://localhost:3030/MAIN/data/Tenneco",
+    "comment": "Some comment",
+    "label": "Some label",
+    "popularity": 1.6129032258064515,
+    "relevance": 33.333333333333336,
+    "usages": 1
+  },
+  {
+    "id": 5,
+    "uri": "http://www.crema-project.eu/ontology/wp8/tenneco.owl#Robot_Current_Status",
+    "type": "http://www.w3.org/2002/07/owl#Class",
+    "ontology": "http://localhost:3030/MAIN/data/Tenneco",
+    "comment": "Some comment",
+    "label": "Some label",
+    "popularity": 1.6129032258064515,
+    "relevance": 33.333333333333336,
+    "usages": 1
+  },
+  {
+    "id": 6,
+    "uri": "http://www.crema-project.eu/ontology/wp8/tenneco.owl#Robot_Current_Status",
+    "type": "http://www.w3.org/2002/07/owl#Class",
+    "ontology": "http://localhost:3030/MAIN/data/Tenneco",
+    "comment": "Some comment",
+    "label": "Some label",
+    "popularity": 1.6129032258064515,
+    "relevance": 33.333333333333336,
+    "usages": 1
+  },
+  {
+    "id": 7,
+    "uri": "http://www.crema-project.eu/ontology/wp8/tenneco.owl#Robot_Current_Status",
+    "type": "http://www.w3.org/2002/07/owl#Class",
+    "ontology": "http://localhost:3030/MAIN/data/Tenneco",
+    "comment": "Some comment",
+    "label": "Some label",
+    "popularity": 1.6129032258064515,
+    "relevance": 33.333333333333336,
+    "usages": 1
+  }
+]
+

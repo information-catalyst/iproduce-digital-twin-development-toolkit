@@ -1,0 +1,42 @@
+
+script(type="text/ng-template" id="optimization-change-detail")
+
+  .optimization-change-detail(ng-class="$ctrl.isImplementationOriginOptimization() ? 'optimisation' : 'designer'")
+
+    .btn.btn-sm.btn-block(ng-bind="$ctrl.isImplementationOriginOptimization() ? 'Optimisation details' : 'Designer details'")
+
+    .flex-column.abstract-service
+      strong Abstract service
+      small(ng-bind="$ctrl.getAbstractService()")
+
+    .flex-column
+
+      .flex-row.flex-justify-between
+        strong Concrete services
+
+    .flex-column.concrete-services.scrolllable-y
+
+      // concrete services
+      .flex-row.bg-success(ng-repeat-start="service in $ctrl.getConcreteServices()")
+
+        .flex-column
+          a(ng-click="$ctrl.openSvaEdit(service.marketplaceServiceId)") {{$ctrl.getServiceNameByServiceId(service.marketplaceServiceId)}}
+          | (ID: {{ service.marketplaceServiceId}})
+
+      .flex-row
+        // assignments
+        .flex-column
+          .flex-row.flex-align-middle(ng-repeat="assignment in $ctrl.getConcreteServiceAssignments(service)")
+              strong(ng-bind="assignment.name")
+              span| =
+              span(ng-bind="assignment.value")
+
+        // bindings
+        .flex-column
+          .flex-row.flex-align-middle(ng-repeat="binding in $ctrl.getConcreteServiceBindings(service)")
+              i.fa.fa-arrow-right.text-danger
+              span(ng-bind="$ctrl.getConcreteServiceBindingOrigin(binding)")
+              i.fa.fa-arrow-right.text-success
+              span(ng-bind="$ctrl.getConcreteServiceBindingTarget(binding)")
+
+      .flex-row(ng-repeat-end)

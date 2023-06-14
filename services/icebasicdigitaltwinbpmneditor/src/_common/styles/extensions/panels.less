@@ -1,0 +1,56 @@
+
+.panel-heading
+{
+    padding:4px 10px;
+}
+
+.panel {
+    margin-bottom:0;
+}
+
+.panel-body {
+  padding: 10px;
+}
+
+.panel.panel-primary {
+
+    & > .panel-heading {
+
+        & .btn-link {
+            color:#FFF!important;
+            text-transform:inherit;
+        }
+
+        & .btn-link:hover {
+            background-color:#5cb0f3;
+        }
+
+    }
+}
+
+
+// this is a flex panel, with header and footer at fixed size, and body with dynamic size
+.panel.panel-flex {
+
+    .flex-auto;
+    .flex-column;
+
+    & > .panel-heading {
+        .flex;
+        .flex-column;
+    }
+
+    & > .panel-body {
+
+        .flex-auto;
+        .flex-column;
+        .scrollable-y;
+
+    }
+
+    & > .panel-footer {
+        .flex;
+        .flex-column;
+    }
+
+}

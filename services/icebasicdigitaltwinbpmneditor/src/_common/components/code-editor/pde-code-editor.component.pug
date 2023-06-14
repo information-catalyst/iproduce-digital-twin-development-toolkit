@@ -1,0 +1,17 @@
+
+.code-editor-container(ng-class="{ 'with-toolbar' : $ctrl.showToolbar }") 
+
+  .code-editor-toolbar
+    form.flex-row(ng-submit="$ctrl.search()")
+      input.form-control.input-sm(type="text", placeholder="Type search terms and press enter" ng-model="$ctrl.searchText")
+      button.btn.btn-primary.btn-sm(type="button", ng-click="$ctrl.search()")
+        span &nbsp;
+        span Search
+      .btn.btn-primary.btn-sm(ng-click="$ctrl.toggleWrap()")
+        span &nbsp;
+        span Toggle wrap
+
+  .code-editor-outer
+    .code-editor-inner
+      .ace-editor
+    

@@ -1,0 +1,1 @@
+export MALLOC_ARENA_MAX=1

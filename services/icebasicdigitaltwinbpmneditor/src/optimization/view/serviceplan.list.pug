@@ -1,0 +1,57 @@
+.panel.panel-primary.slide-left(ng-show="$ctrl.isSelectedProcess() && !$ctrl.canRequestOptimisation()")
+  .panel-body.no-scroll.no-padding.no-border
+    .row
+      .col-md-12
+        .alert.alert-danger(ng-show="!$ctrl.isModelReady()")
+          | Please save current process to Process Store before requesting optimisations
+        .alert.alert-danger(ng-show="!$ctrl.hasOptimisableTasks()")
+          | Current model has no optimisable tasks
+
+
+.panel.panel-primary.slide-left(ng-show="$ctrl.canRequestOptimisation() && $ctrl.isListViewMode()" ng-switch="$ctrl.isLoading()")
+  .panel-heading
+    .row
+      .col-md-4
+        span List of service plans
+      .col-md-4
+        span.btn.btn-default.btn-xs(ng-class="$ctrl.showOptimisationButtonEffect? 'blinking-button' : ''" ng-click="$ctrl.optimiseProcess()")
+          i.fa.fa-check
+          |  Optimise process
+      .col-md-4
+        .pull-right
+          span.btn.btn-link.btn-xs(ng-click="$ctrl.loadServicePlans()")
+            i.fa.fa-refresh
+
+  .loader(loader-css="line-scale-party" ng-switch-when="true")
+    | Loading service plans
+
+  .panel-body.no-scroll.no-padding.no-border.flex-column.flex-auto(ng-switch-when="false")
+
+    .flex-column.flex-auto(ng-switch="$ctrl.hasServicePlans()")
+
+      .flex-column(ng-switch-when="false")
+        .alert.alert-warning
+          | No service plans found. Please click on Optimise process
+
+      .flex-column.flex-auto(ng-switch-when="true")
+        table.table.table-condensed.table-head
+          tr
+            th(style="width:50%") Creation Time
+            th(style="width:50%") Approved
+
+        .flex-column.scrollable-y.scrollbar-macosx.flex-auto(style="flex: 1;" jquery-scrollbar)
+          table.table.table-hover.table-condensed.table-striped
+            tr(ng-repeat="plan in $ctrl.plans | orderBy:'-creationTime' track by plan._id" style="cursor:pointer" ng-click="$ctrl.openServicePlan(plan)")
+              td(style="width:50%")
+                span(ng-bind="plan.creationTime|date:'dd MMM yyyy HH:mm'")
+              td(style="width:50%" ng-switch="plan.approved")
+                span.alert.alert-success(ng-switch-when="true" uib-tooltip= "Click here for details" tooltip-placement="bottom-right")
+                  i.fa.fa-lg.fa-check-square
+                  | &nbsp;Approved
+                span.alert.alert-danger(ng-switch-when="false" uib-tooltip= "Click here for details" tooltip-placement="bottom-right")
+                  i.fa.fa-lg.fa-minus-square
+                  | &nbsp;Rejected
+                span.alert.alert-info(ng-switch-default uib-tooltip= "Approval Pending" tooltip-placement="bottom-right")
+                  i.fa.fa-lg.fa-question-circle
+                  | &nbsp;New
+

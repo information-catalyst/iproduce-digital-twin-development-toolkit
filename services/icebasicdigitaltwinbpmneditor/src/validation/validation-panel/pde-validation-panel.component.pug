@@ -1,0 +1,8 @@
+.flex-auto.scrollable-y.scrollbar-macosx(jquery-scrollbar)
+  table.table.table-condensed.table-striped.table-hover(style="border-top:none;")
+    tbody
+      tr(ng-repeat="error in $ctrl.getValidationErrors() track by $index", style="cursor:pointer",
+        ng-click="$ctrl.goToError(error)", ng-class="{'active':$ctrl.selectedError == error}")
+        td(ng-bind="error.elementID")
+        td(ng-bind="error.elementType")
+        td(ng-bind="error.description")

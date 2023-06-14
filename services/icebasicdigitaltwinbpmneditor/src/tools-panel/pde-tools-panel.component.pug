@@ -1,0 +1,11 @@
+.tools-panel-container
+  ul.nav.nav-tabs.nav-justified
+    li(ng-repeat="tool in $ctrl.getTools()", ng-class="{'active': $ctrl.isActiveTool(tool.id) }")
+      a(ng-click="$ctrl.activateTool(tool)", style="cursor:pointer;", ng-bind="tool.title")
+
+  .tools-panel-body
+    pde-properties-panel(ng-show="$ctrl.isActiveTool('properties')")
+    pde-process-model-store(ng-show="$ctrl.isActiveTool('process-store')")
+    pde-optimization-panel(ng-show="$ctrl.isActiveTool('optimisation')")
+    pde-marketplace(ng-show="$ctrl.isActiveTool('marketplace')")
+    

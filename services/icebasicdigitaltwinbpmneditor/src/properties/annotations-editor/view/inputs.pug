@@ -1,0 +1,37 @@
+.panel-body.flex-auto.flex-column.no-padding(ng-if="$ctrl.isSelectedGroup('inputs')")
+
+  .flex.flex-column(style="padding:6px 15px;", ng-show="!$ctrl.readOnly")
+    .form-group(style="margin-bottom:0")
+      .col-sm-4
+        a(ng-click="$ctrl.addInput()" style="cursor:pointer")
+          i.fa.fa-plus
+          | &nbsp;Add input
+      .col-sm-4
+        a.text-danger(ng-if="$ctrl.isInputSelected()" ng-click="$ctrl.removeSelectedInput()" style="cursor:pointer")
+          i.fa.fa-minus
+          | &nbsp;Remove selected
+      .col-sm-4
+        .pull-right
+          a.text-danger(ng-click="$ctrl.clearInputs()" ng-if="$ctrl.hasInputs()" style="cursor:pointer")
+            i.fa.fa-remove
+            | &nbsp;Clear all
+
+  .flex-auto.flex-column.scrollable-y.scrollbar-macosx(jquery-scrollbar)
+    table.table.table-condensed.table-striped
+      tr(ng-repeat="input in $ctrl.inputs track by $index" ng-class="{'active':$ctrl.isInputSelected(input)}" ng-click="$ctrl.selectInput(input)")
+        td(style="width:20px;")
+          div(ng-show="$ctrl.isInputSelected(input)")
+            i.fa.fa-caret-right
+        td
+          div
+            strong(ng-bind="input.element.name")
+          div(ng-bind="input.element.value")
+          div
+            button.btn.btn-xs.btn-default(ng-if="!$ctrl.inputHasConstant(input)" ng-click="$ctrl.addConstantModal(input)") add constant value
+            span.label.label-success(ng-if="$ctrl.inputHasConstant(input)") {{$ctrl.getConstantValue(input)}}
+            button.btn.btn-xs.btn-default.margin-l--soft(ng-if="$ctrl.inputHasConstant(input)" ng-click="$ctrl.editConstant(input)")
+              i.fa.fa-pencil
+            button.btn.btn-xs.btn-danger.margin-l--soft(ng-if="$ctrl.inputHasConstant(input)" ng-click="$ctrl.removeConstant(input)")
+              i.fa.fa-trash
+
+            

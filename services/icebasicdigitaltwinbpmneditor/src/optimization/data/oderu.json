@@ -1,0 +1,500 @@
+{
+  "name": "CREMA",
+  "uri": "http://www.crema.org/cremaschema",
+  "prefix": "crema",
+  "xml": {
+    "tagAlias": "lowerCase"
+  },
+  "types": [
+    {
+      "name": "Metadata",
+      "superClass": [
+        "Element"
+      ],
+      "extends": [
+        "bpmn:Process"
+      ],
+      "properties": [
+        {
+          "name": "annotations",
+          "type": "Annotations"
+        },
+        {
+          "name": "optimization",
+          "type": "Optimization"
+        },
+        {
+          "name": "implementation",
+          "type": "Implementation"
+        },
+        {
+          "name": "defaults",
+          "type": "Defaults"
+        }
+      ]
+    },
+    {
+      "name": "Constants",
+      "superClass": [
+        "Element"
+      ],
+      "extends": [
+        "bpmn:ServiceTask"
+      ],
+      "properties": [
+        {
+          "name": "constant",
+          "isMany": true,
+          "type": "Constant"
+        }
+      ]
+    },
+    {
+      "name": "Constant",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "element",
+          "type": "element"
+        }
+      ]
+    },
+    {
+      "name": "Annotations",
+      "superClass": [
+        "Element"
+      ],
+      "extends": [
+        "bpmn:ServiceTask"
+      ],
+      "properties": [
+        {
+          "name": "inputs",
+          "type": "Inputs"
+        },
+        {
+          "name": "outputs",
+          "type": "Outputs"
+        },
+        {
+          "name": "preconditions",
+          "type": "Preconditions"
+        },
+        {
+          "name": "effects",
+          "type": "Effects"
+        }
+      ]
+    },
+    {
+      "name": "Inputs",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "input",
+          "isMany": true,
+          "type": "Input"
+        }
+      ]
+    },
+    {
+      "name": "Input",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "id",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
+          "name": "element",
+          "type": "element"
+        }
+      ]
+    },
+    {
+      "name": "Outputs",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "output",
+          "isMany": true,
+          "type": "Output"
+        }
+      ]
+    },
+    {
+      "name": "Output",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "id",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
+          "name": "element",
+          "type": "element"
+        }
+      ]
+    },
+    {
+      "name": "Preconditions",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "expr",
+          "type": "Expr"
+        },
+        {
+          "name": "element",
+          "isMany": true,
+          "type": "Element"
+        }
+      ]
+    },
+    {
+      "name": "Effects",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "expr",
+          "type": "Expr"
+        },
+        {
+          "name": "element",
+          "isMany": true,
+          "type": "Element"
+        }
+      ]
+    },
+    {
+      "name": "Expr",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "type",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "element",
+          "type": "Element"
+        }
+      ]
+    },
+    {
+      "name": "element",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "name",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "value",
+          "isBody": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "ValueElement",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "value",
+          "isBody": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Defaults",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "defaults",
+          "isMany": true,
+          "type": "Default"
+        }
+      ]
+    },
+    {
+      "name": "Default",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "for",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "value",
+          "isBody": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Implementation",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "services",
+          "isMany": true,
+          "type": "Service"
+        },
+        {
+          "name": "approved",
+          "isAttr": true,
+          "type": "Boolean"
+        }
+      ]
+    },
+    {
+      "name": "Service",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "seq",
+          "isAttr": true,
+          "type": "Integer"
+        },
+        {
+          "name": "implements",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "usable",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "abstractService",
+          "type": "AbstractService"
+        },
+        {
+          "name": "concreteService",
+          "type": "ConcreteService"
+        }
+      ]
+    },
+    {
+      "name": "AbstractService",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "marketplaceServiceID",
+          "type": "marketplaceService"
+        }
+      ]
+    },
+    {
+      "name": "marketplaceService",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "id",
+          "isBody": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "ConcreteService",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "origin",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "usable",
+          "isAttr": true,
+          "type": "Boolean"
+        },
+        {
+          "name": "marketplaceServiceID",
+          "isMany": true,
+          "type": "marketplaceService"
+        },
+        {
+          "name": "owlsDescription",
+          "isBody": true,
+          "type": "String"
+        },
+        {
+          "name": "assignments",
+          "type": "AssignmentCollection"
+        },
+        {
+          "name": "bindings",
+          "type": "BindingCollection"
+        }
+      ]
+    },
+    {
+      "name": "AssignmentCollection",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "values",
+          "isMany": true,
+          "type": "Assignment"
+        }
+      ]
+    },
+    {
+      "name": "Assignment",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "for",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "name",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "value",
+          "isBody": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "BindingCollection",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "values",
+          "isMany": true,
+          "type": "Binding"
+        }
+      ]
+    },
+    {
+      "name": "Binding",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "origin",
+          "type": "Origin"
+        },
+        {
+          "name": "target",
+          "type": "Target"
+        }
+      ]
+    },
+    {
+      "name": "Origin",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "variable",
+          "type": "Variable"
+        },
+        {
+          "name": "env",
+          "isBody": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Target",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "variable",
+          "type": "Variable"
+        }
+      ]
+    },
+    {
+      "name": "Variable",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "service",
+          "isAttr": true,
+          "type": "String"
+        },
+        {
+          "name": "name",
+          "isAttr": true,
+          "type": "String"
+        }
+      ]
+    },
+    {
+      "name": "Optimization",
+      "superClass": [
+        "Element"
+      ],
+      "properties": [
+        {
+          "name": "formulation",
+          "isBody": true,
+          "type": "String"
+        }
+      ]
+    }
+  ]
+}

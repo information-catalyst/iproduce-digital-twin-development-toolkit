@@ -1,0 +1,93 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
+  width: 50%;
+  height: 48%;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.scaled-frame {
+  width: 1880px;
+  height: 900px;
+  border: 0px;
+}
+
+.scaled-frame {
+  transform: scale(0.5);
+  transform-origin: top left;
+  border-width: 3px;
+  border-radius: 3px;
+  border-color: black;
+  border-style: solid;
+  background: white;
+}
+
+.grid2x2 {
+  min-height: 90%;
+  /* display: flex;
+  justify-content: space-between; */
+  /* flex-wrap: wrap;
+  flex-direction: row; */
+}
+
+.box {
+  margin: 0px;
+  float: left;
+}
+
+.box1 {
+  background-color: white;
+}
+
+.box2 {
+  background-color: white;
+}
+
+.box3 {
+  background-color: white;
+}
+
+.box4 {
+  background-color: white;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.frameControls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.overlayzoom {
+  width: 94%;
+  height: 94%;
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  z-index: 15;
+  opacity: 0.95;
+}
+
+.hiddenpadding {
+  position: relative;
+  margin: 0px;
+  width: 50%;
+  height: 48%;
+  padding: 0;
+  overflow: hidden;
+  display: none;
+}
+
+.statusbar * {
+  float: left;
+}

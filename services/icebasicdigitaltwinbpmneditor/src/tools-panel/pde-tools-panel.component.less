@@ -1,0 +1,23 @@
+//panel to display properties
+pde-tools-panel {
+
+  .flex-column;
+
+  background-color: @panel-background;
+  min-width: 500px;
+  overflow: hidden; // here we put all elements including tab headings
+
+  & > .tools-panel-container {
+    
+    .flex-auto;
+    .flex-column; // all tool panels go here, take as much vertical space as available, excluding tab headings
+
+    & > .tools-panel-body {
+      .flex-auto;
+      .flex-column;
+      padding: 6px;
+    }
+
+  }
+
+}

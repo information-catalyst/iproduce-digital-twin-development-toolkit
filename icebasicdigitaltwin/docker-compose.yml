@@ -1,0 +1,285 @@
+version: "3"
+services:
+  zookeeper:
+    image: informationcatalyst/kafkacluster
+    hostname: zookeeper
+    container_name: kafkanetwork_zookeeper_1
+    ports:
+      - "7070:2181"
+    environment:
+      RUN_TYPE: "zookeeper"
+
+  kafka_1:
+    image: informationcatalyst/kafkacluster
+    hostname: kafka
+    container_name: kafkanetwork_kafka_1
+    ports:
+      - "7071:9092"
+    environment:
+      RUN_TYPE: "kafka"
+    links:
+      - zookeeper
+    volumes:
+      - /var/run/docker.sock:/docker.sock
+
+  kafka_2:
+    image: informationcatalyst/kafkacluster
+    hostname: kafka
+    container_name: kafkanetwork_kafka_2
+    ports:
+      - "7072:9092"
+    environment:
+      RUN_TYPE: "kafka"
+    links:
+      - zookeeper
+    volumes:
+      - /var/run/docker.sock:/docker.sock
+
+  websocket:
+    #image: informationcatalyst/websocket
+    #image: informationcatalyst/websocket:2021SeptDemo
+    build: ../services/icebasicdigitaltwinwebsocket
+    hostname: websocket
+    depends_on:
+      - zookeeper
+      - kafka_2
+    ports:
+      - "7061:7080"
+    environment:
+      RUN_TYPE: "websocket"
+
+  #  nodepipe:
+  #    image: informationcatalyst/nodepipe
+  #    hostname: nodepipe
+  #    ports:
+  #      - "7062:7080"
+  #    depends_on:
+  #      - websocket
+  #    environment:
+  #      RUN_TYPE: "nodepipe"
+
+  #  mongodb:
+  #    image: informationcatalyst/mongodb
+  #    hostname: mongodb
+  #    ports:
+  #      - "7065:27017"
+  #    environment:
+  #      RUN_TYPE: "mongodb"
+  #      MONGODB_ADMIN_USER: "admin"
+  #      MONGODB_ADMIN_PASS: "adminpass"
+  #      MONGODB_APPLICATION_DATABASE: "chrisdb"
+  #      MONGODB_APPLICATION_USER: "testuser"
+  #      MONGODB_APPLICATION_PASS: "testpass"
+
+  #  mongoconsumer:
+  #    image: informationcatalyst/mongoconsumer
+  #    hostname: mongoconsumer
+  #    depends_on:
+  #      - zookeeper
+  #      - mongodb
+  #    environment:
+  #      RUN_TYPE: "mongoconsumer"
+  #      MONGODB_ADMIN_USER: "admin"
+  #      MONGODB_ADMIN_PASS: "adminpass"
+  #      MONGODB_APPLICATION_DATABASE: "chrisdb"
+  #      MONGODB_APPLICATION_USER: "testuser"
+  #      MONGODB_APPLICATION_PASS: "testpass"
+  #      MONGODB_PORT: "27017"
+
+  ## Reinstate later
+  # Send push alerts via google to mobile devices
+  #
+  #  alertsconsumer:
+  #      image: informationcatalyst/alertsconsumer
+  #      hostname: alertsconsumer
+  #      depends_on:
+  #        - zookeeper
+  #      environment:
+  #        RUN_TYPE: "alertsconsumer"
+  #        NOTIFICATION_URL: "https://gcm-http.googleapis.com/gcm/send"
+  #        NOTIFICATION_KEY: "AIzaSyBma2bCdUtcmZOUxjInHtQKZvlMDqW02y0"
+
+  ## Return to this
+  # protottype real time monitoring
+  #
+  kafkawebdash:
+    #image: informationcatalyst/kafkawebdash
+    #image: informationcatalyst/kafkawebdash:2021SeptDemo
+    build: ../services/icebasicdigitaltwinkafkawebdash
+    hostname: kafkawebdash
+    ports:
+      - "7063:80"
+    environment:
+      RUN_TYPE: "kafkawebdash"
+
+  ## should now be retired but we do need for authoring tasks
+  # kafkapde:
+  #   image: informationcatalyst/kafkapde
+  #   hostname: kafkapde
+  #   ports:
+  #     - "7064:80"
+  #   environment:
+  #     RUN_TYPE: "kafkapde"
+
+  kafkaweb3d:
+    #image: informationcatalyst/kafkaweb3d:local
+    #image: informationcatalyst/kafkaweb3d:2021SeptDemo
+    #image: informationcatalyst/kafkaweb3d:stepping-stone
+    build: ../services/icebasicdigitaltwin3dwebview
+    hostname: kafkaweb3d
+    ports:
+      - "7081:80"
+    environment:
+      RUN_TYPE: "kafkaweb3d"
+    volumes:
+      - "./volumes/web3d/models:/3DModelMaster/models"
+      - "./volumes/web3d/js/taskLists.js:/3DModelMaster/js/taskLists.js"
+
+  ## four panel demo image
+  smartfactoryconsole:
+    #image: informationcatalyst/smartfactoryconsole:local
+    #image:  informationcatalyst/smartfactoryconsole:stepping-stone
+    build: ../services/icebasicdigitaltwinmainpage-
+    hostname: smartfactoryconsole
+    ports:
+      - "7080:80"
+    depends_on:
+      - basexhttp
+    environment:
+      RUN_TYPE: "smartfactoryconsole"
+
+  ## old grafana
+  #  grafanadatarest:
+  #    image: informationcatalyst/grafanadatarest
+  #    hostname: grafanadatarest
+  #    ports:
+  #      - "7067:7067"
+  #    depends_on:
+  #      - zookeeper
+  #      - mongodb
+  #    environment:
+  #      RUN_TYPE: "grafanadatarest"
+  #      MONGODB_ADMIN_USER: "admin"
+  #      MONGODB_ADMIN_PASS: "adminpass"
+  #      MONGODB_APPLICATION_DATABASE: "chrisdb"
+  #      MONGODB_APPLICATION_USER: "testuser"
+  #      MONGODB_APPLICATION_PASS: "testpass"
+  #      MONGODB_PORT: "27017"
+  #      MONGODB_URL: "kafkanetwork_mongodb_1"
+
+  ### triad grafana, mysqlconsumer, mysql follow
+  ### commenteed out to check speed imapact
+  ### test reintroduction for grafana and watch dog
+
+  grafanaall:
+    image: informationcatalyst/grafanaall
+    #image: grafanaall-local:latest
+    hostname: grafanaall
+    ports:
+      - "7066:3000"
+    #    depends_on:
+    #      - kafkamysql
+    environment:
+      RUN_TYPE: "grafanaall"
+      GF_INSTALL_PLUGINS: "grafana-piechart-panel,grafana-simple-json-datasource"
+      GF_SECURITY_ADMIN_PASSWORD: "password"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      REST_URL_PORT: "kafkaprocessengine:8080"
+      #REST_URL_PORT: "http://127.0.0.1:7067"
+      user: root
+
+  kafkamysql:
+    image: mysql:5.7
+    hostname: kafkamysql
+    restart: always
+    ports:
+      - "7062:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: factory
+    volumes:
+      - ".MySQL:/var/lib/mysql"
+
+  kafkamysqlconsumer:
+    #image: informationcatalyst/kafkamysqlconsumer:new
+    #image: informationcatalyst/kafkamysqlconsumer:2021SeptDemo
+    build: ../services/icebasicdigitaltwinmysqlconsumer
+    hostname: kafkamysqlconsumer
+    depends_on:
+      - kafkamysql
+    ports:
+      - "7073:8080"
+    volumes:
+      - ".baconimages:/ice/images"
+
+    environment:
+      RUN_TYPE: "kafkamysqlconsumer"
+      MALLOC_ARENA_MAX: "1"
+      KAFKA_NETWORK: "kafkanetwork_kafka_2:9092"
+      KAFKA_MYSQL: "kafkamysql:3306/factory"
+      ICE_MYSQL: "kafkamysql:3306/formsubmit"
+  #    mem_limit: "5000m"
+  #    memswap_limit: "6000m"
+  #    cpu_percent: 5
+
+  kafkaprocessengine:
+    #image: informationcatalyst/processengine:local
+    #image: informationcatalyst/processengine:2021SeptDemo
+    build: ../services/icebasicdigitaltwinprocessengine
+    hostname: kafkaprocessengine
+    container_name: kafkaprocessengine
+    ports:
+      - "7067:8080"
+
+  kafkaprocessviewer:
+    #image: informationcatalyst/fakepde:local
+    #image: informationcatalyst/fakepde:2021SeptDemo
+    build: ../services/icebasicdigitaltwinprocessviewer
+    hostname: kafkaprocessviewer
+    ports:
+      - "7049:80"
+
+  # make watch dog less false positive
+  #  kafkawatchdog:
+  #    image: informationcatalyst/watchdog
+  #    hostname: kafkawatchdog
+  #    ports:
+  #      - "7065:80"
+
+  basexhttp:
+    image: basex/basexhttp:9.5.2
+    #image: informationcatalyst/basex:2021SeptDemo
+    # build: ../services/basex-9.5.2
+    container_name: kafkabasex
+    hostname: kafkabasex
+    ports:
+      - "1984:1984"
+      - "8984:8984"
+    volumes:
+      - "./basex/data:/srv/basex/data"
+
+  bpmn-editor-app:
+    build:
+      context: ../services/icebasicdigitaltwinbpmneditor
+      dockerfile: Dockerfile
+    ports:
+      - 8099:80
+
+  dash-app:
+    build:
+      context: ../services/dt-web-dashboard
+      dockerfile: Dockerfile
+    ports:
+      - 8888:80
+
+  dash-api:
+    container_name: dash-api
+    build:
+      context: ../services/dt-web-dashboard-backed-service
+      dockerfile: Dockerfile
+    ports:
+      - 4000:3000
+    volumes:
+      - ./volumes/web3d/models:/app/models
+    environment:
+      - frontEndURL=http://localhost:8888

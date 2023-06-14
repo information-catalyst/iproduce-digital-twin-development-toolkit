@@ -1,0 +1,27 @@
+.flex-auto.flex-column.scrollable-y.scrollbar-macosx(jquery-scrollbar)
+  table.table.table-condensed.table-hover.table-striped(ng-show="!$ctrl.isXmlView()")
+    tr(ng-repeat="impl in $ctrl.getSelectedPlanImplementations() track by $index" style="cursor:pointer"
+        ng-click="$ctrl.selectImplementation(impl)"
+        ng-class="{'active':$ctrl.isSelectedImplementation(impl)}")
+      td
+        span(ng-bind="::$ctrl.getImplementationSequence(impl)")
+      td
+        span(ng-bind="::$ctrl.getImplementationName(impl)")
+      td.text-right
+        span.label(ng-class="$ctrl.getImplementationName(impl) ? $ctrl.isImplementationOriginOptimization(impl) ? 'label-success' : 'label-info' : 'label-danger'"
+          uib-tooltip="{{$ctrl.getImplementationName(impl) ? $ctrl.isImplementationOriginOptimization(impl) ? 'Optimisataion will be applied to this element' : 'No optimisation can be applied to this element' : ''}}" tooltip-placement= "bottom-left"
+          ng-bind="::$ctrl.getImplementationOrigin(impl)" )
+
+  pde-code-editor(ng-show="$ctrl.isXmlView()", contents="$ctrl.selectedPlanDetail.xml", mode="xml", show-toolbar="true")
+
+
+// toggle xml view
+.flex.flex-row
+  .btn-group.btn-group-xs
+    a.btn.btn-default.btn-xs(ng-class="{'active':!$ctrl.isXmlView()}" ng-click="$ctrl.toggleXmlView()")
+      | Detail View
+    a.btn.btn-default.btn-xs(ng-class="{'active':$ctrl.isXmlView()}" ng-click="$ctrl.toggleXmlView()")
+      | XML View
+
+
+include view/change.detail.pug

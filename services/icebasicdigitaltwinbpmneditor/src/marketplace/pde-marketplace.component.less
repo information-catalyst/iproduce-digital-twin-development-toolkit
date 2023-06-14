@@ -1,0 +1,118 @@
+pde-marketplace {
+    z-index: @z-index-marketplace;
+
+    .flex-auto();
+    .flex-column();
+
+    & .type-label--input {
+      &:extend(.label);
+      &:extend(.label-success);
+      &:extend(.margin-r--soft);
+      font-size: 10px;
+      display: inline-block;
+    }
+
+    & .type-label--output {
+      &:extend(.label);
+      &:extend(.label-warning);
+      &:extend(.margin-r--soft);
+      font-size: 10px;
+      display: inline-block;
+    }
+
+    & .type-label--precondition {
+      &:extend(.label);
+      &:extend(.label-info);
+      &:extend(.margin-r--soft);
+      font-size: 10px;
+      display: inline-block;
+    }
+
+    & .type-label--effect {
+      &:extend(.label);
+      &:extend(.label-danger);
+      &:extend(.margin-r--soft);
+      font-size: 10px;
+      display: inline-block;
+    }
+
+    & .service-icon {
+      height: 70px;
+      width: 70px;
+    }
+
+    & .linked-concepts {
+      font-size: 9px;
+    }
+
+    & .service-icon--small {
+      height: 20px;
+      width: 20px;
+    }
+
+    & .cursor--pointer {
+        cursor: pointer !important;
+    }
+
+    & hr {
+        margin: 10px 0;
+    }
+
+    & .servicePreview {
+        font-size: 40px;
+    }
+
+    & .serviceDetail {
+
+        .flex-auto();
+        .flex-column();
+
+        min-width: 560px;
+        width: 30%;
+        position: absolute;
+        bottom:10px;
+        top: 100px;
+        right: 490px;
+        padding-right: 25px;
+
+        &.expanded {
+            width: 60%;
+        }
+
+    }
+
+
+    & .table {
+        margin-bottom: 0;
+    }
+
+    & .marketplace-table {
+      .no-select;
+    }
+
+    //standarize table styles
+    //& .table-hover > tbody > tr:hover {
+    //    background-color: #fff9f0;
+    //}
+
+    & td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 0;
+    }
+
+    & > .panel {
+
+        .flex-auto();
+        .flex-column();
+        margin-bottom: 0;
+
+    }
+
+    table.cursor--initial {
+      td {
+        cursor: initial;
+      }
+    }
+}

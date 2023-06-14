@@ -1,0 +1,11 @@
+.modal-header
+  h6.modal-title.text-center(translate="DIALOGS.SaveChanges")
+
+.modal-body.text-center
+  i.fa.fa-2x.fa-cloud-upload
+
+.modal-footer
+  .text-center
+    button.btn.btn-sm.btn-primary(type="button" ng-click="$ctrl.yes()", translate="GLOBAL.Yes")
+    button.btn.btn-sm.btn-default(type="button" ng-click="$ctrl.no()", translate="GLOBAL.No")
+    button.btn.btn-sm.btn-default(type="button" ng-click="$ctrl.dismiss()", translate="GLOBAL.Cancel")

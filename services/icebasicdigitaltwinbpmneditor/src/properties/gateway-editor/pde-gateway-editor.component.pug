@@ -1,0 +1,11 @@
+.panel.panel-primary.panel-flex
+  .panel-heading
+    span Conditions
+      span &nbsp;
+      span.badge(ng-bind="$ctrl.getConditions().length")
+
+  .panel-body.no-padding.no-scroll-x
+    table.table.table-striped
+      tr(ng-repeat="condition in $ctrl.getConditions()", ng-class="{'default-condition':$ctrl.isDefault(condition)}")
+        td
+          pde-condition-editor(selected-element="condition", read-only="$ctrl.readOnly")

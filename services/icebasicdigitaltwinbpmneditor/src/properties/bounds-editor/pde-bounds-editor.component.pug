@@ -1,0 +1,19 @@
+.form-group.form-group-sm(ng-if="$ctrl.canMove()")
+  label.control-label.col-sm-2 Left
+  .col-sm-4
+    input.form-control(type="text", input-blur, ng-model="$ctrl.propertyValue.x",
+      ng-change="$ctrl.valueChanged('x')", ng-model-options="{ updateOn: 'blur'}", ng-readonly="$ctrl.readOnly")
+  label.control-label.col-sm-2 Top
+  .col-sm-4
+    input.form-control(type="text", input-blur, ng-model="$ctrl.propertyValue.y",
+      ng-change="$ctrl.valueChanged('y')", ng-model-options="{ updateOn: 'blur'}", ng-readonly="$ctrl.readOnly")
+
+.form-group.form-group-sm(ng-if="$ctrl.canResize()")
+  label.control-label.col-sm-2 Width
+  .col-sm-4
+    input.form-control(type="text", input-blur, ng-model="$ctrl.propertyValue.width",
+      ng-change="$ctrl.valueChanged('width')", ng-model-options="{ updateOn: 'blur'}", ng-readonly="$ctrl.readOnly")
+  label.control-label.col-sm-2 Height
+  .col-sm-4
+    input.form-control(type="text", input-blur, ng-model="$ctrl.propertyValue.height",
+      ng-change="$ctrl.valueChanged('height')", ng-model-options="{ updateOn: 'blur'}", ng-readonly="$ctrl.readOnly")

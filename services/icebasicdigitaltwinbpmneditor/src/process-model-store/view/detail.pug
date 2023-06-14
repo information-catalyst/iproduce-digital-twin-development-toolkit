@@ -1,0 +1,65 @@
+div.processDetail(ng-class="{'expanded' : $ctrl.panelExpanded}" ng-show="$ctrl.showProcessDetail" ng-mouseenter="$ctrl.showProcessDetail = true;" ng-mouseleave="$ctrl.selectedProcess? return : $ctrl.showProcessDetail = false;")
+  .panel.panel-flex(ng-class="$ctrl.selectedProcess? 'panel-primary' : 'panel-default'")
+    // PANEL HEADING
+    .panel-heading
+      .row
+        .col-md-2
+          // EMPTY
+        .col-md-8.text-center
+          i.fa.fa-info-circle.margin-r--soft
+          span Process Detail
+        .col-md-2.text-right
+          button.btn.btn-default.btn-xs.margin-r--soft(ng-click="$ctrl.panelExpanded = !$ctrl.panelExpanded;")
+            i.fa(ng-class="$ctrl.panelExpanded? 'fa-compress' : 'fa-expand'")
+          button.btn.btn-default.btn-xs(ng-click="$ctrl.showProcessDetail = false; $ctrl.selectedProcess = null;")
+            i.fa.fa-times
+    .panel-body(style="overflow-x:hidden")
+      .row
+        // svg preview
+        .col-md-12
+          div.svgPreview(ng-bind-html="$ctrl.getTrustedSvg($ctrl.hoveredProcess)")
+      .row.margin-t--normal
+        // process data
+        .col-md-12
+          h5.list-group-item-heading.text-center.margin-b--normal {{$ctrl.hoveredProcess.processName}}
+          .row
+            .col-md-3: strong ID:
+            .col-md-9: span {{$ctrl.hoveredProcess._id}}
+          .row
+            .col-md-3: strong Company:
+            .col-md-9: span {{$ctrl.hoveredProcess.company}}
+          .row
+            .col-md-3: strong Last modified:
+            .col-md-9: span {{$ctrl.hoveredProcess.lastModified | date:'dd/MM/yy HH:mm'}}
+          .row(ng-show="$ctrl.hoveredProcess.processDescription")
+            .col-md-12: strong Description:
+            .col-md-12: p {{$ctrl.hoveredProcess.processDescription}}
+    .panel-footer
+      // BUTTONS
+      .row
+        .col-md-4.text-center
+          button.btn.btn-success(ng-click="$ctrl.openProcess($ctrl.hoveredProcess)")
+            | Open
+            i.fa.fa-folder-open.margin-l--soft
+        //- .col-md-3.text-center
+        //-   button.btn.btn-warning(ng-click="$ctrl.renderSubprocess($ctrl.hoveredProcess)")
+        //-     | Inject
+        //-     i.fa.fa-plus.margin-l--soft
+        .col-md-4.text-center
+          button.btn.btn-default(ng-click="$ctrl.showProcessDetail = false; $ctrl.selectedProcess = null;")
+            | Close
+            i.fa.fa-ban.margin-l--soft
+        .col-md-4.text-right
+          .btn-group(uib-dropdown)
+            button.btn.btn-primary(uib-dropdown-toggle)
+              | More
+              i.fa.fa-chevron-circle-down.margin-l--soft
+            ul.dropdown-menu(uib-dropdown-menu role="menu")
+              li(role="menuitem")
+                a(ng-click="$ctrl.editProcess($ctrl.hoveredProcess)")
+                  i.fa.fa-pencil.margin-r--soft
+                  | Edit process properties
+              li(role="menuitem")
+                a(ng-click="$ctrl.deleteProcess($ctrl.hoveredProcess)")
+                  i.fa.fa-trash.margin-r--soft
+                  | Delete process

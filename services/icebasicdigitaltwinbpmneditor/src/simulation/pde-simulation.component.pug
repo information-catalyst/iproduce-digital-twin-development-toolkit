@@ -1,0 +1,101 @@
+
+.panel-container
+
+  .flex-row.flex-auto
+
+    .flex-column.flex-auto.scrollbac-macosx(jquery-scrollbar)
+
+      table.table.table-condensed.table-hover.table-striped.table-align-middle
+        thead
+          tr
+            th(style="width:20px") Thread Id
+            th(style="width:40%") Position
+            th(style="width:10%") Color
+            th(style="width:20%") Status
+            th(style="width:10%")
+
+        tbody
+          tr(ng-repeat="thread in $ctrl.getThreads()")
+            td(ng-bind="$index")
+              td(ng-bind="$ctrl.getThreadPositionName(thread)")
+              td
+                div(style="inline-block;height:6px"  ng-style="{'background-color':thread.color}")
+              td(ng-bind="$ctrl.getThreadStatusName(thread)")
+
+              td
+                .btn.btn-xs.btn-primary(ng-click="$ctrl.toggleFollowThread(thread)")
+                  span(ng-bind="thread.following ? 'Stop following' : 'Follow'")
+
+
+    .flex-column(style="width:40%; padding: 10px;")
+
+      .flex-row.flex-justify-between
+          .btn.btn-primary.btn-sm(ng-click="$ctrl.toggleSimulation()")
+            span(ng-bind="$ctrl.isSimulating() ? 'Stop simulation' : 'Start simulation'")
+
+          span(ng-if="$ctrl.hasWaitingThreads()")
+            | Waiting thread, please select output
+
+      .flex-column.flex-auto
+
+        .flex-column(ng-if="$ctrl.hasWaitingThreads()")
+
+          .flex-column.btn.btn-success.btn-sm(ng-repeat="choice in $ctrl.getWaitingThreadChoices()",
+            ng-bind="choice.text", ng-click="$ctrl.setThreadChoice(choice)")
+
+
+  .flex-row.flex-auto
+
+      .flex-column.flex-auto.scrollbar-macosx(jquery-scrollbar)
+        table(ng-if="$ctrl.getFinishedTasks().length" )
+          tbody(style="max-height:200px; overflow-y:scroll;")
+            tr(ng-repeat="task in $ctrl.getFinishedTasks() track by $index")
+              td
+                span(ng-bind="task.pid")
+              td
+                span(ng-bind="task.task")
+              td
+                span(ng-bind="task.startTime")
+
+
+      .flex-column(style="width:40%; padding: 8px;")
+        table
+          tr
+          .flex-row.flex-justify-between
+            .btn.btn-primary.btn-sm(ng-if="$ctrl.getFinishedTasks().length" ng-click="$ctrl.clearFinishedTasks()")
+              | Clear Log
+          tr
+            | &nbsp;
+          tr
+          .flex-row.flex-justify-between
+            .btn.btn-primary.btn-sm(ng-if="$ctrl.getFinishedTasks().length" ng-click="$ctrl.exportToLog()")
+              | Export Log
+
+
+  //.panel.panel-body(style="max-height:100px; overflow-y:scroll;")
+    ul
+      li(ng-repeat="thread in $ctrl.getFinishedThreads() track by $index")
+        span
+          | {{thread.element.name}}
+
+  //.flex-row.flex-auto
+    .flex-column.flex-auto.scrollbar-macosx(jquery-scrollbar)
+
+      table.table.table-hover.table-striped.table-align-middle
+        thead
+          tr
+            th(style="width:40%") Thread Id
+            th(style="width:40%") Position
+
+        tbody(style="max-height:100px; overflow-y:scroll;")
+          tr(ng-repeat="thread in $ctrl.getFinishedThreads() track by $index")
+            td(ng-bind="$index")
+            td(ng-bind="$ctrl.getThreadPositionName(thread)")
+
+
+      .flex-column(style="width:40%; padding: 10px;")
+
+        .flex-row.flex-justify-between
+          .btn.btn-primary.btn-sm(ng-click="$ctrl.clearFinishedThreads()")
+            span
+              | Clear Log

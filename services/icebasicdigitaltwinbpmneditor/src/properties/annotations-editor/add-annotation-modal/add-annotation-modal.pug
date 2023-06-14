@@ -1,0 +1,30 @@
+.modal-header
+  h6.modal-title.text-center Add {{$ctrl.resolve.title}} Annotation
+
+.modal-body
+
+  .panel.panel-default
+    .panel-body
+      form.form-horizontal(name="$ctrl.addAnnotationForm")
+        uib-tabset(active="$ctrl.activeTab" justified="true")
+          uib-tab(index="0" ng-click="$ctrl.initRawInput()")
+            include view/raw.pug
+          uib-tab(index="1" ng-click="$ctrl.initComfortInput()")
+            include view/comfort.pug
+          uib-tab(index="2" ng-click="$ctrl.initPddlInput()")
+            include view/pddl.pug
+        
+      .row.text-center.margin-t--normal
+        strong Result
+      .row
+        .col-sm-12
+          pre {{$ctrl.getResult()}}
+
+.modal-footer
+  .text-center
+    button.btn.btn-success(type="button" ng-click="$ctrl.submitAnnotations()" ng-disabled="!$ctrl.formValid()")
+      i.fa.fa-check
+      |  Add {{$ctrl.resolve.title}}
+    button.btn.btn-warning(ng-click="$ctrl.dismiss()")
+      i.fa.fa-ban
+      |  Cancel

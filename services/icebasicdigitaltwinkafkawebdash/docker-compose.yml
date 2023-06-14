@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - "7063:80"
+        volumes:
+            - ./public-html:/3DModelMaster
+            - ./site.conf:/etc/nginx/conf.d/default.conf
+
+

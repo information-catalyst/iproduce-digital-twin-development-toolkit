@@ -1,0 +1,55 @@
+splash-screen {
+
+    width: 100%;
+    min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: @z-index-splash;
+    overflow: hidden;
+
+    .text {
+        font-size: 60px;
+        color: white;
+        z-index: 1000;
+    }
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &:before,
+    &:after {
+        content: '';
+        width: 100%;
+        height: 50%;
+        position: absolute;
+        left: 0;
+        background: @brand-primary;
+        transition: transform 1s ease;
+    }
+
+    &:before {
+        top: 0;
+    }
+
+    &:after {
+        bottom: 0;
+    }
+
+    &.ready {
+
+        &:before {
+            -webkit-transform: translate3d(-100vw, 0, 0);
+            transform: translate3d(-100vw, 0, 0);
+        }
+        &:after {
+            -webkit-transform: translate3d(100vw, 0, 0);
+            transform: translate3d(100vw, 0, 0);
+        }
+    }
+
+}

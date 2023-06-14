@@ -1,0 +1,81 @@
+.modal-header
+  h6.modal-title.text-center Semantic Annotation Wizard
+
+.modal-body.semantic-wizard
+
+  .panel.panel-default.scale
+    .panel-body.no-padding
+      form.form-horizontal
+        .form-group.form-group-sm(ng-class="{'has-error':!$ctrl.varName}")
+          label.control-label.col-sm-2 Var name
+          .col-sm-8
+            input.form-control(type="text" ng-model="$ctrl.varName" placeholder="Please type a variable name" autofocus)
+
+  .panel.panel-default
+    .panel-heading
+      .row
+        .col-md-6
+          | Search Linked Concepts
+        .col-md-6
+          a.btn.btn-primary.btn-xs.pull-right(ng-show="$ctrl.section === 'results'" ng-click="$ctrl.changeCriteria()")
+            | Change criteria
+
+    .panel-body.scale(ng-show="$ctrl.section === 'search'")
+
+      form.form-horizontal(name="$ctrl.semanticForm" novalidate="novalidate" ng-submit="$ctrl.search()")
+
+        .form-group.form-group-sm(ng-class="{'has-error':!$ctrl.request.concept}")
+          label.control-label.col-sm-2(for="concept") Concept
+          .col-sm-4
+            input.form-control(type="text" name="concept" placeholder="Type a few words for search" ng-model="$ctrl.request.concept" required)
+          .col-sm-6
+            button.btn.btn-primary.btn-sm.btn-block(type="submit" ng-disabled="!$ctrl.semanticForm.$valid")
+              | Search
+
+  .panel.panel-default.scale(ng-show="$ctrl.section === 'searching'")
+    .panel-body
+      .flex-auto.flex-column.flex-i-center.flex-c-center
+        h4 Searching ...
+        .loader(loader-css="line-scale-party")
+
+  .panel.panel-default.scale(ng-show="$ctrl.section === 'results'")
+    .panel-heading Search Results ({{ $ctrl.concepts.length }})
+    .panel-body
+
+        .form-group.form-group-sm
+
+          .col-sm-6
+            pde-ontology-graph(concepts="$ctrl.concepts", keyword="$ctrl.request.keyword")
+
+          .col-sm-6
+            table.table(style="margin-bottom:0")
+            .scrollable-y.scrollbar-macosx(style="max-height:290px;cursor:default;border:1px solid;", jquery-scrollbar)
+
+              table.table.table-hover.table-striped
+
+                tr(ng-repeat="concept in $ctrl.concepts track by concept.id"
+                   ng-class="{'active':concept === $ctrl.selectedConcept}"
+                   ng-click="$ctrl.selectConcept(concept)")
+
+                  td(style="width:20px")
+                    i.fa.fa-caret-right(ng-if="$ctrl.selectedConcept === concept")
+                    | &nbsp;
+
+                  td(colspan="4")
+                    div(ng-bind="concept.uri")
+
+                    .col-sm-6.text-right
+                      span Popularity :&nbsp;
+                      strong(ng-bind="concept.popularity | number:2")
+                    .col-sm-6.text-right
+                      span Relevance :&nbsp;
+                      strong(ng-bind="concept.relevance")
+
+.modal-footer
+  .text-center
+    button.btn.btn-sm.btn-success(type="button", ng-click="$ctrl.accept()", ng-disabled="!$ctrl.canAccept()")
+      i.fa.fa-check
+      |  Accept
+    button.btn.btn-sm.btn-warning(style="margin-right:20px;", ng-click="$ctrl.dismiss()")
+      i.fa.fa-ban
+      |  Cancel

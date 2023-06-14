@@ -1,0 +1,140 @@
+version: "3"
+services:
+  zookeeper:
+    image: informationcatalyst/kafkacluster
+    hostname: zookeeper
+    container_name: kafkanetwork_zookeeper_1
+    ports:
+      - "7070:2181"
+    environment:
+      RUN_TYPE: "zookeeper"
+
+  kafka_1:
+    image: informationcatalyst/kafkacluster
+    hostname: kafka
+    container_name: kafkanetwork_kafka_1
+    ports:
+      - "7071:9092"
+    environment:
+      RUN_TYPE: "kafka"
+    links:
+      - zookeeper
+    volumes:
+      - /var/run/docker.sock:/docker.sock
+
+  kafka_2:
+    image: informationcatalyst/kafkacluster
+    hostname: kafka
+    container_name: kafkanetwork_kafka_2
+    ports:
+      - "7072:9092"
+    environment:
+      RUN_TYPE: "kafka"
+    links:
+      - zookeeper
+    volumes:
+      - /var/run/docker.sock:/docker.sock
+
+  websocket:
+    image: git.icelab.cloud/digitaltwin/basicdigitaltwin/icebasicdigitaltwinwebsocket:1.0.0
+    hostname: websocket
+    depends_on:
+      - zookeeper
+      - kafka_2
+    ports:
+      - "7061:7080"
+    environment:
+      RUN_TYPE: "websocket"
+
+  kafkawebdash:
+    image: git.icelab.cloud/digitaltwin/basicdigitaltwin/icebasicdigitaltwinkafkawebdash:1.0.0
+    hostname: kafkawebdash
+    ports:
+      - "7063:80"
+    environment:
+      RUN_TYPE: "kafkawebdash"
+
+  kafkaweb3d:
+    image: git.icelab.cloud/digitaltwin/basicdigitaltwin/icebasicdigitaltwin3dwebview:1.0.0
+    hostname: kafkaweb3d
+    ports:
+      - "7081:80"
+    environment:
+      RUN_TYPE: "kafkaweb3d"
+    volumes:
+      - "./volumes/web3d/models:/3DModelMaster/models"
+      - "./volumes/web3d/js/taskLists.js:/3DModelMaster/js/taskLists.js"
+
+  smartfactoryconsole:
+    image: git.icelab.cloud/digitaltwin/basicdigitaltwin/icebasicdigitaltwinmainpagenew:1.0.0
+    hostname: smartfactoryconsole
+    ports:
+      - "7080:80"
+    depends_on:
+      - basexhttp
+    environment:
+      RUN_TYPE: "smartfactoryconsole"
+
+  grafanaall:
+    image: informationcatalyst/grafanaall
+    hostname: grafanaall
+    ports:
+      - "7066:3000"
+    environment:
+      RUN_TYPE: "grafanaall"
+      GF_INSTALL_PLUGINS: "grafana-piechart-panel,grafana-simple-json-datasource"
+      GF_SECURITY_ADMIN_PASSWORD: "password"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      REST_URL_PORT: "kafkaprocessengine:8080"
+      user: root
+
+  kafkamysql:
+    image: mysql:5.7
+    hostname: kafkamysql
+    restart: always
+    ports:
+      - "7062:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: factory
+    volumes:
+      - ".MySQL:/var/lib/mysql"
+
+  kafkamysqlconsumer:
+    image: git.icelab.cloud/digitaltwin/basicdigitaltwin/icebasicdigitaltwinmysqlconsumer:1.0.0
+    hostname: kafkamysqlconsumer
+    depends_on:
+      - kafkamysql
+    ports:
+      - "7073:8080"
+    volumes:
+      - ".baconimages:/ice/images"
+
+    environment:
+      RUN_TYPE: "kafkamysqlconsumer"
+      MALLOC_ARENA_MAX: "1"
+      KAFKA_NETWORK: "kafkanetwork_kafka_2:9092"
+      KAFKA_MYSQL: "kafkamysql:3306/factory"
+      ICE_MYSQL: "kafkamysql:3306/formsubmit"
+
+  kafkaprocessengine:
+    image: git.icelab.cloud/digitaltwin/basicdigitaltwin/icebasicdigitaltwinprocessengine:1.0.0
+    hostname: kafkaprocessengine
+    container_name: kafkaprocessengine
+    ports:
+      - "7067:8080"
+
+  kafkaprocessviewer:
+    image: git.icelab.cloud/digitaltwin/basicdigitaltwin/icebasicdigitaltwinprocessviewer:1.0.0
+    hostname: kafkaprocessviewer
+    ports:
+      - "7049:80"
+
+  basexhttp:
+    image: basex/basexhttp:9.5.2
+    hostname: kafkabasex
+    ports:
+      - "1984:1984"
+      - "8984:8984"
+    volumes:
+      - "./basex/data:/srv/basex/data"

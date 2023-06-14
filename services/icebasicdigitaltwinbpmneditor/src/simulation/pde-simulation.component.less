@@ -1,0 +1,42 @@
+@colors: blue,
+green,
+yellow,
+red;
+// mixin to iterate over colors and create CSS class for each one
+.make-simulation-colors(@i: length(@colors)) when (@i > 0) {
+  .make-simulation-colors(@i - 1);
+  @color: extract(@colors, @i);
+  .simulation-focus-@{color} .djs-visual> :nth-child(1) {
+    stroke: @color !important;
+    stroke-width: 5 !important;
+  }
+}
+
+.make-simulation-colors();
+
+
+pde-simulation {
+
+  .flex;
+  background-color: @panel-background;
+  height: 0;
+  transition: height 0.2s;
+  overflow: hidden;
+
+  &.visible {
+
+    // we just need bottom padding
+    padding: 0 0 @panel-padding 0;
+    transition: height 0.2s;
+    height: 200px;
+  }
+
+  & >.panel-container {
+
+    .flex-auto;
+    .flex-column;
+    border: 1px solid @panel-border-color;
+    background-color: white;
+
+  }
+}

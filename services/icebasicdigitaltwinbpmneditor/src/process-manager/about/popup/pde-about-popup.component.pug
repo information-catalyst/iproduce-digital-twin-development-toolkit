@@ -1,0 +1,12 @@
+.modal-header
+  h5.modal-title.text-center About ICE Process Designer
+
+.modal-body.text-center
+
+  img.aboutCremaLogo(width="100%", ng-src="{{$ctrl.resolve.imageSrc}}")
+  a(href="http://www.informationcatalyst.com/", target="_blank") http://www.informationcatalyst.com/
+.modal-footer
+  .text-center
+    button.btn.btn-primary(type="button", ng-click="$ctrl.dismiss()")
+      | Close
+      i.fa.fa-ban.margin-l--soft

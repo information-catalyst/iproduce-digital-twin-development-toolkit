@@ -1,0 +1,29 @@
+//panel to display properties
+pde-properties-panel {
+
+  .flex-auto;
+  .flex-column;
+
+  & > .panel {
+
+    .flex-auto;
+    .flex-column;
+
+    & > .properties-container {
+
+      .flex-auto;
+      .flex-column;
+
+      & > form {
+
+        .flex-auto;
+        .flex-column;
+      }
+    }
+  }
+}
+
+@import "./annotations-editor/pde-annotations-editor.component.less";
+@import "./cop-editor/pde-cop-editor.component.less";
+@import "./gateway-editor/pde-gateway-editor.component.less";
+@import "./script-editor/pde-script-editor.component.less";

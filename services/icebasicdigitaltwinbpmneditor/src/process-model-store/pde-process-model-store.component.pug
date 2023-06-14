@@ -1,0 +1,37 @@
+.panel.panel-primary
+
+  .panel-heading
+    .row
+      .col-md-6
+        span
+          i.fa.fa-arrow-circle-right
+          |  List of Process Models
+      .col-md-6
+        .pull-right
+          span.btn.btn-link.btn-xs(ng-click="$ctrl.getProcesses()")
+            i.fa.fa-refresh
+  .panel-body.no-scroll.no-padding.no-border.flex-column.flex-auto
+
+    // Loading Spinner
+    .flex-auto.flex-column.flex-center(ng-show="$ctrl.loading === true")
+      div.loader(loader-css="line-scale-party")
+    comment
+    // Help Text
+    .col-md-12(ng-hide="$ctrl.loading")
+      p.help-block.well.well-sm.text-center
+        i.fa.fa-info-circle.margin-r--soft
+        | You can also open a process by double-clicking on its table row.
+    // Filter Search
+    .col-md-10.col-md-offset-1.margin-b--soft.margin-t--soft(ng-hide="$ctrl.loading")
+      .form-group
+        .input-group
+          .input-group-addon
+            i.fa.fa-search
+          input.form-control(type="text" ng-model="$ctrl.search.processName" placeholder="Search by process name..")
+
+    // Table View
+    include view/table.pug
+    // List-Group View
+    //- include list.pug
+    // Hover Detail-View
+    include view/detail.pug

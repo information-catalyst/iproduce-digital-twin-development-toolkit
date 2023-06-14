@@ -1,0 +1,40 @@
+table.table.no-border(ng-show="!$ctrl.loading")
+  tr
+    th.col-md-1.text-center
+      a(href="" ng-click="$ctrl.sortType = 'processServicePlanId'; $ctrl.sortReverse=!$ctrl.sortReverse" uib-tooltip="readonly")
+        span.fa.fa-eye
+        span.fa.fa-caret-down.padding-l--soft(ng-show="$ctrl.sortType == 'processServicePlanId' && $ctrl.sortReverse")
+        span.fa.fa-caret-up.padding-l--soft(ng-show="$ctrl.sortType == 'processServicePlanId' && !$ctrl.sortReverse")
+    th.col-md-6
+      a(href='' ng-click="$ctrl.sortType = 'processName'; $ctrl.sortReverse=!$ctrl.sortReverse")
+        span.margin-r--soft Name
+        span.fa.fa-caret-down(ng-show="$ctrl.sortType == 'processName' && $ctrl.sortReverse")
+        span.fa.fa-caret-up(ng-show="$ctrl.sortType == 'processName' && !$ctrl.sortReverse")
+    th.col-md-2
+      a(href='' ng-click="$ctrl.sortType = 'company'; $ctrl.sortReverse=!$ctrl.sortReverse")
+        span.margin-r--soft Company
+        span.fa.fa-caret-down(ng-show="$ctrl.sortType == 'company' && $ctrl.sortReverse")
+        span.fa.fa-caret-up(ng-show="$ctrl.sortType == 'company' && !$ctrl.sortReverse")
+    th.col-md-3.text-right
+      a(href='' ng-click="$ctrl.sortType = 'lastModified'; $ctrl.sortReverse=!$ctrl.sortReverse")
+        span.margin-r--soft Last Modified
+        span.fa.fa-caret-down(ng-show="$ctrl.sortType == 'lastModified' && $ctrl.sortReverse")
+        span.fa.fa-caret-up(ng-show="$ctrl.sortType == 'lastModified' && !$ctrl.sortReverse")
+
+.flex-auto.flex-column.scrollable-y.scrollbar-macosx(ng-show="!$ctrl.loading" jquery-scrollbar)
+  table.table.table-condensed.table-hover.table-striped
+    tr(data-element-id="processmodel"
+      ng-repeat='process in $ctrl.processes | orderBy:$ctrl.sortType:$ctrl.sortReverse | filter:$ctrl.search track by $index'
+      ng-class="$ctrl.selectedProcess === process? 'active' : ''"
+      ng-click="$ctrl.selectedProcess = process; $ctrl.hoveredProcess = process;"
+      ng-mouseenter="$ctrl.showProcessDetail = true; $ctrl.selectedProcess? return : $ctrl.hoveredProcess = process;"
+      ng-mouseleave="$ctrl.selectedProcess? return : $ctrl.showProcessDetail = false;"
+      ng-dblclick="$ctrl.openProcess(process)")
+      td.col-md-1.text-center
+        span.fa.fa-eye(ng-show="process.processServicePlanId")
+      td.col-md-6
+        span {{process.processName}}
+      td.col-md-2
+        span {{process.company}}
+      td.col-md-3.text-right
+        span {{process.lastModified | date: 'dd/MM/yy HH:mm'}}

@@ -1,0 +1,22 @@
+.semantic-wizard
+{
+    &:extend(.scrollable-y);
+    max-height:500px;
+    height:500px;
+
+    & .scale {
+
+        transform: none;
+
+        // animations for scale effect
+        &.ng-hide-remove {
+            transition: transform linear 0.3s;
+        }
+
+        &.ng-hide {
+            transform: scaleY(0);
+        }
+
+    }
+
+}

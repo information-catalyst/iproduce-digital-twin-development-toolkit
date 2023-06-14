@@ -1,0 +1,95 @@
+body {
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+h2 {
+	text-align: center;
+	color: #555;
+  margin-bottom: 0;
+}
+
+iframe {
+	display: block; 
+	width: 100%; 
+	height: 100%; 
+	height: 100%; 
+	border: none;
+}
+
+// Carousel configuration parameters
+$item-width: 1024px; // Now we can use percentages!
+$item-height: 768px; // Now we can use percentages!
+$item-separation: 0px; // This now is set with Js
+$viewer-distance: 1500px;
+
+.carousel {
+	padding: 20px;
+
+	perspective: $viewer-distance;
+	overflow: hidden;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	>*{
+		flex: 0 0 auto;
+	}
+	
+	.carousel-container {
+		margin: 0;
+		
+		width: $item-width;
+		height: $item-height;
+		transform-style: preserve-3d;
+		transition: transform 0.5s;
+		
+		&-item {
+			width: 100%;
+			box-sizing: border-box;
+			padding: 0 $item-separation / 2;
+			
+			&:not(.first-item) {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			img {
+				//padding-top:50px;
+				justify-content: center;
+				vertical-align: middle;
+				width: $item-width;
+				height: $item-height;
+			}
+		}
+
+
+
+	}
+	
+	nav {
+		display: flex;
+		justify-content: center;
+		margin: 20px 0 0;
+		
+		button {
+			flex: 0 0 auto;
+			margin: 0 5px;
+			
+			cursor: pointer;
+			
+			color: #333;
+			background: none;
+			border: 1px solid;
+			letter-spacing: 1px;
+			padding: 5px 10px;
+		}
+	}
+	
+}

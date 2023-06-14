@@ -1,0 +1,51 @@
+//status panel
+@status-panel-height-expanded: 200px;
+@status-panel-height-collapsed: 25px;
+
+
+pde-status-panel
+{
+    .flex;
+
+    // we just need padding bottom, left/right is provided by .central-panel
+    padding-bottom: @panel-padding;
+
+    background-color: @panel-background;
+
+    height: @status-panel-height-collapsed;
+    transition: height 0.2s;
+
+    &.expanded {
+
+      height: @status-panel-height-expanded;
+      transition: height 0.2s;
+    }
+
+    & > .panel-container {
+
+        .flex-auto;
+        .flex-column;
+
+        border:1px solid @panel-border-color;
+        background-color:white;
+
+        & > .panel-toolbar {
+          .flex-row;
+
+          & > pde-status-panel-button {
+            .flex-row;
+          }
+
+        }
+
+        & > .panel-detail {
+
+            .flex-auto;
+            .flex-column;
+            border-top:1px solid @panel-border-color;
+        }
+
+    }
+
+
+}

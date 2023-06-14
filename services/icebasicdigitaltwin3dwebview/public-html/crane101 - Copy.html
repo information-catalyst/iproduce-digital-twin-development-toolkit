@@ -1,0 +1,269 @@
+
+<!-- saved from url=(0088)file:///C:/Users/Usman/AppData/Roaming/Skype/My%20Skype%20Received%20Files/3dOnPage.html -->
+<html>
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Dashboard 3D</title>
+    
+		<style>
+			body { margin: 0; }
+      #mycanvas {
+        background-color: #000;
+    		width: 800px;
+    		height: 600px;
+        border: 0px solid black;
+    		margin: 0px;
+    		padding: 0px;
+    
+    		float:left;
+    
+    		position: static; 
+    	}
+		</style>
+	</head>
+	<body>
+  
+  		<!-- load JQuery -->    
+		<script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+    <!-- BOOTSTRAP JS -->
+    <!-- -->
+    <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css" />
+    <script src="bootstrap/bootstrap.min.js"></script>  
+    <!-- -->  
+
+
+		<!-- INCLUDES for 3D Javascript engine -->
+			<!-- base library for 3D -->
+    <script src="js3d/build/three.min.js"></script>
+    
+		<!-- controllers for 3D mouse movement etc -->
+		<script src="js3d/examples/js/controls/DragControls.js"></script>
+		<script src="js3d/examples/js/controls/SelectControls.js"></script>
+		<script src="js3d/examples/js/controls/FollowControls.js"></script>
+		<script src="js3d/examples/js/controls/OrbitControls.js"></script>
+		<script src="js3d/examples/js/controls/TrackballControls.js"></script>
+    <script src="js3d/examples/js/renderers/Projector.js"></script>
+
+    <!-- ADDS FPS COUNTER -->
+    <script src="js3d/stats.js-master/build/stats.min.js"></script>
+        
+		<!-- object loaders 3D  -->
+		<script src="js3d/examples/js/loaders/ColladaLoader.js"></script>
+		<script src="js3d/examples/js/loaders/OBJLoader.js"></script>
+		<script src="js3d/examples/js/loaders/VRMLLoader.js"></script>
+		<script src="js3d/examples/js/loaders/FBXLoader.js"></script>
+
+		<!-- include CSS / web pages inside 3D scene -->
+		<script src="js3d/examples/js/renderers/CSS3DRenderer.js"></script>
+    
+		<!-- Inlclude function for selecting counters -->
+		<script src="js/selectCounter.js"></script>
+    <script src="js/cookCounter.js"></script>
+    <script src="js/cameraPositions.js"></script>
+    
+		<!-- scene set up and other functions in a file -->
+		<script src="js/names.js"></script>
+    <script src="js/mixed3dWeb.js"></script>
+
+    <script src="js/icewsclient.js"></script>
+    <script src="js/newanims.js"></script>
+    <script src="js/kafkacommandhandlers.js"></script>
+
+    <script>
+    rotationMotorBackward = 0;
+    rotationMotorForward = 0;
+    elevationMotorBackward = 0;
+    elevationMotorForward = 0;
+    extensionMotorBackward = 0;
+    extensionMotorForward = 0;
+    xhttpMultiProcessor = new XMLHttpRequest();
+    xhttpMultiProcessor.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+
+          var jsonResponse = JSON.parse(xhttpMultiProcessor.responseText)
+
+          rotationMotorBackward = parseFloat(jsonResponse[0]["MotPwm[0-0]"]);
+          rotationMotorForward = parseFloat(jsonResponse[0]["MotPwm[0-1]"]);
+          elevationMotorBackward = parseFloat(jsonResponse[0]["MotPwm[0-2]"]);
+          elevationMotorForward = parseFloat(jsonResponse[0]["MotPwm[0-3]"]);
+          extensionMotorBackward = parseFloat(jsonResponse[0]["MotPwm[0-4]"]);
+          extensionMotorForward = parseFloat(jsonResponse[0]["MotPwm[0-5]"]);
+
+        }
+    };
+
+
+    var timerFunction = function(){
+      xhttpMultiProcessor.open("GET", "http://icemain.hopto.org:8058/factoryapi/factory/Multi_Processor", true);
+      xhttpMultiProcessor.send();
+      setTimeout(timerFunction, 100);
+    }
+
+    //todo reinstate as needed //timerFunction();
+
+    </script>
+
+    <!-- Include functions for the animation -->
+    <script src="js/animation/factoryAnimation.js"></script>
+    
+		<!-- ICE page give me a DIV with ID mycanvas -->
+		<div style="width:100%">
+      <div style=" position: absolute; top: 0px; right: 0px;">
+    <img src="resources/pictures/ice.jpg"/>
+            </div>
+    <!--
+			<div style=" position: relative; top: 44px; right: 0px;">
+    -->
+       <div style=" position: absolute; top: 0px; right: 0px;">
+			</div>
+
+			<div class="container">
+				<section id="widget-grid" class="">
+	   				<div class="page-header">
+	    				<div>
+	    					<h1 id="heading" style="font-weight: 600; text-transform: capitalize;">Data Sources <br></h1>
+	        				<small style="font-size:140%;" id="hierarchy"></small><br>
+	        				<a id="headingHREF" href="">Back to Data Sources</a>
+	    				</div>
+					</div>
+					<div id="mycanvas" class="container">
+						<!-- 3D GOES HERE -->
+            <script>
+             
+            function getParameterByName(name, url) {
+              if (!url) {
+                url = window.location.href;
+              }
+
+              name = name.replace(/[\[\]]/g, "\\$&");
+              var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                  results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+              return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            var place = getParameterByName('place');
+            if ((place == null) || (place=="")){
+              place = "1";
+            }
+            </script>
+              <span class='ui-button-text' style='position: relative; z-index: 10'>
+                <img id='birdMap' width='64' height='64' src='img/34230.svg' style='position: relative; z-index: 10' onclick='
+                  var position = new THREE.Vector3(0, 1, 0);
+                  var cposition = new THREE.Vector3(0, 10, 0);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint1' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:150px; left:250px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(-1.325, 1, -2.5);
+                  var cposition = new THREE.Vector3(-1.325, 5, -2.485);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint2' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:140px; left:385px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(2.375, 1, -2.6);
+                  var cposition = new THREE.Vector3(2.375, 2.5, -2.6);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint3' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:230px; left:150px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(-2, 1, -0.772);
+                  var cposition = new THREE.Vector3(-2, 3.775, -0.772);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint4' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:245px; left:285px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(1.778, 1, -0.337);
+                  var cposition = new THREE.Vector3(1.778, 5, -0.337);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint5' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:385px; left:162px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(-0.198, 1, 2.295);
+                  var cposition = new THREE.Vector3(-0.198, 5, 2.295);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint6' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:350px; left:227px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(1.81, 1, 1.873);
+                  var cposition = new THREE.Vector3(1.81, 3.75, 1.873);
+                  setCameraTarget(cposition, position);
+                '>
+
+               </span>
+          </div>
+          </style>
+
+					<!-- Buttons for starting different set animations -->
+<!--
+					<button id="service_btn" class="btn btn-primary">Start Data Stream</button>
+          <button id="buttonAnimate" class="btn btn-primary">Power On</button>
+					<button id="buttonAnimate1" class="btn btn-primary" onclick="animateBelt()">Start Belt</button>
+					<button id="buttonAnimate2" class="btn btn-primary" onclick="animateCounterInsertion()">Select Counter</button>
+          <button id="buttonAnimate3" class="btn btn-primary" onclick="animateCounterCooking()">Cook Counter</button>
+-->
+
+          <button id="buttonAnimate1" class="btn btn-primary" onclick="resetpage()">RESET</button>
+          <button id="buttonRespond" class="btn btn-primary" onclick="toggleResponseMessage()">RESPOND</button>
+
+
+
+          <script>
+
+              function resetpage(){
+
+                  location.reload();
+              }
+
+/*            
+            if (place != "1"){
+
+              $( "#buttonAnimate1" ).hide();
+              $( "#buttonAnimate2" ).hide();
+            }
+*/              
+          </script>
+
+					<div id="infobox" class="container">
+					    <!-- 3D GOES HERE -->
+					</div>
+
+					<div class="col-md-8">
+	   					<p class="text-center"><br><br>
+							ICE Data Platform<br>
+	    					<a href="www.informationcatalyst.com" target="_blank">www.informationcatalyst.com</a><br>
+	    					2018
+	    				</p>
+					</div>
+				</section>
+			</div>
+		</div>
+    
+    <script>
+
+      var id = getParameterByName('id');
+      queryParam =  getParameterByName('title');
+      dataSource =  getParameterByName('url');
+      dataSource += "?&pagesize=10";
+      $("#heading").html(queryParam);
+      var uname = getParameterByName('uname');
+         
+      //Link back to previous page
+      var parts = getParameterByName('topLevel');
+      var linkBack = "";
+      if (parts != null){
+        for(var i = 0;i<parts.length;i++)
+        {
+          linkBack += parts[i];
+        }
+      }
+      prevPage = getParameterByName('backLink') + "&id="+ getParameterByName('id') +"&topLevel="+linkBack+"&uname="+uname;
+      $("#headingHREF").attr("href", prevPage); 
+      hierarchy = getParameterByName('hierarchy') + " "+queryParam;
+      $("#hierarchy").html(hierarchy);
+        
+    </script>
+    
+    <!-- 3D STUFF FROM HEREDOWN -->  
+    <!-- ADDED CODE get a value from 
+    http://icemain.hopto.org:8033/BaconDashboard/rest/postdata/latestValue?field=Table_Rotation_Speed
+    -->
+    
+    <script src="js/3dInit.js"></script>
+	</body>
+</html>

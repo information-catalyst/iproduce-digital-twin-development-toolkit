@@ -1,0 +1,24 @@
+.form-group.form-group-sm
+  label.control-label.col-sm-2 Cond.
+  .col-sm-6
+    select.form-control.input-sm(type="text", ng-model="$ctrl.selectedType", ng-change="$ctrl.valueChanged()", ng-disabled="$ctrl.readOnly")
+      option(value="") No condition
+      option(value="expression") Expression
+      //option(value="script") Script
+  .col-sm-4
+    .checkbox
+      label
+        input(type="checkbox", ng-model="$ctrl.isDefault", ng-change="$ctrl.defaultChanged()", ng-disabled="$ctrl.readOnly")
+        | Default
+
+.form-group.form-group-sm(ng-if="$ctrl.isExpression()", ng-class="{'has-error':!$ctrl.isValid()}")
+  label.control-label.col-sm-2 Expression
+  .col-sm-10
+    input.form-control.input-sm(type="text", input-blur ng-model="$ctrl.propertyValue.body"
+      ng-change="$ctrl.valueChanged()", ng-model-options="{ updateOn: 'blur'}", ng-readonly="$ctrl.readOnly")
+
+.form-group.form-group-sm(ng-if="$ctrl.isScript()", ng-class="{'has-error':!$ctrl.isValid()}")
+  label.control-label.col-sm-2 Script
+  .col-sm-10
+    textarea.form-control.input-sm(type="text", ng-model="$ctrl.propertyValue.body"
+      ng-change="$ctrl.valueChanged()", ng-model-options="{ updateOn: 'blur'}", ng-readonly="$ctrl.readOnly")

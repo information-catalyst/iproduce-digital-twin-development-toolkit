@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:crema="http://crema.project.eu" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="Process_1" isExecutable="true">
+    <bpmn:extensionElements>
+      <crema:metadata>
+        <crema:annotations>
+          <crema:inputs>
+            <crema:input>
+              <crema:element name=":G_i1">http://127.0.0.1:8080/CREMA/Ontologies/ProductOntology.owl#Machine_Turning</crema:element>
+            </crema:input>
+            <crema:input>
+              <crema:element name=":G_i2">http://127.0.0.1:8080/CREMA/Ontologies/ProductOntology.owl#Operation</crema:element>
+            </crema:input>
+          </crema:inputs>
+          <crema:outputs>
+            <crema:output>
+              <crema:element name=":G_o1">http://127.0.0.1:8080/CREMA/Ontologies/ProductOntology.owl#Operation_status</crema:element>
+            </crema:output>
+            <crema:output>
+              <crema:element name=":G_o2">http://127.0.0.1:8080/CREMA/Ontologies/ProcessOntology.owl#PartCode</crema:element>
+            </crema:output>
+            <crema:output>
+              <crema:element name=":G_o3">http://127.0.0.1:8080/CREMA/Ontologies/ProcessOntology.owl#OperationCode</crema:element>
+            </crema:output>
+          </crema:outputs>
+          <crema:preconditions>
+            <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/ProcessOntology.owl#isExecutable(:G_i2)</crema:element>
+          </crema:preconditions>
+          <crema:effects>
+            <crema:expr type="and">
+              <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/ProcessOntology.owl#hasPerformed(:G_i2)</crema:element>
+              <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/ProcessOntology.owl#isValid(:G_o3)</crema:element>
+            </crema:expr>
+          </crema:effects>
+        </crema:annotations>
+        <crema:optimization>
+          <crema:formulation>
+            <crema:functional>...</crema:functional>
+            <crema:non-functional>...</crema:non-functional>
+          </crema:formulation>
+          <crema:results>
+            <crema:dimension name="Cycle_time">
+              <crema:value>55.75</crema:value>
+            </crema:dimension>
+            <crema:dimension name="DC_tension">
+              <crema:value>-23.555</crema:value>
+            </crema:dimension>
+            <crema:dimension name="feed_rate">
+              <crema:value>100</crema:value>
+            </crema:dimension>
+          </crema:results>
+        </crema:optimization>
+        <crema:implementation>
+          <crema:service seq="1" implements="[ScriptTask_1gqpino]" usable="true">
+            <!-- SA1: Get press machine data -->
+            <crema:abstractService></crema:abstractService>
+            <crema:concreteService origin="Designer">
+              <crema:MarketplaceServiceID>cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U</crema:MarketplaceServiceID>
+              <crema:assignments>
+                <crema:assignment for="cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U" name="var1">22.35</crema:assignment>
+              </crema:assignments>
+              <crema:bindings>
+                <crema:binding>
+                  <crema:origin>
+                    <env/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U" name="var2"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <env/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U" name="var3"/>
+                  </crema:target>
+                </crema:binding>
+              </crema:bindings>
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <!-- to be decided if a single abstract service can implement more than one task -->
+          <!-- decision: we leave the structure as it is but we will expect a one2many (but not many2many) relationship. ie: we can have many concrete services implementing one task, but no case in which more tasks share the same execution of a service. -->
+          <crema:service seq="2" implements="[ServiceTask_0q8m1n1]" usable="true">
+            <!-- SA2: transform data (from T4.2) -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24X</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimisation" usable="true">
+              <!-- implemented by three concrete elementary services -->
+              <crema:MarketplaceServiceID>cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24A</crema:MarketplaceServiceID>
+              <crema:MarketplaceServiceID>cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24B</crema:MarketplaceServiceID>
+              <crema:MarketplaceServiceID>cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24C</crema:MarketplaceServiceID>
+              <crema:assignments>
+                <crema:assignment for="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24B" name="var1B">22.35</crema:assignment>
+                <crema:assignment for="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24C" name="var1B">97.85</crema:assignment>
+              </crema:assignments>
+              <crema:bindings>
+                <crema:binding>
+                  <crema:origin>
+                    <env/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24C" name="var2B"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U" name="var3B"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24A" name="var3B"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24A" name="var3B"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24B" name="var3B"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24B" name="var3B"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24C" name="var3B"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U" name="var4B"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24B" name="var4B"/>
+                  </crema:target>
+                </crema:binding>
+              </crema:bindings>
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="3" implements="[ScriptTask_0lo8mhp]" usable="true">
+            <!-- SA3: execute GOIZ algorithm -->
+            <crema:abstractService></crema:abstractService>
+            <crema:concreteService origin="Designer" usable="true">
+              <crema:MarketplaceServiceID>cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24Z</crema:MarketplaceServiceID>
+              <crema:assignments>
+                <crema:assignment for="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24Z" name="var1B">22.35</crema:assignment>
+                <crema:assignment for="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24Z" name="var2B">97.85</crema:assignment>
+              </crema:assignments>
+              <crema:bindings>
+                <crema:binding>
+                  <crema:origin>
+                    <env/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24Z" name="var1B"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U" name="var3B"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24Z" name="var3B"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24C" name="var7B"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24Z" name="var7B"/>
+                  </crema:target>
+                </crema:binding>
+              </crema:bindings>
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="4" implements="[ServiceTask_1ndb70r]" usable="true">
+            <!-- SA4: push data to CRI -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_QSTYF875-4LVF-059D-VFZK-495RGQ19GMZ5</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_QSTYF875-4LVF-059D-VFZK-495RGQ19GMZ5</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings>
+                <crema:binding>
+                  <crema:origin>
+                    <env/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_QSTYF875-4LVF-059D-VFZK-495RGQ19GMZ5" name="var1C"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U" name="var2C"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_QSTYF875-4LVF-059D-VFZK-495RGQ19GMZ5" name="var2C"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24A" name="var3C"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_QSTYF875-4LVF-059D-VFZK-495RGQ19GMZ5" name="var3C"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24A" name="var4C"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_QSTYF875-4LVF-059D-VFZK-495RGQ19GMZ5" name="var4C"/>
+                  </crema:target>
+                </crema:binding>
+              </crema:bindings>
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="5" implements="[Task_0vbzgmx]" usable="false">
+            <!-- SB1: select business rule(s) -->
+            <crema:abstractService></crema:abstractService>
+            <crema:concreteService origin="Designer">
+              <crema:MarketplaceServiceID>cs_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODR</crema:MarketplaceServiceID>
+              <crema:assignments>
+                <crema:assignment for="cs_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODR" name="var1D">0.05</crema:assignment>
+              </crema:assignments>
+              <crema:bindings>
+                <crema:binding>
+                  <crema:origin>
+                    <env/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODR" name="var2D"/>
+                  </crema:target>
+                </crema:binding>
+              </crema:bindings>
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="6" implements="[Task_0vbzgmx]" usable="true">
+            <!-- SB1: select business rule(s) -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODX</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <!-- implemented by two concrete elementary services -->
+              <crema:MarketplaceServiceID>cs_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODR</crema:MarketplaceServiceID>
+              <crema:MarketplaceServiceID>cs_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODQ</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_H2OT0X66-JERA-KCX4-KZ3L-FWU7R85T215U" name="var2E"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODQ" name="var2E"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24A" name="var3E"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODQ" name="var3E"/>
+                  </crema:target>
+                </crema:binding>
+                <crema:binding>
+                  <crema:origin>
+                    <variable service="cs_UFLUL121-JPKS-WMT2-5I3Z-P2LW6R82U24C" name="var4E"/>
+                  </crema:origin>
+                  <crema:target>
+                    <variable service="cs_8Z58EZ5A-SZH4-1MSA-VMX6-TAN4PIG45ODR" name="var4E"/>
+                  </crema:target>
+                </crema:binding>
+              </crema:bindings>
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="7" implements="[Task_0s9icea]" usable="true">
+            <!-- SB2: check KPI threshold-->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_D1F5W4J4-F491-O2RH-FCID-7J711IB1EZXW</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_D1F5W4J4-F491-O2RH-FCID-7J711IB1EZXW</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="8" implements="[Task_1nwekv0]" usable="true">
+            <!-- SB2: check KPI threshold (alarms included) -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_D1F5W4J4-F491-O2RH-FCID-7J711IB1EZXW</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_D1F5W4J4-F491-O2RH-FCID-7J711IB1EZXW</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="9" implements="[Task_19yffen]" usable="true">
+            <!-- SB3: send a message to the TAS manager (notify user) -->
+            <crema:abstractService></crema:abstractService>
+            <crema:concreteService origin="Designer">
+              <crema:MarketplaceServiceID>cs_AAGBRWIV-WJO6-9AC5-PYB7-9CT7A5VIXU5G</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="10" implements="[Task_0e01jbs]" usable="true">
+            <!-- SB4: check alarm -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_0P3RWTGN-J25N-VPR2-I406-5QADRWPQ2GUC</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_0P3RWTGN-J25N-VPR2-I406-5QADRWPQ2GUC</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="11" implements="[BusinessRuleTask_1g2r5oi]" usable="true">
+            <!-- SB5: get customer requirements -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_G5TV1L93-1CQS-9IZY-ZYL6-02H08WNEQ105</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_G5TV1L93-1CQS-9IZY-ZYL6-02H08WNEQ105</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="12" implements="[ServiceTask_0vc3ta1]" usable="true">
+            <!-- SB6: find suitable TAS team -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_N0NNDRSA-GCUJ-9TBE-CK5J-EZMGY2ZFT5WR</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_N0NNDRSA-GCUJ-9TBE-CK5J-EZMGY2ZFT5WR</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="13" implements="[ServiceTask_0p0zvb0]" usable="true">
+            <!-- SB7: find suitable clutch-brake supplier -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_80XUAOYU-HLIU-67P4-UH49-FFKAQVYQJJGO</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_80XUAOYU-HLIU-67P4-UH49-FFKAQVYQJJGO</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="14" implements="[BusinessRuleTask_1v2qjev]" usable="true">
+            <!-- SB8: schedule onsite maintenance -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_7V7M49IY-5I0J-4S4E-TQF7-YA338EBEGU8Y</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_7V7M49IY-5I0J-4S4E-TQF7-YA338EBEGU8Y</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="15" implements="[ManualTask_0xmu0x9]" usable="true">
+            <!-- SB9: onsite clutch-brake maintenance -->
+            <crema:abstractService>
+              <crema:MarketplaceServiceID>as_XOATRPWV-ORC5-7VR1-88KS-10JLS4Q8IIS1</crema:MarketplaceServiceID>
+            </crema:abstractService>
+            <crema:concreteService origin="optimization">
+              <crema:MarketplaceServiceID>cs_XOATRPWV-ORC5-7VR1-88KS-10JLS4Q8IIS1</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+          <crema:service seq="16" implements="[Task_0tmk3kq]" usable="true">
+            <!-- S10: notify involved stakeholders -->
+            <crema:abstractService></crema:abstractService>
+            <crema:concreteService origin="Designer">
+              <crema:MarketplaceServiceID>cs_YT45JP07-TNV7-MO6F-0M7E-378NP962LH7P</crema:MarketplaceServiceID>
+              <crema:assignments />
+              <crema:bindings />
+              <crema:OWL-S_description> ... </crema:OWL-S_description>
+            </crema:concreteService>
+          </crema:service>
+        </crema:implementation>
+      </crema:metadata>
+    </bpmn:extensionElements>
+    <bpmn:subProcess id="SubProcess_1s7jqxs" name="DATA COLLECTION PROCESS">
+      <bpmn:startEvent id="StartEvent_0org7p4" name="data&#10;acquisition&#10;start">
+        <bpmn:outgoing>SequenceFlow_0u9lln9</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:exclusiveGateway id="ExclusiveGateway_0tsejxm">
+        <bpmn:incoming>SequenceFlow_101obe1</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_0qofvjm</bpmn:outgoing>
+        <bpmn:outgoing>SequenceFlow_0rjcx0u</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:endEvent id="EndEvent_07eo4n9" name="">
+        <bpmn:incoming>SequenceFlow_0qofvjm</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:exclusiveGateway id="ExclusiveGateway_06h4gow">
+        <bpmn:incoming>SequenceFlow_1oy7w3z</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_16s965p</bpmn:outgoing>
+        <bpmn:outgoing>SequenceFlow_05zz9sq</bpmn:outgoing>
+      </bpmn:exclusiveGateway>
+      <bpmn:parallelGateway id="ParallelGateway_1f1144j">
+        <bpmn:incoming>SequenceFlow_16s965p</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_1ebdl9t</bpmn:outgoing>
+        <bpmn:outgoing>SequenceFlow_1b758ge</bpmn:outgoing>
+      </bpmn:parallelGateway>
+      <bpmn:parallelGateway id="ParallelGateway_1mmlyus">
+        <bpmn:incoming>SequenceFlow_169qu3n</bpmn:incoming>
+        <bpmn:incoming>SequenceFlow_1chxbxk</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_1bxelrj</bpmn:outgoing>
+      </bpmn:parallelGateway>
+      <bpmn:serviceTask id="ServiceTask_0q8m1n1" name="SA2: transform data &#10;(from T4.2)">
+        <bpmn:extensionElements>
+          <crema:annotations>
+            <crema:inputs>
+              <crema:input id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Raw_Data(:RD)</crema:element>
+              </crema:input>
+              <crema:input id="2">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Algorithm(:AL)</crema:element>
+              </crema:input>
+            </crema:inputs>
+            <crema:outputs>
+              <crema:output id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Transformed_Data(:TD)</crema:element>
+              </crema:output>
+            </crema:outputs>
+            <crema:preconditions>
+              <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#accepts(:RD, :AL)</crema:element>
+            </crema:preconditions>
+            <crema:effects />
+          </crema:annotations>
+        </bpmn:extensionElements>
+        <bpmn:incoming>SequenceFlow_1ebdl9t</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_169qu3n</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:scriptTask id="ScriptTask_0lo8mhp" name="SA3: execute GOIZ algorithm">
+        <bpmn:extensionElements>
+          <crema:annotations>
+            <crema:inputs>
+              <crema:input id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Raw_Data(:RD)</crema:element>
+              </crema:input>
+              <crema:input id="2">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Algorithm(:AL)</crema:element>
+              </crema:input>
+            </crema:inputs>
+            <crema:outputs>
+              <crema:output id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Transformed_Data(:TD)</crema:element>
+              </crema:output>
+            </crema:outputs>
+            <crema:preconditions>
+              <crema:expr type="and">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#accepts(:RD, :AL)</crema:element>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#owns(GOIZ, :AL)</crema:element>
+              </crema:expr>
+            </crema:preconditions>
+            <crema:effects />
+          </crema:annotations>
+        </bpmn:extensionElements>
+        <bpmn:incoming>SequenceFlow_1b758ge</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_1chxbxk</bpmn:outgoing>
+      </bpmn:scriptTask>
+      <bpmn:scriptTask id="ScriptTask_1gqpino" name="SA1: Get press machine data">
+        <bpmn:extensionElements>
+          <crema:annotations>
+            <crema:inputs>
+              <crema:input id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v2.owl#Press(:P)</crema:element>
+              </crema:input>
+            </crema:inputs>
+            <crema:outputs>
+              <crema:output id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v2.owl#Raw_Data(:RD)</crema:element>
+              </crema:output>
+            </crema:outputs>
+            <crema:preconditions>
+              <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v2.owl#hasWorkingStatus(:P, TRUE)</crema:element>
+            </crema:preconditions>
+            <crema:effects />
+          </crema:annotations>
+        </bpmn:extensionElements>
+        <bpmn:incoming>SequenceFlow_0u9lln9</bpmn:incoming>
+        <bpmn:incoming>SequenceFlow_0rjcx0u</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_1oy7w3z</bpmn:outgoing>
+      </bpmn:scriptTask>
+      <bpmn:serviceTask id="ServiceTask_1ndb70r" name="SA4: push data to CRI">
+        <bpmn:extensionElements>
+          <crema:annotations>
+            <crema:inputs>
+              <crema:input id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Raw_Data(:RD)</crema:element>
+              </crema:input>
+              <crema:input id="2">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Transformed_Data(:TD)</crema:element>
+              </crema:input>
+            </crema:inputs>
+            <crema:outputs />
+            <crema:preconditions>
+              <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#hasWorkingStatus(:P, TRUE)</crema:element>
+            </crema:preconditions>
+            <crema:effects>
+              <crema:expr type="and">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#saved_into(:RD, CRI)</crema:element>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#saved_into(:TD, CRI)</crema:element>
+              </crema:expr>
+            </crema:effects>
+          </crema:annotations>
+        </bpmn:extensionElements>
+        <bpmn:incoming>SequenceFlow_1bxelrj</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_101obe1</bpmn:outgoing>
+      </bpmn:serviceTask>
+      <bpmn:endEvent id="EndEvent_005yfy0">
+        <bpmn:incoming>SequenceFlow_05zz9sq</bpmn:incoming>
+        <bpmn:errorEventDefinition />
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="SequenceFlow_0u9lln9" sourceRef="StartEvent_0org7p4" targetRef="ScriptTask_1gqpino" />
+      <bpmn:sequenceFlow id="SequenceFlow_101obe1" sourceRef="ServiceTask_1ndb70r" targetRef="ExclusiveGateway_0tsejxm" />
+      <bpmn:sequenceFlow id="SequenceFlow_0qofvjm" sourceRef="ExclusiveGateway_0tsejxm" targetRef="EndEvent_07eo4n9" />
+      <bpmn:sequenceFlow id="SequenceFlow_0rjcx0u" name="data collection on by user" sourceRef="ExclusiveGateway_0tsejxm" targetRef="ScriptTask_1gqpino" />
+      <bpmn:sequenceFlow id="SequenceFlow_1oy7w3z" sourceRef="ScriptTask_1gqpino" targetRef="ExclusiveGateway_06h4gow" />
+      <bpmn:sequenceFlow id="SequenceFlow_16s965p" name="data connection works" sourceRef="ExclusiveGateway_06h4gow" targetRef="ParallelGateway_1f1144j" />
+      <bpmn:sequenceFlow id="SequenceFlow_05zz9sq" sourceRef="ExclusiveGateway_06h4gow" targetRef="EndEvent_005yfy0" />
+      <bpmn:sequenceFlow id="SequenceFlow_1ebdl9t" sourceRef="ParallelGateway_1f1144j" targetRef="ServiceTask_0q8m1n1" />
+      <bpmn:sequenceFlow id="SequenceFlow_1b758ge" sourceRef="ParallelGateway_1f1144j" targetRef="ScriptTask_0lo8mhp" />
+      <bpmn:sequenceFlow id="SequenceFlow_169qu3n" sourceRef="ServiceTask_0q8m1n1" targetRef="ParallelGateway_1mmlyus" />
+      <bpmn:sequenceFlow id="SequenceFlow_1chxbxk" sourceRef="ScriptTask_0lo8mhp" targetRef="ParallelGateway_1mmlyus" />
+      <bpmn:sequenceFlow id="SequenceFlow_1bxelrj" sourceRef="ParallelGateway_1mmlyus" targetRef="ServiceTask_1ndb70r" />
+      <bpmn:textAnnotation id="TextAnnotation_0vqqevm">
+        <bpmn:text>ERROR: Data connection does not work</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_0i21cyw" sourceRef="EndEvent_005yfy0" targetRef="TextAnnotation_0vqqevm" />
+    </bpmn:subProcess>
+    <bpmn:subProcess id="SubProcess_11d1rt1" name="MAINTENANCE PROCESS">
+      <bpmn:intermediateCatchEvent id="IntermediateCatchEvent_0gawdp4">
+        <bpmn:outgoing>SequenceFlow_0ldkp0l</bpmn:outgoing>
+        <bpmn:messageEventDefinition />
+      </bpmn:intermediateCatchEvent>
+      <bpmn:subProcess id="SubProcess_17r6zgg" name="Compound task for MON">
+        <bpmn:incoming>SequenceFlow_0dxcn6t</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_0ftsx6t</bpmn:outgoing>
+        <bpmn:task id="Task_0vbzgmx" name="SB1: select business rule(s)">
+          <bpmn:extensionElements>
+            <crema:annotations>
+              <crema:inputs />
+              <crema:outputs>
+                <crema:output id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Business_Rule(:BR)</crema:element>
+                </crema:output>
+              </crema:outputs>
+              <crema:preconditions />
+              <crema:effects />
+            </crema:annotations>
+          </bpmn:extensionElements>
+          <bpmn:incoming>SequenceFlow_0t0w0w6</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_18irdu1</bpmn:outgoing>
+        </bpmn:task>
+        <bpmn:task id="Task_0s9icea" name="SB2: check KPI threshold">
+          <bpmn:extensionElements>
+            <crema:annotations>
+              <crema:inputs>
+                <crema:input id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Business_Rule(:BR)</crema:element>
+                </crema:input>
+                <crema:input id="2">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#KPI(:KPI_V)</crema:element>
+                </crema:input>
+                <crema:input id="3">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Threshold(:TH)</crema:element>
+                </crema:input>
+              </crema:inputs>
+              <crema:outputs>
+                <crema:output id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Alarm(:AL)</crema:element>
+                </crema:output>
+              </crema:outputs>
+              <crema:preconditions />
+              <crema:effects>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#suggests(:MN)</crema:element>
+              </crema:effects>
+            </crema:annotations>
+          </bpmn:extensionElements>
+          <bpmn:incoming>SequenceFlow_0gzqbcf</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_0w9nz7g</bpmn:outgoing>
+        </bpmn:task>
+        <bpmn:sequenceFlow id="SequenceFlow_18irdu1" sourceRef="Task_0vbzgmx" targetRef="ExclusiveGateway_1abaghy" />
+        <bpmn:startEvent id="StartEvent_0bk92i0">
+          <bpmn:outgoing>SequenceFlow_0t0w0w6</bpmn:outgoing>
+        </bpmn:startEvent>
+        <bpmn:sequenceFlow id="SequenceFlow_0t0w0w6" sourceRef="StartEvent_0bk92i0" targetRef="Task_0vbzgmx" />
+        <bpmn:task id="Task_19yffen" name="SB3: send a message to the TAS manager (notify user)">
+          <bpmn:extensionElements>
+            <crema:annotations>
+              <crema:inputs>
+                <crema:input id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Alarm(:AL)</crema:element>
+                </crema:input>
+              </crema:inputs>
+              <crema:outputs>
+                <crema:output id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Message(:MS)</crema:element>
+                </crema:output>
+              </crema:outputs>
+              <crema:preconditions />
+              <crema:effects>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#notifies(:TM)</crema:element>
+              </crema:effects>
+            </crema:annotations>
+          </bpmn:extensionElements>
+          <bpmn:incoming>SequenceFlow_0lulv40</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_1mckvj1</bpmn:outgoing>
+        </bpmn:task>
+        <bpmn:sequenceFlow id="SequenceFlow_0w9nz7g" sourceRef="Task_0s9icea" targetRef="ExclusiveGateway_13gywp3" />
+        <bpmn:task id="Task_0e01jbs" name="SB4: check alarm">
+          <bpmn:extensionElements>
+            <crema:annotations>
+              <crema:inputs>
+                <crema:input id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Alarm(:AL)</crema:element>
+                </crema:input>
+                <crema:input id="2">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Message(:MS)</crema:element>
+                </crema:input>
+                <crema:input id="3">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Press(:P)</crema:element>
+                </crema:input>
+              </crema:inputs>
+              <crema:outputs>
+                <crema:output id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance(:MA)</crema:element>
+                </crema:output>
+              </crema:outputs>
+              <crema:preconditions>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#suggests(:MN)</crema:element>
+              </crema:preconditions>
+              <crema:effects>
+                <crema:expr type="and">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#triggers(:MA)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#confirms(:MN)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#hasWorkingStatus(:P, FALSE)</crema:element>
+                </crema:expr>
+              </crema:effects>
+            </crema:annotations>
+          </bpmn:extensionElements>
+          <bpmn:incoming>SequenceFlow_1mckvj1</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_09e3y8l</bpmn:outgoing>
+        </bpmn:task>
+        <bpmn:sequenceFlow id="SequenceFlow_1mckvj1" sourceRef="Task_19yffen" targetRef="Task_0e01jbs" />
+        <bpmn:sequenceFlow id="SequenceFlow_09e3y8l" sourceRef="Task_0e01jbs" targetRef="ExclusiveGateway_121ncyd" />
+        <bpmn:endEvent id="EndEvent_0aq7xuw">
+          <bpmn:incoming>SequenceFlow_0y5tjtn</bpmn:incoming>
+        </bpmn:endEvent>
+        <bpmn:exclusiveGateway id="ExclusiveGateway_121ncyd">
+          <bpmn:incoming>SequenceFlow_09e3y8l</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_0y5tjtn</bpmn:outgoing>
+          <bpmn:outgoing>SequenceFlow_1r3v228</bpmn:outgoing>
+        </bpmn:exclusiveGateway>
+        <bpmn:sequenceFlow id="SequenceFlow_0y5tjtn" sourceRef="ExclusiveGateway_121ncyd" targetRef="EndEvent_0aq7xuw" />
+        <bpmn:sequenceFlow id="SequenceFlow_1r3v228" name="FALSE ALARM" sourceRef="ExclusiveGateway_121ncyd" targetRef="ExclusiveGateway_1abaghy" />
+        <bpmn:exclusiveGateway id="ExclusiveGateway_13gywp3">
+          <bpmn:incoming>SequenceFlow_097dyu3</bpmn:incoming>
+          <bpmn:incoming>SequenceFlow_0w9nz7g</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_0lulv40</bpmn:outgoing>
+        </bpmn:exclusiveGateway>
+        <bpmn:task id="Task_1nwekv0" name="SB2: check KPI threshold (alarms included)">
+          <bpmn:extensionElements>
+            <crema:annotations>
+              <crema:inputs>
+                <crema:input id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Business_Rule(:BR)</crema:element>
+                </crema:input>
+                <crema:input id="2">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#KPI(:KPI_V)</crema:element>
+                </crema:input>
+                <crema:input id="3">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Threshold(:TH)</crema:element>
+                </crema:input>
+                <crema:input id="4">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Alarm(:AL)</crema:element>
+                </crema:input>
+              </crema:inputs>
+              <crema:outputs>
+                <crema:output id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Alarm(:AL)</crema:element>
+                </crema:output>
+              </crema:outputs>
+              <crema:preconditions />
+              <crema:effects>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#suggests(:MN)</crema:element>
+              </crema:effects>
+            </crema:annotations>
+          </bpmn:extensionElements>
+          <bpmn:incoming>SequenceFlow_0xi3tzm</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_097dyu3</bpmn:outgoing>
+        </bpmn:task>
+        <bpmn:sequenceFlow id="SequenceFlow_0gzqbcf" sourceRef="ExclusiveGateway_01jryg0" targetRef="Task_0s9icea" />
+        <bpmn:sequenceFlow id="SequenceFlow_0xi3tzm" sourceRef="ExclusiveGateway_01jryg0" targetRef="Task_1nwekv0" />
+        <bpmn:sequenceFlow id="SequenceFlow_097dyu3" sourceRef="Task_1nwekv0" targetRef="ExclusiveGateway_13gywp3" />
+        <bpmn:sequenceFlow id="SequenceFlow_0lulv40" sourceRef="ExclusiveGateway_13gywp3" targetRef="Task_19yffen" />
+        <bpmn:exclusiveGateway id="ExclusiveGateway_1abaghy">
+          <bpmn:incoming>SequenceFlow_18irdu1</bpmn:incoming>
+          <bpmn:incoming>SequenceFlow_1r3v228</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_10n2zz5</bpmn:outgoing>
+        </bpmn:exclusiveGateway>
+        <bpmn:sequenceFlow id="SequenceFlow_10n2zz5" sourceRef="ExclusiveGateway_1abaghy" targetRef="ExclusiveGateway_01jryg0" />
+        <bpmn:exclusiveGateway id="ExclusiveGateway_01jryg0">
+          <bpmn:incoming>SequenceFlow_10n2zz5</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_0gzqbcf</bpmn:outgoing>
+          <bpmn:outgoing>SequenceFlow_0xi3tzm</bpmn:outgoing>
+        </bpmn:exclusiveGateway>
+      </bpmn:subProcess>
+      <bpmn:startEvent id="StartEvent_1g1xp1l">
+        <bpmn:outgoing>SequenceFlow_0dxcn6t</bpmn:outgoing>
+      </bpmn:startEvent>
+      <bpmn:intermediateThrowEvent id="IntermediateThrowEvent_1sxyr0y">
+        <bpmn:incoming>SequenceFlow_0ftsx6t</bpmn:incoming>
+        <bpmn:messageEventDefinition />
+      </bpmn:intermediateThrowEvent>
+      <bpmn:subProcess id="SubProcess_16vdt12" name="Optimization task for ODERU">
+        <bpmn:incoming>SequenceFlow_1w3944s</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_1gjgzh2</bpmn:outgoing>
+        <bpmn:sequenceFlow id="SequenceFlow_1swfq86" sourceRef="ServiceTask_0vc3ta1" targetRef="ParallelGateway_0p7567i" />
+        <bpmn:parallelGateway id="ParallelGateway_0p7567i">
+          <bpmn:incoming>SequenceFlow_1swfq86</bpmn:incoming>
+          <bpmn:incoming>SequenceFlow_0elwzlq</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_1x5aaod</bpmn:outgoing>
+        </bpmn:parallelGateway>
+        <bpmn:startEvent id="StartEvent_1ohcg1b">
+          <bpmn:outgoing>SequenceFlow_1tqgr32</bpmn:outgoing>
+        </bpmn:startEvent>
+        <bpmn:sequenceFlow id="SequenceFlow_1nln4as" sourceRef="ExclusiveGateway_1h0nvto" targetRef="ServiceTask_0vc3ta1" />
+        <bpmn:exclusiveGateway id="ExclusiveGateway_1h0nvto">
+          <bpmn:incoming>SequenceFlow_1tqgr32</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_1nln4as</bpmn:outgoing>
+          <bpmn:outgoing>SequenceFlow_0t7h792</bpmn:outgoing>
+        </bpmn:exclusiveGateway>
+        <bpmn:sequenceFlow id="SequenceFlow_1tqgr32" sourceRef="StartEvent_1ohcg1b" targetRef="ExclusiveGateway_1h0nvto" />
+        <bpmn:endEvent id="EndEvent_1k0wxmw">
+          <bpmn:incoming>SequenceFlow_1x5aaod</bpmn:incoming>
+        </bpmn:endEvent>
+        <bpmn:sequenceFlow id="SequenceFlow_1x5aaod" sourceRef="ParallelGateway_0p7567i" targetRef="EndEvent_1k0wxmw" />
+        <bpmn:sequenceFlow id="SequenceFlow_0t7h792" sourceRef="ExclusiveGateway_1h0nvto" targetRef="ServiceTask_0p0zvb0" />
+        <bpmn:sequenceFlow id="SequenceFlow_0elwzlq" sourceRef="ServiceTask_0p0zvb0" targetRef="ParallelGateway_0p7567i" />
+        <bpmn:serviceTask id="ServiceTask_0vc3ta1" name="SB6: find suitable TAS team">
+          <bpmn:extensionElements>
+            <crema:annotations>
+              <crema:inputs>
+                <crema:input id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance(:MA)</crema:element>
+                </crema:input>
+                <crema:input id="2">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Customer(:CUST)</crema:element>
+                </crema:input>
+                <crema:input id="3">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Press(:P)</crema:element>
+                </crema:input>
+              </crema:inputs>
+              <crema:outputs>
+                <crema:output id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#TAS_Team(:TT)</crema:element>
+                </crema:output>
+              </crema:outputs>
+              <crema:preconditions>
+                <crema:expr type="and">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#owns(:CUST, :P)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#hasWorkingStatus(:P, FALSE)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#applies_to(:MA, :P)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#requires(:MA, :TT)</crema:element>
+                </crema:expr>
+              </crema:preconditions>
+              <crema:effects>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#offered(:MA, :TT)</crema:element>
+              </crema:effects>
+            </crema:annotations>
+          </bpmn:extensionElements>
+          <bpmn:incoming>SequenceFlow_1nln4as</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_1swfq86</bpmn:outgoing>
+        </bpmn:serviceTask>
+        <bpmn:serviceTask id="ServiceTask_0p0zvb0" name="SB7: find suitable clutch-brake supplier">
+          <bpmn:extensionElements>
+            <crema:annotations>
+              <crema:inputs>
+                <crema:input id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance(:MA)</crema:element>
+                </crema:input>
+                <crema:input id="2">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Spare_Part(:SP)</crema:element>
+                </crema:input>
+                <crema:input id="3">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Press(:P)</crema:element>
+                </crema:input>
+              </crema:inputs>
+              <crema:outputs>
+                <crema:output id="1">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Supplier(:TT)</crema:element>
+                </crema:output>
+              </crema:outputs>
+              <crema:preconditions>
+                <crema:expr type="and">
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#owns(:CUST, :P)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#hasWorkingStatus(:P, FALSE)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#applies_to(:MA, :P)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#requires(:MA, :TT)</crema:element>
+                  <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#offered(:SUP, :SP)</crema:element>
+                </crema:expr>
+              </crema:preconditions>
+              <crema:effects>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#requested(:SP, :SUP)</crema:element>
+              </crema:effects>
+            </crema:annotations>
+          </bpmn:extensionElements>
+          <bpmn:incoming>SequenceFlow_0t7h792</bpmn:incoming>
+          <bpmn:outgoing>SequenceFlow_0elwzlq</bpmn:outgoing>
+        </bpmn:serviceTask>
+      </bpmn:subProcess>
+      <bpmn:businessRuleTask id="BusinessRuleTask_1v2qjev" name="SB8: schedule onsite maintenance">
+        <bpmn:extensionElements>
+          <crema:annotations>
+            <crema:inputs>
+              <crema:input id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance(:MA)</crema:element>
+              </crema:input>
+              <crema:input id="2">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Customer(:CUST)</crema:element>
+              </crema:input>
+              <crema:input id="3">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Spare_Part(:SP)</crema:element>
+              </crema:input>
+              <crema:input id="4">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#TAS_Team(:TT)</crema:element>
+              </crema:input>
+              <crema:input id="5">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Supplier(:SUP)</crema:element>
+              </crema:input>
+              <crema:input id="6">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Press(:P)</crema:element>
+              </crema:input>
+            </crema:inputs>
+            <crema:outputs>
+              <crema:output id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance_Schedule(:MS)</crema:element>
+              </crema:output>
+            </crema:outputs>
+            <crema:preconditions>
+              <crema:expr type="and">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#is_free(:TT, :MS)</crema:element>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#is_ready(:SP, :MS)</crema:element>
+              </crema:expr>
+            </crema:preconditions>
+            <crema:effects>
+              <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#notifies(:CUST, :MS)</crema:element>
+            </crema:effects>
+          </crema:annotations>
+        </bpmn:extensionElements>
+        <bpmn:incoming>SequenceFlow_1gjgzh2</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_1iszc6z</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:businessRuleTask id="BusinessRuleTask_1g2r5oi" name="SB5: get customer requirements">
+        <bpmn:extensionElements>
+          <crema:annotations>
+            <crema:inputs>
+              <crema:input id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance_Needed(:MN)</crema:element>
+              </crema:input>
+              <crema:input id="2">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Customer(:CUST)</crema:element>
+              </crema:input>
+              <crema:input id="3">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance(:MA)</crema:element>
+              </crema:input>
+            </crema:inputs>
+            <crema:outputs>
+              <crema:output id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Requirements(:REQ)</crema:element>
+              </crema:output>
+              <crema:output id="2">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Location(:LOC)</crema:element>
+              </crema:output>
+              <crema:output id="3">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance_Contract(:MC)</crema:element>
+              </crema:output>
+            </crema:outputs>
+            <crema:preconditions>
+              <crema:expr type="and">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#refers_to(:MC, :CUST)</crema:element>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#regulates(:MC, :MA)</crema:element>
+              </crema:expr>
+            </crema:preconditions>
+            <crema:effects>
+              <crema:expr type="and">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#expresses(:CUST, :REQ)</crema:element>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#hasLocation(:CUST, :LOC)</crema:element>
+              </crema:expr>
+            </crema:effects>
+          </crema:annotations>
+        </bpmn:extensionElements>
+        <bpmn:incoming>SequenceFlow_0ldkp0l</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_1w3944s</bpmn:outgoing>
+      </bpmn:businessRuleTask>
+      <bpmn:manualTask id="ManualTask_0xmu0x9" name="SB9: onsite clutch-brake maintenance">
+        <bpmn:extensionElements>
+          <crema:annotations>
+            <crema:inputs>
+              <crema:input id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance(:MA)</crema:element>
+              </crema:input>
+              <crema:input id="2">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Customer(:CUST)</crema:element>
+              </crema:input>
+              <crema:input id="3">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#TAS_Team(:TT)</crema:element>
+              </crema:input>
+              <crema:input id="4">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Supplier(:SUP)</crema:element>
+              </crema:input>
+              <crema:input id="5">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Press(:P)</crema:element>
+              </crema:input>
+              <crema:input id="6">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Maintenance_Scheduled(:MS)</crema:element>
+              </crema:input>
+            </crema:inputs>
+            <crema:outputs>
+              <crema:output id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Report(:REP)</crema:element>
+              </crema:output>
+            </crema:outputs>
+            <crema:preconditions>
+              <crema:expr type="and">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#owns(:CUST, :P)</crema:element>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#hasWorkingStatus(:P, FALSE)</crema:element>
+              </crema:expr>
+            </crema:preconditions>
+            <crema:effects>
+              <crema:expr type="and">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#describes(:REP, :MA)</crema:element>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#hasWorkingStatus(:P, TRUE)</crema:element>
+              </crema:expr>
+            </crema:effects>
+          </crema:annotations>
+        </bpmn:extensionElements>
+        <bpmn:incoming>SequenceFlow_1iszc6z</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_0v6y5af</bpmn:outgoing>
+      </bpmn:manualTask>
+      <bpmn:task id="Task_0tmk3kq" name="S10: notify involved stakeholders">
+        <bpmn:extensionElements>
+          <crema:annotations>
+            <crema:inputs>
+              <crema:input id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Customer(:CUST)</crema:element>
+              </crema:input>
+              <crema:input id="2">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#TAS_Manager(:TM)</crema:element>
+              </crema:input>
+              <crema:input id="3">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Report(:REP)</crema:element>
+              </crema:input>
+            </crema:inputs>
+            <crema:outputs>
+              <crema:output id="1">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#Message(:MES)</crema:element>
+              </crema:output>
+            </crema:outputs>
+            <crema:preconditions />
+            <crema:effects>
+              <crema:expr type="and">
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#is_notified(:CUST, :REP)</crema:element>
+                <crema:element>http://127.0.0.1:8080/CREMA/Ontologies/merged_v1.owl#is_notified(:TM, :REP)</crema:element>
+              </crema:expr>
+            </crema:effects>
+          </crema:annotations>
+        </bpmn:extensionElements>
+        <bpmn:incoming>SequenceFlow_0v6y5af</bpmn:incoming>
+        <bpmn:outgoing>SequenceFlow_11itypa</bpmn:outgoing>
+      </bpmn:task>
+      <bpmn:endEvent id="EndEvent_1f2pphg">
+        <bpmn:incoming>SequenceFlow_11itypa</bpmn:incoming>
+      </bpmn:endEvent>
+      <bpmn:sequenceFlow id="SequenceFlow_0ldkp0l" sourceRef="IntermediateCatchEvent_0gawdp4" targetRef="BusinessRuleTask_1g2r5oi" />
+      <bpmn:sequenceFlow id="SequenceFlow_0dxcn6t" sourceRef="StartEvent_1g1xp1l" targetRef="SubProcess_17r6zgg" />
+      <bpmn:sequenceFlow id="SequenceFlow_0ftsx6t" sourceRef="SubProcess_17r6zgg" targetRef="IntermediateThrowEvent_1sxyr0y" />
+      <bpmn:sequenceFlow id="SequenceFlow_1w3944s" sourceRef="BusinessRuleTask_1g2r5oi" targetRef="SubProcess_16vdt12" />
+      <bpmn:sequenceFlow id="SequenceFlow_1gjgzh2" sourceRef="SubProcess_16vdt12" targetRef="BusinessRuleTask_1v2qjev" />
+      <bpmn:sequenceFlow id="SequenceFlow_1iszc6z" sourceRef="BusinessRuleTask_1v2qjev" targetRef="ManualTask_0xmu0x9" />
+      <bpmn:sequenceFlow id="SequenceFlow_0v6y5af" sourceRef="ManualTask_0xmu0x9" targetRef="Task_0tmk3kq" />
+      <bpmn:sequenceFlow id="SequenceFlow_11itypa" sourceRef="Task_0tmk3kq" targetRef="EndEvent_1f2pphg" />
+      <bpmn:textAnnotation id="TextAnnotation_08yhuje">
+        <bpmn:text>MON notifies PRU for maintenance</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:textAnnotation id="TextAnnotation_0tq8ss7">
+        <bpmn:text>maintenance contract, location, etc.</bpmn:text>
+      </bpmn:textAnnotation>
+      <bpmn:association id="Association_13l7656" sourceRef="IntermediateThrowEvent_1sxyr0y" targetRef="TextAnnotation_08yhuje" />
+      <bpmn:association id="Association_1sj0pei" sourceRef="BusinessRuleTask_1g2r5oi" targetRef="TextAnnotation_0tq8ss7" />
+    </bpmn:subProcess>
+  </bpmn:process>
+</bpmn:definitions>

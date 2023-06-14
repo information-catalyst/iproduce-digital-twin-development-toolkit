@@ -1,0 +1,4 @@
+.toolbar-group-container(ng-repeat="btn in $ctrl.data.buttons track by $index", ng-show="$ctrl.data.isVisible()", 
+  ng-switch="$ctrl.isDropdown(btn)")
+  pde-toolbar-button(ng-switch-when="0", data="btn")
+  pde-toolbar-dropdown(ng-switch-when="1", data="btn")

@@ -1,0 +1,10 @@
+// process modeler component template
+.canvas-busy(ng-show="$ctrl.isBusy()")
+  .text-center
+    h4(translate="GLOBAL.Busy")
+    .loader(loader-css="line-scale-party")
+
+.editor-container
+  .canvas-panel(ng-show="$ctrl.isDesignView()")
+  .xml-panel
+    pde-code-editor(contents="$ctrl.model.bpmnXml", ng-show="$ctrl.isXmlView()", read-only="true", show-toolbar="true")

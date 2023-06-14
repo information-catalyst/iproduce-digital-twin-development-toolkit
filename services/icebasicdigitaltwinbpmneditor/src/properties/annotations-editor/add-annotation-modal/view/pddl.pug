@@ -1,0 +1,5 @@
+uib-tab-heading
+  span PDDL INPUT
+.row.margin-t--normal
+  .col-md-12.text-center
+    textarea.form-control(ng-change="$ctrl.parsePddlInput($ctrl.pddlInput)" ng-model="$ctrl.pddlInput" rows="5" placeholder="Example: and ((http://example.com var1 var2) (http://example2.com var3 var4))")

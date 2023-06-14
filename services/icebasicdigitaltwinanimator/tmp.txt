@@ -1,0 +1,37 @@
+# COPY PASTE FROM HERE
+# define behaviours
+Task_StartBeltA1_behaviour = {'Name': 'Task_StartBeltA1_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_ResetAState_behaviour = {'Name': 'Task_ResetAState_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_PushAState_behaviour = {'Name': 'Task_PushAState_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_StartBeltA2_behaviour = {'Name': 'Task_StartBeltA2_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_ToolAState_behaviour = {'Name': 'Task_ToolAState_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_SlowBeltA2_behaviour = {'Name': 'Task_SlowBeltA2_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_StartBeltB1_behaviour = {'Name': 'Task_StartBeltB1_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_StopBeltA2_behaviour = {'Name': 'Task_StopBeltA2_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_ConveyorBPush_behaviour = {'Name': 'Task_ConveyorBPush_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_ResetBState_behaviour = {'Name': 'Task_ResetBState_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_StartBeltB2_behaviour = {'Name': 'Task_StartBeltB2_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_MoveToConveyorB_behaviour = {'Name': 'Task_MoveToConveyorB_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_PickupWhiteState_behaviour = {'Name': 'Task_PickupWhiteState_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_MoveToConveyorA_behaviour = {'Name': 'Task_MoveToConveyorA_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_DropState_behaviour = {'Name': 'Task_DropState_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+Task_ResetState_behaviour = {'Name': 'Task_ResetState_behaviour', 'averageTime': 7, 'silentFail': 5, 'completionFail': 5}
+# define tasks
+tasks = {
+'Task_StartBeltA1' : {'Name': 'StartBeltA1', 'behaviour': Task_StartBeltA1_behaviour},
+'Task_ResetAState' : {'Name': 'ResetAState', 'behaviour': Task_ResetAState_behaviour},
+'Task_PushAState' : {'Name': 'PushAState', 'behaviour': Task_PushAState_behaviour},
+'Task_StartBeltA2' : {'Name': 'StartBeltA2', 'behaviour': Task_StartBeltA2_behaviour},
+'Task_ToolAState' : {'Name': 'ToolAState', 'behaviour': Task_ToolAState_behaviour},
+'Task_SlowBeltA2' : {'Name': 'SlowBeltA2', 'behaviour': Task_SlowBeltA2_behaviour},
+'Task_StartBeltB1' : {'Name': 'StartBeltB1', 'behaviour': Task_StartBeltB1_behaviour},
+'Task_StopBeltA2' : {'Name': 'StopBeltA2', 'behaviour': Task_StopBeltA2_behaviour},
+'Task_ConveyorBPush' : {'Name': 'ConveyorBPush', 'behaviour': Task_ConveyorBPush_behaviour},
+'Task_ResetBState' : {'Name': 'ResetBState', 'behaviour': Task_ResetBState_behaviour},
+'Task_StartBeltB2' : {'Name': 'StartBeltB2', 'behaviour': Task_StartBeltB2_behaviour},
+'Task_MoveToConveyorB' : {'Name': 'MoveToConveyorB', 'behaviour': Task_MoveToConveyorB_behaviour},
+'Task_PickupWhiteState' : {'Name': 'PickupWhiteState', 'behaviour': Task_PickupWhiteState_behaviour},
+'Task_MoveToConveyorA' : {'Name': 'MoveToConveyorA', 'behaviour': Task_MoveToConveyorA_behaviour},
+'Task_DropState' : {'Name': 'DropState', 'behaviour': Task_DropState_behaviour},
+'Task_ResetState' : {'Name': 'ResetState', 'behaviour': Task_ResetState_behaviour},
+}

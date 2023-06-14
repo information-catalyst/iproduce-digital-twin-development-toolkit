@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:crema="http://crema.project.eu" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="Process_1" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>SequenceFlow_0lljdyg</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Task_crane1_MoveToWarehouse" name="crane1_MoveToWarehouse">
+      <bpmn:incoming>SequenceFlow_0lljdyg</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_08aw6n8</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_drill_runMotor" name="drill_runMotor">
+      <bpmn:incoming>SequenceFlow_19zr5c0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_06hht0q</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_crane1_PickupWhite" name="crane1_PickupWhite">
+      <bpmn:incoming>SequenceFlow_08aw6n8</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0k407en</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_crane1_MoveToOven" name="crane1_MoveToOven">
+      <bpmn:incoming>SequenceFlow_0k407en</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1n2mqvu</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_crane1_Drop" name="crane1_Drop">
+      <bpmn:incoming>SequenceFlow_1n2mqvu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19oa0rw</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_crane1_Reset" name="crane1_Reset">
+      <bpmn:incoming>SequenceFlow_19oa0rw</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_19zr5c0</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_08aw6n8" sourceRef="Task_crane1_MoveToWarehouse" targetRef="Task_crane1_PickupWhite" />
+    <bpmn:sequenceFlow id="SequenceFlow_0k407en" sourceRef="Task_crane1_PickupWhite" targetRef="Task_crane1_MoveToOven" />
+    <bpmn:sequenceFlow id="SequenceFlow_19oa0rw" sourceRef="Task_crane1_Drop" targetRef="Task_crane1_Reset" />
+    <bpmn:sequenceFlow id="SequenceFlow_0lljdyg" sourceRef="StartEvent_1" targetRef="Task_crane1_MoveToWarehouse" />
+    <bpmn:sequenceFlow id="SequenceFlow_19zr5c0" sourceRef="Task_crane1_Reset" targetRef="Task_drill_runMotor" />
+    <bpmn:task id="Task_OvenCooking" name="OvenCooking">
+      <bpmn:incoming>SequenceFlow_06hht0q</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0i7xu22</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_OvenMoveToOven" name="OvenMoveToOven">
+      <bpmn:incoming>SequenceFlow_0i7xu22</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_002azj9</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_OvenPickupCounter" name="OvenPickupCounter">
+      <bpmn:incoming>SequenceFlow_002azj9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_17zrg6t</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_OvenMoveToDrilling" name="OvenMoveToDrilling">
+      <bpmn:incoming>SequenceFlow_17zrg6t</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0dw3s52</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_OvenDrop" name="OvenDrop">
+      <bpmn:incoming>SequenceFlow_0dw3s52</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_18qbel2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0i7xu22" sourceRef="Task_OvenCooking" targetRef="Task_OvenMoveToOven" />
+    <bpmn:sequenceFlow id="SequenceFlow_002azj9" sourceRef="Task_OvenMoveToOven" targetRef="Task_OvenPickupCounter" />
+    <bpmn:sequenceFlow id="SequenceFlow_17zrg6t" sourceRef="Task_OvenPickupCounter" targetRef="Task_OvenMoveToDrilling" />
+    <bpmn:sequenceFlow id="SequenceFlow_0dw3s52" sourceRef="Task_OvenMoveToDrilling" targetRef="Task_OvenDrop" />
+    <bpmn:sequenceFlow id="SequenceFlow_06hht0q" sourceRef="Task_drill_runMotor" targetRef="Task_OvenCooking" />
+    <bpmn:sequenceFlow id="SequenceFlow_1n2mqvu" sourceRef="Task_crane1_MoveToOven" targetRef="Task_crane1_Drop" />
+    <bpmn:task id="Task_drill_stopMotor" name="drill_stopMotor">
+      <bpmn:incoming>SequenceFlow_18qbel2</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0qzf0vu</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_drill_drillCounter" name="drill_drillCounter">
+      <bpmn:incoming>SequenceFlow_0l0vb2k</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_160tqi0</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_drill_moveToConveyor" name="drill_moveToConveyor">
+      <bpmn:incoming>SequenceFlow_160tqi0</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0rp0wwr</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_drill_deposit" name="drill_deposit">
+      <bpmn:incoming>SequenceFlow_0rp0wwr</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0g7g0vo</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_drill_runConveyor" name="drill_runConveyor">
+      <bpmn:incoming>SequenceFlow_0g7g0vo</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_09qb9bk</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_drill_Reset" name="drill_Reset">
+      <bpmn:incoming>SequenceFlow_09qb9bk</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_02w55z4</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_160tqi0" sourceRef="Task_drill_drillCounter" targetRef="Task_drill_moveToConveyor" />
+    <bpmn:sequenceFlow id="SequenceFlow_0rp0wwr" sourceRef="Task_drill_moveToConveyor" targetRef="Task_drill_deposit" />
+    <bpmn:sequenceFlow id="SequenceFlow_0g7g0vo" sourceRef="Task_drill_deposit" targetRef="Task_drill_runConveyor" />
+    <bpmn:task id="Task_drill_moveToDrill" name="drill_moveToDrill">
+      <bpmn:incoming>SequenceFlow_0qzf0vu</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0l0vb2k</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0qzf0vu" sourceRef="Task_drill_stopMotor" targetRef="Task_drill_moveToDrill" />
+    <bpmn:sequenceFlow id="SequenceFlow_0l0vb2k" sourceRef="Task_drill_moveToDrill" targetRef="Task_drill_drillCounter" />
+    <bpmn:sequenceFlow id="SequenceFlow_09qb9bk" sourceRef="Task_drill_runConveyor" targetRef="Task_drill_Reset" />
+    <bpmn:task id="Task_ConveyorWaiting" name="ConveyorWaiting">
+      <bpmn:incoming>SequenceFlow_02w55z4</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0l06lth</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0l06lth" sourceRef="Task_ConveyorWaiting" targetRef="Task_ConveyorSort" />
+    <bpmn:sequenceFlow id="SequenceFlow_02w55z4" sourceRef="Task_drill_Reset" targetRef="Task_ConveyorWaiting" />
+    <bpmn:sequenceFlow id="SequenceFlow_18qbel2" sourceRef="Task_OvenDrop" targetRef="Task_drill_stopMotor" />
+    <bpmn:task id="Task_ConveyorSort" name="ConveyorSort">
+      <bpmn:incoming>SequenceFlow_0l06lth</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0a01mzy</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_crane1_Move2" name="crane1_Move2">
+      <bpmn:incoming>SequenceFlow_0a01mzy</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0g3jeww</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_crane1_Pickup2" name="crane1_Pickup2">
+      <bpmn:incoming>SequenceFlow_0g3jeww</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_11s6vfl</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_crane1_MoveToCar" name="crane1_MoveToCar">
+      <bpmn:incoming>SequenceFlow_11s6vfl</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0554eb7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_crane1_Drop2" name="crane1_Drop2">
+      <bpmn:incoming>SequenceFlow_0554eb7</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1n9xbqj</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0a01mzy" sourceRef="Task_ConveyorSort" targetRef="Task_crane1_Move2" />
+    <bpmn:sequenceFlow id="SequenceFlow_0g3jeww" sourceRef="Task_crane1_Move2" targetRef="Task_crane1_Pickup2" />
+    <bpmn:sequenceFlow id="SequenceFlow_11s6vfl" sourceRef="Task_crane1_Pickup2" targetRef="Task_crane1_MoveToCar" />
+    <bpmn:sequenceFlow id="SequenceFlow_0554eb7" sourceRef="Task_crane1_MoveToCar" targetRef="Task_crane1_Drop2" />
+    <bpmn:sequenceFlow id="SequenceFlow_1n9xbqj" sourceRef="Task_crane1_Drop2" targetRef="Task_crane1_Reset2" />
+    <bpmn:task id="Task_crane1_Reset2" name="crane1_Reset2">
+      <bpmn:incoming>SequenceFlow_1n9xbqj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1fowrgc</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_CarForward10" name="CarForward10">
+      <bpmn:incoming>SequenceFlow_1fowrgc</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0cuk62y</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0cuk62y" sourceRef="Task_CarForward10" targetRef="Task_MoveToRover" />
+    <bpmn:sequenceFlow id="SequenceFlow_1fowrgc" sourceRef="Task_crane1_Reset2" targetRef="Task_CarForward10" />
+    <bpmn:task id="Task_WaitingAState" name="WaitingAState">
+      <bpmn:incoming>SequenceFlow_0ndcyib</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0yol2um</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_StartBeltA1" name="StartBeltA1">
+      <bpmn:incoming>SequenceFlow_0yol2um</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1bcz0ak</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ResetAState" name="ResetAState">
+      <bpmn:incoming>SequenceFlow_1kdwcj3</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1630xqb</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_PushAState" name="PushAState">
+      <bpmn:incoming>SequenceFlow_1bcz0ak</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1kdwcj3</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_StartBeltA2" name="StartBeltA2">
+      <bpmn:incoming>SequenceFlow_1630xqb</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0cl17vp</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ToolAState" name="ToolAState">
+      <bpmn:incoming>SequenceFlow_0cl17vp</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1rr354b</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_SlowBeltA2" name="SlowBeltA2">
+      <bpmn:incoming>SequenceFlow_1rr354b</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_14854da</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_StartBeltB1" name="StartBeltB1">
+      <bpmn:incoming>SequenceFlow_14854da</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0bi061m</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_StopBeltA2" name="StopBeltA2">
+      <bpmn:incoming>SequenceFlow_0bi061m</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_16gl4qk</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_1fjrtew" name="Catch">
+      <bpmn:incoming>SequenceFlow_056fvpv</bpmn:incoming>
+    </bpmn:task>
+    <bpmn:task id="Task_ConveyorBPush" name="ConveyorBPush">
+      <bpmn:incoming>SequenceFlow_16gl4qk</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0qcbp5f</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ResetBState" name="ResetBState">
+      <bpmn:incoming>SequenceFlow_0qcbp5f</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ylwv72</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_StartBeltB2" name="StartBeltB2">
+      <bpmn:incoming>SequenceFlow_0ylwv72</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_056fvpv</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_MoveToRover" name="MoveToRover">
+      <bpmn:incoming>SequenceFlow_0cuk62y</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0aks0rq</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_PickupWhiteState" name="PickupWhiteState">
+      <bpmn:incoming>SequenceFlow_0aks0rq</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_16xorvx</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_MoveToConveyor" name="MoveToConveyor">
+      <bpmn:incoming>SequenceFlow_16xorvx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0tbdbg5</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_DropState" name="DropState">
+      <bpmn:incoming>SequenceFlow_0tbdbg5</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0w4vcvx</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Task_ResetState" name="ResetState">
+      <bpmn:incoming>SequenceFlow_0w4vcvx</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0ndcyib</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="SequenceFlow_0ndcyib" sourceRef="Task_ResetState" targetRef="Task_WaitingAState" />
+    <bpmn:sequenceFlow id="SequenceFlow_0yol2um" sourceRef="Task_WaitingAState" targetRef="Task_StartBeltA1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1bcz0ak" sourceRef="Task_StartBeltA1" targetRef="Task_PushAState" />
+    <bpmn:sequenceFlow id="SequenceFlow_1kdwcj3" sourceRef="Task_PushAState" targetRef="Task_ResetAState" />
+    <bpmn:sequenceFlow id="SequenceFlow_1630xqb" sourceRef="Task_ResetAState" targetRef="Task_StartBeltA2" />
+    <bpmn:sequenceFlow id="SequenceFlow_0cl17vp" sourceRef="Task_StartBeltA2" targetRef="Task_ToolAState" />
+    <bpmn:sequenceFlow id="SequenceFlow_1rr354b" sourceRef="Task_ToolAState" targetRef="Task_SlowBeltA2" />
+    <bpmn:sequenceFlow id="SequenceFlow_14854da" sourceRef="Task_SlowBeltA2" targetRef="Task_StartBeltB1" />
+    <bpmn:sequenceFlow id="SequenceFlow_0bi061m" sourceRef="Task_StartBeltB1" targetRef="Task_StopBeltA2" />
+    <bpmn:sequenceFlow id="SequenceFlow_16gl4qk" sourceRef="Task_StopBeltA2" targetRef="Task_ConveyorBPush" />
+    <bpmn:sequenceFlow id="SequenceFlow_056fvpv" sourceRef="Task_StartBeltB2" targetRef="Task_1fjrtew" />
+    <bpmn:sequenceFlow id="SequenceFlow_0qcbp5f" sourceRef="Task_ConveyorBPush" targetRef="Task_ResetBState" />
+    <bpmn:sequenceFlow id="SequenceFlow_0ylwv72" sourceRef="Task_ResetBState" targetRef="Task_StartBeltB2" />
+    <bpmn:sequenceFlow id="SequenceFlow_0aks0rq" sourceRef="Task_MoveToRover" targetRef="Task_PickupWhiteState" />
+    <bpmn:sequenceFlow id="SequenceFlow_16xorvx" sourceRef="Task_PickupWhiteState" targetRef="Task_MoveToConveyor" />
+    <bpmn:sequenceFlow id="SequenceFlow_0tbdbg5" sourceRef="Task_MoveToConveyor" targetRef="Task_DropState" />
+    <bpmn:sequenceFlow id="SequenceFlow_0w4vcvx" sourceRef="Task_DropState" targetRef="Task_ResetState" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="165" y="114" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="138" y="150" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1jhxhdi_di" bpmnElement="Task_crane1_MoveToWarehouse">
+        <dc:Bounds x="299" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0wg9ztu_di" bpmnElement="Task_drill_runMotor">
+        <dc:Bounds x="156" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1lcm22k_di" bpmnElement="Task_crane1_PickupWhite">
+        <dc:Bounds x="492" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0ms81lm_di" bpmnElement="Task_crane1_MoveToOven">
+        <dc:Bounds x="677" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0baw16z_di" bpmnElement="Task_crane1_Drop">
+        <dc:Bounds x="889" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1pnm531_di" bpmnElement="Task_crane1_Reset">
+        <dc:Bounds x="1120" y="92" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_08aw6n8_di" bpmnElement="SequenceFlow_08aw6n8">
+        <di:waypoint xsi:type="dc:Point" x="399" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="492" y="132" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="357" y="111" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0k407en_di" bpmnElement="SequenceFlow_0k407en">
+        <di:waypoint xsi:type="dc:Point" x="592" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="629" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="629" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="677" y="132" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="599" y="125.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_19oa0rw_di" bpmnElement="SequenceFlow_19oa0rw">
+        <di:waypoint xsi:type="dc:Point" x="989" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="1120" y="132" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1009.5" y="110.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0lljdyg_di" bpmnElement="SequenceFlow_0lljdyg">
+        <di:waypoint xsi:type="dc:Point" x="201" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="299" y="132" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="205" y="110" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_19zr5c0_di" bpmnElement="SequenceFlow_19zr5c0">
+        <di:waypoint xsi:type="dc:Point" x="1120" y="162" />
+        <di:waypoint xsi:type="dc:Point" x="997" y="237" />
+        <di:waypoint xsi:type="dc:Point" x="414" y="237" />
+        <di:waypoint xsi:type="dc:Point" x="256" y="323" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="660.5" y="215.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_1q7v4z1_di" bpmnElement="Task_OvenCooking">
+        <dc:Bounds x="355" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0l3f3v3_di" bpmnElement="Task_OvenMoveToOven">
+        <dc:Bounds x="533" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_15098hs_di" bpmnElement="Task_OvenPickupCounter">
+        <dc:Bounds x="703" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0yczre3_di" bpmnElement="Task_OvenMoveToDrilling">
+        <dc:Bounds x="875" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_13aanwj_di" bpmnElement="Task_OvenDrop">
+        <dc:Bounds x="1066" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0i7xu22_di" bpmnElement="SequenceFlow_0i7xu22">
+        <di:waypoint xsi:type="dc:Point" x="455" y="350" />
+        <di:waypoint xsi:type="dc:Point" x="486" y="350" />
+        <di:waypoint xsi:type="dc:Point" x="486" y="350" />
+        <di:waypoint xsi:type="dc:Point" x="533" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="456" y="343.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_002azj9_di" bpmnElement="SequenceFlow_002azj9">
+        <di:waypoint xsi:type="dc:Point" x="633" y="350" />
+        <di:waypoint xsi:type="dc:Point" x="703" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="623" y="328.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_17zrg6t_di" bpmnElement="SequenceFlow_17zrg6t">
+        <di:waypoint xsi:type="dc:Point" x="803" y="350" />
+        <di:waypoint xsi:type="dc:Point" x="875" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="794" y="328.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0dw3s52_di" bpmnElement="SequenceFlow_0dw3s52">
+        <di:waypoint xsi:type="dc:Point" x="975" y="350" />
+        <di:waypoint xsi:type="dc:Point" x="1066" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="975.5" y="328.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_06hht0q_di" bpmnElement="SequenceFlow_06hht0q">
+        <di:waypoint xsi:type="dc:Point" x="256" y="350" />
+        <di:waypoint xsi:type="dc:Point" x="355" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="305.5" y="328" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1n2mqvu_di" bpmnElement="SequenceFlow_1n2mqvu">
+        <di:waypoint xsi:type="dc:Point" x="777" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="828" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="828" y="132" />
+        <di:waypoint xsi:type="dc:Point" x="889" y="132" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="798" y="125.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_0qevrqq_di" bpmnElement="Task_drill_stopMotor">
+        <dc:Bounds x="1258" y="310" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0i8udv1_di" bpmnElement="Task_drill_drillCounter">
+        <dc:Bounds x="355" y="477" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0a7brr0_di" bpmnElement="Task_drill_moveToConveyor">
+        <dc:Bounds x="524" y="477" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0h4enax_di" bpmnElement="Task_drill_deposit">
+        <dc:Bounds x="715" y="477" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1mknm8w_di" bpmnElement="Task_drill_runConveyor">
+        <dc:Bounds x="914" y="477" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_00nr083_di" bpmnElement="Task_drill_Reset">
+        <dc:Bounds x="1136" y="477" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_160tqi0_di" bpmnElement="SequenceFlow_160tqi0">
+        <di:waypoint xsi:type="dc:Point" x="455" y="517" />
+        <di:waypoint xsi:type="dc:Point" x="524" y="517" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="444.5" y="495.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0rp0wwr_di" bpmnElement="SequenceFlow_0rp0wwr">
+        <di:waypoint xsi:type="dc:Point" x="624" y="517" />
+        <di:waypoint xsi:type="dc:Point" x="715" y="517" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="625" y="495" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0g7g0vo_di" bpmnElement="SequenceFlow_0g7g0vo">
+        <di:waypoint xsi:type="dc:Point" x="815" y="517" />
+        <di:waypoint xsi:type="dc:Point" x="914" y="517" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="820" y="495" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_04lo618_di" bpmnElement="Task_drill_moveToDrill">
+        <dc:Bounds x="156" y="477" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0qzf0vu_di" bpmnElement="SequenceFlow_0qzf0vu">
+        <di:waypoint xsi:type="dc:Point" x="1340" y="390" />
+        <di:waypoint xsi:type="dc:Point" x="1211" y="443" />
+        <di:waypoint xsi:type="dc:Point" x="360" y="443" />
+        <di:waypoint xsi:type="dc:Point" x="256" y="493" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="740.5" y="421.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0l0vb2k_di" bpmnElement="SequenceFlow_0l0vb2k">
+        <di:waypoint xsi:type="dc:Point" x="256" y="517" />
+        <di:waypoint xsi:type="dc:Point" x="355" y="517" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="305.5" y="495" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_09qb9bk_di" bpmnElement="SequenceFlow_09qb9bk">
+        <di:waypoint xsi:type="dc:Point" x="1014" y="517" />
+        <di:waypoint xsi:type="dc:Point" x="1136" y="517" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1030" y="495.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_1owebmw_di" bpmnElement="Task_ConveyorWaiting">
+        <dc:Bounds x="156" y="631" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0l06lth_di" bpmnElement="SequenceFlow_0l06lth">
+        <di:waypoint xsi:type="dc:Point" x="256" y="671" />
+        <di:waypoint xsi:type="dc:Point" x="524" y="671" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="345" y="649.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_02w55z4_di" bpmnElement="SequenceFlow_02w55z4">
+        <di:waypoint xsi:type="dc:Point" x="1136" y="545" />
+        <di:waypoint xsi:type="dc:Point" x="1027" y="609" />
+        <di:waypoint xsi:type="dc:Point" x="329" y="609" />
+        <di:waypoint xsi:type="dc:Point" x="256" y="646" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="633" y="587.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_18qbel2_di" bpmnElement="SequenceFlow_18qbel2">
+        <di:waypoint xsi:type="dc:Point" x="1166" y="350" />
+        <di:waypoint xsi:type="dc:Point" x="1258" y="350" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1212" y="328" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_142wob6_di" bpmnElement="Task_ConveyorSort">
+        <dc:Bounds x="524" y="631" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0gbnkdm_di" bpmnElement="Task_crane1_Move2">
+        <dc:Bounds x="155.50571428571425" y="812.3742857142857" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_09foave_di" bpmnElement="Task_crane1_Pickup2">
+        <dc:Bounds x="355" y="812" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1wwit28_di" bpmnElement="Task_crane1_MoveToCar">
+        <dc:Bounds x="524" y="812" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0fzo8tk_di" bpmnElement="Task_crane1_Drop2">
+        <dc:Bounds x="715" y="812" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0a01mzy_di" bpmnElement="SequenceFlow_0a01mzy">
+        <di:waypoint xsi:type="dc:Point" x="524" y="699" />
+        <di:waypoint xsi:type="dc:Point" x="256" y="829" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="345" y="742.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0g3jeww_di" bpmnElement="SequenceFlow_0g3jeww">
+        <di:waypoint xsi:type="dc:Point" x="256" y="852" />
+        <di:waypoint xsi:type="dc:Point" x="355" y="852" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="260.5" y="830.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_11s6vfl_di" bpmnElement="SequenceFlow_11s6vfl">
+        <di:waypoint xsi:type="dc:Point" x="455" y="852" />
+        <di:waypoint xsi:type="dc:Point" x="524" y="852" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="444.5" y="830.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0554eb7_di" bpmnElement="SequenceFlow_0554eb7">
+        <di:waypoint xsi:type="dc:Point" x="624" y="852" />
+        <di:waypoint xsi:type="dc:Point" x="715" y="852" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="669.5" y="830" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1n9xbqj_di" bpmnElement="SequenceFlow_1n9xbqj">
+        <di:waypoint xsi:type="dc:Point" x="815" y="852" />
+        <di:waypoint xsi:type="dc:Point" x="889" y="852" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="807" y="830.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_00huy26_di" bpmnElement="Task_crane1_Reset2">
+        <dc:Bounds x="889" y="812" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1543sz6_di" bpmnElement="Task_CarForward10">
+        <dc:Bounds x="174" y="974" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0cuk62y_di" bpmnElement="SequenceFlow_0cuk62y">
+        <di:waypoint xsi:type="dc:Point" x="274" y="1014" />
+        <di:waypoint xsi:type="dc:Point" x="993" y="1014" />
+        <di:waypoint xsi:type="dc:Point" x="903" y="1079" />
+        <di:waypoint xsi:type="dc:Point" x="309" y="1079" />
+        <di:waypoint xsi:type="dc:Point" x="267" y="1115" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="903" y="1025" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1fowrgc_di" bpmnElement="SequenceFlow_1fowrgc">
+        <di:waypoint xsi:type="dc:Point" x="909" y="892" />
+        <di:waypoint xsi:type="dc:Point" x="877" y="935" />
+        <di:waypoint xsi:type="dc:Point" x="383" y="935" />
+        <di:waypoint xsi:type="dc:Point" x="274" y="989" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="585" y="913.5" width="90" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Task_0kwgysf_di" bpmnElement="Task_WaitingAState">
+        <dc:Bounds x="339" y="1246" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1o7s7bn_di" bpmnElement="Task_StartBeltA1">
+        <dc:Bounds x="499" y="1246" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0jdgth8_di" bpmnElement="Task_ResetAState">
+        <dc:Bounds x="858" y="1246" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1dan3pp_di" bpmnElement="Task_PushAState">
+        <dc:Bounds x="688" y="1246" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1me3mps_di" bpmnElement="Task_StartBeltA2">
+        <dc:Bounds x="696" y="1395" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0d1s4s9_di" bpmnElement="Task_ToolAState">
+        <dc:Bounds x="499" y="1395" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_163x2lb_di" bpmnElement="Task_SlowBeltA2">
+        <dc:Bounds x="339" y="1395" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_151cns7_di" bpmnElement="Task_StartBeltB1">
+        <dc:Bounds x="160" y="1517" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0yl60yv_di" bpmnElement="Task_StopBeltA2">
+        <dc:Bounds x="348" y="1517" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1fjrtew_di" bpmnElement="Task_1fjrtew">
+        <dc:Bounds x="1009" y="1517" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0qkmuhv_di" bpmnElement="Task_ConveyorBPush">
+        <dc:Bounds x="517" y="1517" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_12mxjau_di" bpmnElement="Task_ResetBState">
+        <dc:Bounds x="668" y="1517" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0zc95m0_di" bpmnElement="Task_StartBeltB2">
+        <dc:Bounds x="845" y="1517" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_0jt26fj_di" bpmnElement="Task_MoveToRover">
+        <dc:Bounds x="174" y="1112" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1cu2jga_di" bpmnElement="Task_PickupWhiteState">
+        <dc:Bounds x="339" y="1112" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_1liq826_di" bpmnElement="Task_MoveToConveyor">
+        <dc:Bounds x="542" y="1112" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_03o7sh6_di" bpmnElement="Task_DropState">
+        <dc:Bounds x="729" y="1112" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_02fuv92_di" bpmnElement="Task_ResetState">
+        <dc:Bounds x="947" y="1112" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ndcyib_di" bpmnElement="SequenceFlow_0ndcyib">
+        <di:waypoint xsi:type="dc:Point" x="952" y="1187" />
+        <di:waypoint xsi:type="dc:Point" x="867" y="1223" />
+        <di:waypoint xsi:type="dc:Point" x="196" y="1223" />
+        <di:waypoint xsi:type="dc:Point" x="339" y="1270" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="531.5" y="1201.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0yol2um_di" bpmnElement="SequenceFlow_0yol2um">
+        <di:waypoint xsi:type="dc:Point" x="439" y="1286" />
+        <di:waypoint xsi:type="dc:Point" x="499" y="1286" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="424" y="1265" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1bcz0ak_di" bpmnElement="SequenceFlow_1bcz0ak">
+        <di:waypoint xsi:type="dc:Point" x="599" y="1286" />
+        <di:waypoint xsi:type="dc:Point" x="645" y="1286" />
+        <di:waypoint xsi:type="dc:Point" x="645" y="1286" />
+        <di:waypoint xsi:type="dc:Point" x="688" y="1286" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="660" y="1279.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1kdwcj3_di" bpmnElement="SequenceFlow_1kdwcj3">
+        <di:waypoint xsi:type="dc:Point" x="788" y="1286" />
+        <di:waypoint xsi:type="dc:Point" x="824" y="1286" />
+        <di:waypoint xsi:type="dc:Point" x="824" y="1286" />
+        <di:waypoint xsi:type="dc:Point" x="858" y="1286" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="839" y="1279.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1630xqb_di" bpmnElement="SequenceFlow_1630xqb">
+        <di:waypoint xsi:type="dc:Point" x="908" y="1326" />
+        <di:waypoint xsi:type="dc:Point" x="908" y="1435" />
+        <di:waypoint xsi:type="dc:Point" x="796" y="1435" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="878" y="1375.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0cl17vp_di" bpmnElement="SequenceFlow_0cl17vp">
+        <di:waypoint xsi:type="dc:Point" x="696" y="1435" />
+        <di:waypoint xsi:type="dc:Point" x="599" y="1435" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="603.5" y="1414" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1rr354b_di" bpmnElement="SequenceFlow_1rr354b">
+        <di:waypoint xsi:type="dc:Point" x="499" y="1435" />
+        <di:waypoint xsi:type="dc:Point" x="439" y="1435" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="424" y="1414" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_14854da_di" bpmnElement="SequenceFlow_14854da">
+        <di:waypoint xsi:type="dc:Point" x="339" y="1435" />
+        <di:waypoint xsi:type="dc:Point" x="210" y="1435" />
+        <di:waypoint xsi:type="dc:Point" x="210" y="1517" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="230.5" y="1414" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0bi061m_di" bpmnElement="SequenceFlow_0bi061m">
+        <di:waypoint xsi:type="dc:Point" x="260" y="1557" />
+        <di:waypoint xsi:type="dc:Point" x="348" y="1557" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="259" y="1536" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_16gl4qk_di" bpmnElement="SequenceFlow_16gl4qk">
+        <di:waypoint xsi:type="dc:Point" x="448" y="1557" />
+        <di:waypoint xsi:type="dc:Point" x="474" y="1557" />
+        <di:waypoint xsi:type="dc:Point" x="474" y="1557" />
+        <di:waypoint xsi:type="dc:Point" x="517" y="1557" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="444" y="1551" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_056fvpv_di" bpmnElement="SequenceFlow_056fvpv">
+        <di:waypoint xsi:type="dc:Point" x="945" y="1557" />
+        <di:waypoint xsi:type="dc:Point" x="1009" y="1557" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="932" y="1536" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0qcbp5f_di" bpmnElement="SequenceFlow_0qcbp5f">
+        <di:waypoint xsi:type="dc:Point" x="617" y="1557" />
+        <di:waypoint xsi:type="dc:Point" x="668" y="1557" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="598.5" y="1536" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0ylwv72_di" bpmnElement="SequenceFlow_0ylwv72">
+        <di:waypoint xsi:type="dc:Point" x="768" y="1557" />
+        <di:waypoint xsi:type="dc:Point" x="845" y="1557" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="762.5" y="1536" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0aks0rq_di" bpmnElement="SequenceFlow_0aks0rq">
+        <di:waypoint xsi:type="dc:Point" x="274" y="1152" />
+        <di:waypoint xsi:type="dc:Point" x="339" y="1152" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="306.5" y="1130.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_16xorvx_di" bpmnElement="SequenceFlow_16xorvx">
+        <di:waypoint xsi:type="dc:Point" x="439" y="1152" />
+        <di:waypoint xsi:type="dc:Point" x="542" y="1152" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="490.5" y="1130.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0tbdbg5_di" bpmnElement="SequenceFlow_0tbdbg5">
+        <di:waypoint xsi:type="dc:Point" x="642" y="1152" />
+        <di:waypoint xsi:type="dc:Point" x="729" y="1152" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="685.5" y="1130.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0w4vcvx_di" bpmnElement="SequenceFlow_0w4vcvx">
+        <di:waypoint xsi:type="dc:Point" x="829" y="1152" />
+        <di:waypoint xsi:type="dc:Point" x="947" y="1152" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="888" y="1130.5" width="0" height="13" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

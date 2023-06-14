@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2017-05-18T12:13:21Z</created><keywords></keywords><modified>2017-05-18T12:13:21Z</modified><revision></revision><subject></subject><title></title><unit meter="1.000000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
+  <library_materials>
+    <material id="_3a3a3a" name="_3a3a3a">
+      <instance_effect url="#_3a3a3a-fx"/>
+    </material>
+    <material id="a54646" name="a54646">
+      <instance_effect url="#a54646-fx"/>
+    </material>
+    <material id="_59a38d" name="_59a38d">
+      <instance_effect url="#_59a38d-fx"/>
+    </material>
+    <material id="b0b0b0" name="b0b0b0">
+      <instance_effect url="#b0b0b0-fx"/>
+    </material>
+    <material id="_260b00" name="_260b00">
+      <instance_effect url="#_260b00-fx"/>
+    </material>
+    <material id="_5b3609" name="_5b3609">
+      <instance_effect url="#_5b3609-fx"/>
+    </material>
+  </library_materials>
+  <library_effects>
+    <effect id="_3a3a3a-fx" name="_3a3a3a">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.227451  0.227451 0.227451 1.000000</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.002353  0.002353 0.002353 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">29.948882</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="a54646-fx" name="a54646">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.647059  0.274510 0.274510 1.000000</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.002353  0.002353 0.002353 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">29.948882</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="_59a38d-fx" name="_59a38d">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.349020  0.639216 0.552941 1.000000</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.002353  0.002353 0.002353 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">29.948882</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="b0b0b0-fx" name="b0b0b0">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.690196  0.690196 0.690196 1.000000</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.002353  0.002353 0.002353 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">29.948882</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="_260b00-fx" name="_260b00">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.149020  0.043137 0.000000 1.000000</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.002353  0.002353 0.002353 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">29.948882</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="_5b3609-fx" name="_5b3609">
+      <profile_COMMON>
+        <technique sid="standard">
+          <phong>
+            <emission>
+              <color sid="emission">0.000000  0.000000 0.000000 1.000000</color>
+            </emission>
+            <ambient>
+              <color sid="ambient">0.000000  0.000000 0.000000 1.000000</color>
+            </ambient>
+            <diffuse>
+              <color sid="diffuse">0.360000  0.212267 0.038842 1.000000</color>
+            </diffuse>
+            <specular>
+              <color sid="specular">0.002353  0.002353 0.002353 1.000000</color>
+            </specular>
+            <shininess>
+              <float sid="shininess">29.948882</float>
+            </shininess>
+            <reflective>
+              <color sid="reflective">0.000000  0.000000 0.000000 1.000000</color>
+            </reflective>
+            <reflectivity>
+              <float sid="reflectivity">1.000000</float>
+            </reflectivity>
+            <transparent opaque="RGB_ZERO">
+              <color sid="transparent">1.000000  1.000000 1.000000 1.000000</color>
+            </transparent>
+            <transparency>
+              <float sid="transparency">0.000000</float>
+            </transparency>
+          </phong>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_geometries>
+    <geometry id="Box11-lib" name="Box11Mesh">
+      <mesh>
+        <source id="Box11-POSITION">
+          <float_array id="Box11-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#Box11-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Box11-VERTEX">
+          <input semantic="POSITION" source="#Box11-POSITION"/>
+        </vertices>
+        <polylist count="0" material="_3a3a3a"><input semantic="VERTEX" offset="0" source="#Box11-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="Cylinder4-lib" name="Cylinder4Mesh">
+      <mesh>
+        <source id="Cylinder4-POSITION">
+          <float_array id="Cylinder4-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#Cylinder4-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cylinder4-VERTEX">
+          <input semantic="POSITION" source="#Cylinder4-POSITION"/>
+        </vertices>
+        <polylist count="0" material="a54646"><input semantic="VERTEX" offset="0" source="#Cylinder4-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="assiette2-lib" name="assiette2Mesh">
+      <mesh>
+        <source id="assiette2-POSITION">
+          <float_array id="assiette2-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#assiette2-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="assiette2-VERTEX">
+          <input semantic="POSITION" source="#assiette2-POSITION"/>
+        </vertices>
+        <polylist count="0" material="_59a38d"><input semantic="VERTEX" offset="0" source="#assiette2-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="assiette1-lib" name="assiette1Mesh">
+      <mesh>
+        <source id="assiette1-POSITION">
+          <float_array id="assiette1-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#assiette1-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="assiette1-VERTEX">
+          <input semantic="POSITION" source="#assiette1-POSITION"/>
+        </vertices>
+        <polylist count="0" material="_59a38d"><input semantic="VERTEX" offset="0" source="#assiette1-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="Cylinder5-lib" name="Cylinder5Mesh">
+      <mesh>
+        <source id="Cylinder5-POSITION">
+          <float_array id="Cylinder5-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#Cylinder5-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cylinder5-VERTEX">
+          <input semantic="POSITION" source="#Cylinder5-POSITION"/>
+        </vertices>
+        <polylist count="0" material="a54646"><input semantic="VERTEX" offset="0" source="#Cylinder5-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="Box12-lib" name="Box12Mesh">
+      <mesh>
+        <source id="Box12-POSITION">
+          <float_array id="Box12-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#Box12-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Box12-VERTEX">
+          <input semantic="POSITION" source="#Box12-POSITION"/>
+        </vertices>
+        <polylist count="0" material="_3a3a3a"><input semantic="VERTEX" offset="0" source="#Box12-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="Cylinder2-lib" name="Cylinder2Mesh">
+      <mesh>
+        <source id="Cylinder2-POSITION">
+          <float_array id="Cylinder2-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#Cylinder2-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cylinder2-VERTEX">
+          <input semantic="POSITION" source="#Cylinder2-POSITION"/>
+        </vertices>
+        <polylist count="0" material="b0b0b0"><input semantic="VERTEX" offset="0" source="#Cylinder2-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="Box3-lib" name="Box3Mesh">
+      <mesh>
+        <source id="Box3-POSITION">
+          <float_array id="Box3-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#Box3-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Box3-VERTEX">
+          <input semantic="POSITION" source="#Box3-POSITION"/>
+        </vertices>
+        <polylist count="0" material="_260b00"><input semantic="VERTEX" offset="0" source="#Box3-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="Box-lib" name="BoxMesh">
+      <mesh>
+        <source id="Box-POSITION">
+          <float_array id="Box-POSITION-array" count="144">
+0.500000 0.500000 0.500000
+0.500000 0.500000 0.433398
+0.500000 0.500000 -0.426382
+0.500000 0.500000 -0.500000
+0.500000 -0.500000 0.500000
+0.500000 -0.500000 0.433398
+0.500000 -0.500000 -0.426382
+0.500000 -0.500000 -0.500000
+-0.500000 0.500000 -0.500000
+-0.500000 0.500000 -0.426382
+-0.500000 0.500000 0.433398
+-0.500000 0.500000 0.500000
+-0.500000 -0.500000 -0.500000
+-0.500000 -0.500000 -0.426382
+-0.500000 -0.500000 0.433398
+-0.500000 -0.500000 0.500000
+-0.448160 0.500000 -0.498709
+0.445650 0.500000 -0.500000
+-0.449448 0.500000 -0.425951
+0.445650 0.500000 -0.426382
+-0.449448 0.500000 0.432968
+0.445650 0.500000 0.433398
+-0.448160 0.500000 0.498709
+0.445650 0.500000 0.500000
+-0.448160 -0.500000 0.498709
+0.445650 -0.500000 0.500000
+-0.449448 -0.500000 0.432768
+0.445650 -0.500000 0.433198
+-0.449448 -0.500000 -0.425951
+0.445650 -0.500000 -0.426382
+-0.448160 -0.500000 -0.498709
+0.445650 -0.500000 -0.500000
+-0.500000 -11.388326 0.433398
+-0.500000 -11.388326 0.500000
+-0.449448 -11.388326 0.432768
+-0.448160 -11.388326 0.498709
+0.445650 -11.388326 0.433198
+0.445650 -11.388326 0.500000
+0.500000 -11.388326 0.433398
+0.500000 -11.388326 0.500000
+-0.500000 -11.388326 -0.500000
+-0.500000 -11.388326 -0.426382
+-0.448160 -11.388326 -0.498709
+-0.449448 -11.388326 -0.425951
+0.445650 -11.388326 -0.500000
+0.445650 -11.388326 -0.426382
+0.500000 -11.388326 -0.500000
+0.500000 -11.388326 -0.426382
+</float_array>
+          <technique_common>
+            <accessor source="#Box-POSITION-array" count="48" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Box-Normal0">
+          <float_array id="Box-Normal0-array" count="552">
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.000000 -1.000000 0.000000
+0.024904 0.000000 0.999690
+0.024904 0.000000 0.999690
+0.024904 0.000000 0.999690
+0.024904 0.000000 0.999690
+-0.001445 0.000000 0.999999
+-0.001445 0.000000 0.999999
+-0.001445 0.000000 0.999999
+-0.001445 0.000000 0.999999
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+-0.001445 0.000000 -0.999999
+-0.001445 0.000000 -0.999999
+-0.001445 0.000000 -0.999999
+-0.001445 0.000000 -0.999999
+0.024904 0.000000 -0.999690
+0.024904 0.000000 -0.999690
+0.024904 0.000000 -0.999690
+0.024904 0.000000 -0.999690
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-0.012480 0.000000 -0.999922
+-0.012480 0.000000 -0.999922
+-0.012480 0.000000 -0.999922
+-0.012480 0.000000 -0.999922
+0.999809 0.000000 -0.019520
+0.999809 0.000000 -0.019520
+0.999809 0.000000 -0.019520
+0.999809 0.000000 -0.019520
+0.024904 0.000000 0.999690
+0.024904 0.000000 0.999690
+0.024904 0.000000 0.999690
+0.024904 0.000000 0.999690
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.003689 0.000000 -0.999993
+0.003689 0.000000 -0.999993
+0.003689 0.000000 -0.999993
+0.003689 0.000000 -0.999993
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.024904 0.000000 -0.999690
+0.024904 0.000000 -0.999690
+0.024904 0.000000 -0.999690
+0.024904 0.000000 -0.999690
+0.999843 0.000000 0.017692
+0.999843 0.000000 0.017692
+0.999843 0.000000 0.017692
+0.999843 0.000000 0.017692
+-0.008515 0.000000 0.999964
+-0.008515 0.000000 0.999964
+-0.008515 0.000000 0.999964
+-0.008515 0.000000 0.999964
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+-1.000000 0.000000 0.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+0.000000 0.000000 -1.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+1.000000 0.000000 0.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+0.000000 0.000000 1.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Box-Normal0-array" count="184" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Box-UV0">
+          <float_array id="Box-UV0-array" count="368">
+0.000000 1.000000
+0.000000 0.000000
+0.333333 0.000000
+0.333333 1.000000
+0.333333 1.000000
+0.333333 0.000000
+0.666667 0.000000
+0.666667 1.000000
+0.666667 1.000000
+0.666667 0.000000
+1.000000 0.000000
+1.000000 1.000000
+0.000000 1.000000
+0.000000 0.000000
+0.333333 0.000000
+0.333333 1.000000
+0.333333 1.000000
+0.333333 0.000000
+0.666667 0.000000
+0.666667 1.000000
+0.666667 1.000000
+0.666667 0.000000
+1.000000 0.000000
+1.000000 1.000000
+0.000000 1.000000
+0.000000 0.666667
+0.333333 0.666667
+0.333333 1.000000
+0.333333 1.000000
+0.333333 0.666667
+0.666667 0.666667
+0.666667 1.000000
+0.666667 1.000000
+0.666667 0.666667
+1.000000 0.666667
+1.000000 1.000000
+0.000000 0.666667
+0.000000 0.333333
+0.333333 0.333333
+0.333333 0.666667
+0.333333 0.666667
+0.333333 0.333333
+0.666667 0.333333
+0.666667 0.666667
+0.666667 0.666667
+0.666667 0.333333
+1.000000 0.333333
+1.000000 0.666667
+0.000000 0.333333
+0.000000 0.000000
+0.333333 0.000000
+0.333333 0.333333
+0.333333 0.333333
+0.333333 0.000000
+0.666667 0.000000
+0.666667 0.333333
+0.666667 0.333333
+0.666667 0.000000
+1.000000 0.000000
+1.000000 0.333333
+0.000000 1.000000
+0.000000 0.666667
+0.333333 0.666667
+0.333333 1.000000
+0.333333 1.000000
+0.333333 0.666667
+0.666667 0.666667
+0.666667 1.000000
+0.666667 1.000000
+0.666667 0.666667
+1.000000 0.666667
+1.000000 1.000000
+0.000000 0.666667
+0.000000 0.333333
+0.333333 0.333333
+0.333333 0.666667
+0.333333 0.666667
+0.333333 0.333333
+0.666667 0.333333
+0.666667 0.666667
+0.666667 0.666667
+0.666667 0.333333
+1.000000 0.333333
+1.000000 0.666667
+0.000000 0.333333
+0.000000 0.000000
+0.333333 0.000000
+0.333333 0.333333
+0.333333 0.333333
+0.333333 0.000000
+0.666667 0.000000
+0.666667 0.333333
+0.666667 0.333333
+0.666667 0.000000
+1.000000 0.000000
+1.000000 0.333333
+0.000000 1.000000
+0.000000 0.000000
+0.333333 0.000000
+0.333333 1.000000
+0.333333 1.000000
+0.333333 0.000000
+0.666667 0.000000
+0.666667 1.000000
+0.666667 1.000000
+0.666667 0.000000
+1.000000 0.000000
+1.000000 1.000000
+0.000000 1.000000
+0.000000 0.000000
+0.333333 0.000000
+0.333333 1.000000
+0.333333 1.000000
+0.333333 0.000000
+0.666667 0.000000
+0.666667 1.000000
+0.666667 1.000000
+0.666667 0.000000
+1.000000 0.000000
+1.000000 1.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+0.000000 0.000000
+</float_array>
+          <technique_common>
+            <accessor source="#Box-UV0-array" count="184" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Box-VERTEX">
+          <input semantic="POSITION" source="#Box-POSITION"/>
+        </vertices>
+        <polylist count="46" material="_5b3609"><input semantic="VERTEX" offset="0" source="#Box-VERTEX"/><input semantic="NORMAL" offset="1" source="#Box-Normal0"/><input semantic="TEXCOORD" offset="2" set="0" source="#Box-UV0"/><vcount>4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 </vcount><p> 0 0 0 4 1 1 5 2 2 1 3 3 1 4 4 5 5 5 6 6 6 2 7 7 2 8 8 6 9 9 7 10 10 3 11 11 8 12 12 12 13 13 13 14 14 9 15 15 9 16 16 13 17 17 14 18 18 10 19 19 10 20 20 14 21 21 15 22 22 11 23 23 8 24 24 9 25 25 18 26 26 16 27 27 16 28 28 18 29 29 19 30 30 17 31 31 17 32 32 19 33 33 2 34 34 3 35 35 9 36 36 10 37 37 20 38 38 18 39 39 18 40 40 20 41 41 21 42 42 19 43 43 19 44 44 21 45 45 1 46 46 2 47 47 10 48 48 11 49 49 22 50 50 20 51 51 20 52 52 22 53 53 23 54 54 21 55 55 21 56 56 23 57 57 0 58 58 1 59 59 33 60 60 32 61 61 34 62 62 35 63 63 24 64 64 26 65 65 27 66 66 25 67 67 37 68 68 36 69 69 38 70 70 39 71 71 14 72 72 13 73 73 28 74 74 26 75 75 26 76 76 28 77 77 29 78 78 27 79 79 27 80 80 29 81 81 6 82 82 5 83 83 41 84 84 40 85 85 42 86 86 43 87 87 28 88 88 30 89 89 31 90 90 29 91 91 45 92 92 44 93 93 46 94 94 47 95 95 11 96 96 15 97 97 24 98 98 22 99 99 22 100 100 24 101 101 25 102 102 23 103 103 23 104 104 25 105 105 4 106 106 0 107 107 3 108 108 7 109 109 31 110 110 17 111 111 17 112 112 31 113 113 30 114 114 16 115 115 16 116 116 30 117 117 12 118 118 8 119 119 15 120 120 14 121 121 32 122 122 33 123 123 14 124 124 26 125 125 34 126 126 32 127 127 26 128 128 24 129 129 35 130 130 34 131 131 24 132 132 15 133 133 33 134 134 35 135 135 25 136 136 27 137 137 36 138 138 37 139 139 27 140 140 5 141 141 38 142 142 36 143 143 5 144 144 4 145 145 39 146 146 38 147 147 4 148 148 25 149 149 37 150 150 39 151 151 13 152 152 12 153 153 40 154 154 41 155 155 12 156 156 30 157 157 42 158 158 40 159 159 30 160 160 28 161 161 43 162 162 42 163 163 28 164 164 13 165 165 41 166 166 43 167 167 29 168 168 31 169 169 44 170 170 45 171 171 31 172 172 7 173 173 46 174 174 44 175 175 7 176 176 6 177 177 47 178 178 46 179 179 6 180 180 29 181 181 45 182 182 47 183 183</p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="Cylinder3-lib" name="Cylinder3Mesh">
+      <mesh>
+        <source id="Cylinder3-POSITION">
+          <float_array id="Cylinder3-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#Cylinder3-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cylinder3-VERTEX">
+          <input semantic="POSITION" source="#Cylinder3-POSITION"/>
+        </vertices>
+        <polylist count="0" material="b0b0b0"><input semantic="VERTEX" offset="0" source="#Cylinder3-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+    <geometry id="Box4-lib" name="Box4Mesh">
+      <mesh>
+        <source id="Box4-POSITION">
+          <float_array id="Box4-POSITION-array" count="0">
+</float_array>
+          <technique_common>
+            <accessor source="#Box4-POSITION-array" count="0" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Box4-VERTEX">
+          <input semantic="POSITION" source="#Box4-POSITION"/>
+        </vertices>
+        <polylist count="0" material="_260b00"><input semantic="VERTEX" offset="0" source="#Box4-VERTEX"/><vcount></vcount><p></p></polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="ma-table" name="ma-table">
+      <node name="Box11" id="Box11" sid="Box11"><matrix sid="matrix">-0.032885 0.000098 0.000000 -0.219100 -0.000979 -0.003299 0.000000 0.615800 0.000000 0.000000 0.177100 -0.220800 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Box11-lib"><bind_material><technique_common><instance_material symbol="_3a3a3a" target="#_3a3a3a"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="Cylinder4" id="Cylinder4" sid="Cylinder4"><matrix sid="matrix">0.057400 0.000000 0.000000 -0.286900 0.000000 0.057400 0.000000 0.643500 0.000000 0.000000 0.057400 0.148400 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Cylinder4-lib"><bind_material><technique_common><instance_material symbol="a54646" target="#a54646"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="assiette2" id="assiette2" sid="assiette2"><matrix sid="matrix">0.307400 0.000000 0.000000 -0.017300 0.000000 0.011100 0.000000 0.626600 0.000000 0.000000 0.307400 -0.264600 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#assiette2-lib"><bind_material><technique_common><instance_material symbol="_59a38d" target="#_59a38d"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="assiette1" id="assiette1" sid="assiette1"><matrix sid="matrix">0.307400 0.000000 0.000000 0.473200 0.000000 0.011100 0.000000 0.625500 0.000000 0.000000 0.307400 0.012400 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#assiette1-lib"><bind_material><technique_common><instance_material symbol="_59a38d" target="#_59a38d"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="Cylinder5" id="Cylinder5" sid="Cylinder5"><matrix sid="matrix">0.057400 0.000000 0.000000 -0.150600 0.000000 0.057400 0.000000 0.643500 0.000000 0.000000 0.057400 -0.086000 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Cylinder5-lib"><bind_material><technique_common><instance_material symbol="a54646" target="#a54646"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="Box12" id="Box12" sid="Box12"><matrix sid="matrix">0.000350 -0.000001 -0.177090 0.435100 -0.001008 -0.003298 -0.000006 0.615800 -0.032883 0.000101 -0.001887 -0.190100 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Box12-lib"><bind_material><technique_common><instance_material symbol="_3a3a3a" target="#_3a3a3a"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="Cylinder2" id="Cylinder2" sid="Cylinder2"><matrix sid="matrix">0.057400 0.000000 0.000000 0.166500 0.000000 0.057400 0.000000 0.648300 0.000000 0.000000 0.057400 0.127700 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Cylinder2-lib"><bind_material><technique_common><instance_material symbol="b0b0b0" target="#b0b0b0"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="Box3" id="Box3" sid="Box3"><matrix sid="matrix">0.003294 0.000000 0.477089 -0.018900 0.000000 0.042200 0.000000 0.255400 -0.477089 0.000000 0.003294 0.571400 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Box3-lib"><bind_material><technique_common><instance_material symbol="_260b00" target="#_260b00"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="Box" id="Box" sid="Box"><matrix sid="matrix">2.000000 0.000000 0.000000 0.058100 0.000000 0.085000 0.000000 0.982500 0.000000 0.000000 1.000000 -0.089700 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Box-lib"><bind_material><technique_common><instance_material symbol="_5b3609" target="#_5b3609"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="Cylinder3" id="Cylinder3" sid="Cylinder3"><matrix sid="matrix">0.057400 0.000000 0.000000 -0.316500 0.000000 0.057400 0.000000 0.642600 0.000000 0.000000 0.057400 0.212600 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Cylinder3-lib"><bind_material><technique_common><instance_material symbol="b0b0b0" target="#b0b0b0"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <node name="Box4" id="Box4" sid="Box4"><matrix sid="matrix">0.000807 0.000000 -0.477099 -0.021200 0.000000 0.042200 0.000000 0.255400 0.477099 0.000000 0.000807 -0.578500 0.000000 0.000000 0.000000 1.000000</matrix><instance_geometry url="#Box4-lib"><bind_material><technique_common><instance_material symbol="_260b00" target="#_260b00"/></technique_common></bind_material></instance_geometry><extra><technique profile="FCOLLADA"><visibility>1.000000</visibility></technique></extra></node>
+      <extra><technique profile="MAX3D"><frame_rate>29.970030</frame_rate></technique><technique profile="FCOLLADA"><start_time>0.000000</start_time><end_time>6.673333</end_time></technique></extra>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#ma-table"></instance_visual_scene>
+  </scene>
+</COLLADA>

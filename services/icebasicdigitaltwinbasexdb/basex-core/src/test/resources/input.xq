@@ -1,0 +1,1 @@
+doc('input.xml')//title/text()

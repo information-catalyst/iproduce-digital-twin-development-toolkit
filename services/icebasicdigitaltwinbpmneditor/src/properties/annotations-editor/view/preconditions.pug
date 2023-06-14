@@ -1,0 +1,27 @@
+.panel-body.flex-auto.flex-column.no-padding(ng-if="$ctrl.isSelectedGroup('preconditions')")
+  
+  .flex.flex-column(style="padding:6px 15px;", ng-show="!$ctrl.readOnly")
+    .form-group(style="margin-bottom:0")
+      .col-sm-4
+        a(ng-click="$ctrl.addPrecondition()" style="cursor:pointer")
+          i.fa.fa-plus
+          | &nbsp;Add precondition
+      .col-sm-4
+        a.text-danger(ng-if="$ctrl.isPreconditionSelected()" ng-click="$ctrl.removeSelectedPrecondition()" style="cursor:pointer")
+          i.fa.fa-minus
+          | &nbsp;Remove selected
+      .col-sm-4
+        .pull-right
+          a.text-danger(ng-click="$ctrl.clearPreconditions()" ng-if="$ctrl.hasPreconditions()" style="cursor:pointer")
+            i.fa.fa-remove
+            | &nbsp;Clear all
+
+  
+  .flex-auto.flex-column.scrollable-y.scrollbar-macosx(jquery-scrollbar)
+    table.table.table-condensed.table-striped
+      tr(ng-repeat="precondition in $ctrl.getPreconditions() track by $index" ng-class="{'active':$ctrl.isPreconditionSelected(precondition)}" ng-click="$ctrl.selectPrecondition(precondition)")
+        td(style="width:20px;")
+          div(ng-show="$ctrl.isPreconditionSelected(precondition)")
+            i.fa.fa-caret-right
+        td
+          div(ng-bind="precondition.value")

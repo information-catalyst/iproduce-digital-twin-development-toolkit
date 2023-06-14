@@ -1,0 +1,114 @@
+//panel to display properties, list of processes, etc
+
+pde-process-model-store {
+
+    z-index: @z-index-model-store;
+
+    .flex-auto();
+    .flex-column();
+    
+    .no-select;
+
+    // & .table-hover > tbody > tr:hover {
+    //     background-color: #fff9f0;
+    // }
+
+    & td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 0;
+    }
+
+    & .fa-info-circle {
+        font-size: 14px;
+    }
+
+    & .processDetail {
+        .flex-auto;
+        .flex-column;
+
+        min-width: 560px;
+        width: 30%;
+        position: absolute;
+        bottom: 100px;
+        top: 100px;
+        right: 490px;
+        padding-right: 25px;
+
+        & .svgPreview {
+            height: 300px;
+            width: 100%;
+
+            & svg {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+
+        &.expanded {
+            width: 60%;
+            & .svgPreview {
+                height: 430px;
+                width: 100%;
+
+                & svg {
+                    width: 100% !important;
+                    height: 100% !important;
+                }
+            }
+        }
+
+
+    }
+
+    & .processDetail--expanded {
+        width: 60%;
+        position: absolute;
+        top: 100px;
+        right: 490px;
+        padding-right: 25px;
+
+        & .svgPreview {
+            height: 430px;
+            width: 100%;
+
+            & svg {
+                width: 100% !important;
+                height: 100% !important;
+            }
+        }
+    }
+
+    & > .panel {
+
+      .flex-auto;
+      .flex-column;
+
+      margin-bottom: 0;
+
+      & > .loader {
+
+        .flex-auto;
+        .flex-column;
+        .flex-center
+
+      }
+
+    }
+
+    & .panel-body {
+        & .viewSelection {
+          .flex;
+          .flex-justify-center;
+        }
+    }
+
+    & .table {
+        margin-bottom: 0;
+
+        & .processProject {
+            font-size: 30px;
+        }
+    }
+}

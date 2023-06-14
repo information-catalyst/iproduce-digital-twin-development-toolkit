@@ -1,0 +1,6 @@
+uib-tab-heading
+  span RAW DATA INPUT
+.row.margin-t--normal
+  .col-md-12.text-center
+    p.help-block Direct (raw) input. Multiple values are supported by providing each value in a new line.
+    textarea.form-control(ng-change="$ctrl.parseRawInput($ctrl.rawInput)" ng-model="$ctrl.rawInput" rows="5" placeholder="Example: (http://myinput.de var1 var2)")

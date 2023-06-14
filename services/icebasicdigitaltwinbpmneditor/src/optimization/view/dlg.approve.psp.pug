@@ -1,0 +1,17 @@
+.modal-header
+  h6.modal-title.text-center Approve Process Service Plan
+.modal-body
+  .alert.alert-description
+    | Once you approve the selected service plan, you won't be able to make further changes to the current process model.
+    br 
+    | If you want to make further changes, you will have to create a new version based on current process model.
+.modal-footer
+  .col-md-8.col-md-offset-2.text-center
+    .col-md-6
+      button.btn.btn-sm.btn-block.btn-success(type="button" ng-click="$close('yes')")
+        | Yes, approve it
+        i.fa.fa-check.margin-l--soft
+    .col-md-6
+      button.btn.btn-sm.btn-block.btn-warning(ng-click="$dismiss()")
+        | Cancel
+        i.fa.fa-ban.margin-l--soft

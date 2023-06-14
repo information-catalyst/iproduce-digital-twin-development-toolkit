@@ -1,0 +1,8 @@
+{
+  "name": "CAMUNDA",
+  "uri": "http://camunda.org/schema/1.0/bpmn",
+  "prefix": "camunda",
+  "xml": {
+      "tagAlias": "lowerCase"
+  }
+}

@@ -1,0 +1,1113 @@
+
+<!-- saved from url=(0088)file:///C:/Users/Usman/AppData/Roaming/Skype/My%20Skype%20Received%20Files/3dOnPage.html -->
+<html>
+	<head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Dashboard 3D</title>
+    
+		<style>
+			body { margin: 0; }
+      #mycanvas {
+        background-color: #000;
+    		width: 800px;
+    		height: 600px;
+        border: 0px solid black;
+    		margin: 0px;
+    		padding: 0px;
+    
+    		float:left;
+    
+    		position: static; 
+    	}
+		</style>
+	</head>
+	<body>
+  
+  		<!-- load JQuery -->    
+		<script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+    <!-- BOOTSTRAP JS -->
+    <!-- -->
+    <link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.min.css" />
+    <script src="bootstrap/bootstrap.min.js"></script>  
+    <!-- -->  
+
+
+		<!-- INCLUDES for 3D Javascript engine -->
+			<!-- base library for 3D -->
+    <script src="js3d/build/three.min.js"></script>
+    
+		<!-- controllers for 3D mouse movement etc -->
+		<script src="js3d/examples/js/controls/DragControls.js"></script>
+		<script src="js3d/examples/js/controls/SelectControls.js"></script>
+		<script src="js3d/examples/js/controls/FollowControls.js"></script>
+		<script src="js3d/examples/js/controls/OrbitControls.js"></script>
+		<script src="js3d/examples/js/controls/TrackballControls.js"></script>
+    <script src="js3d/examples/js/renderers/Projector.js"></script>
+
+    <!-- ADDS FPS COUNTER -->
+    <script src="js3d/stats.js-master/build/stats.min.js"></script>
+        
+		<!-- object loaders 3D  -->
+		<script src="js3d/examples/js/loaders/ColladaLoader.js"></script>
+		<script src="js3d/examples/js/loaders/OBJLoader.js"></script>
+		<script src="js3d/examples/js/loaders/VRMLLoader.js"></script>
+		<script src="js3d/examples/js/loaders/FBXLoader.js"></script>
+
+		<!-- include CSS / web pages inside 3D scene -->
+		<script src="js3d/examples/js/renderers/CSS3DRenderer.js"></script>
+    
+		<!-- Inlclude function for selecting counters -->
+		<script src="js/selectCounter.js"></script>
+    <script src="js/cookCounter.js"></script>
+    <script src="js/cameraPositions.js"></script>
+    
+		<!-- scene set up and other functions in a file -->
+		<script src="js/names.js"></script>
+    <script src="js/mixed3dWeb.js"></script>
+
+    <script src="js/icewsclient.js"></script>
+
+    <script>
+    rotationMotorBackward = 0;
+    rotationMotorForward = 0;
+    elevationMotorBackward = 0;
+    elevationMotorForward = 0;
+    extensionMotorBackward = 0;
+    extensionMotorForward = 0;
+    xhttpMultiProcessor = new XMLHttpRequest();
+    xhttpMultiProcessor.onreadystatechange = function(){
+        if (this.readyState == 4 && this.status == 200) {
+
+          var jsonResponse = JSON.parse(xhttpMultiProcessor.responseText)
+
+          rotationMotorBackward = parseFloat(jsonResponse[0]["MotPwm[0-0]"]);
+          rotationMotorForward = parseFloat(jsonResponse[0]["MotPwm[0-1]"]);
+          elevationMotorBackward = parseFloat(jsonResponse[0]["MotPwm[0-2]"]);
+          elevationMotorForward = parseFloat(jsonResponse[0]["MotPwm[0-3]"]);
+          extensionMotorBackward = parseFloat(jsonResponse[0]["MotPwm[0-4]"]);
+          extensionMotorForward = parseFloat(jsonResponse[0]["MotPwm[0-5]"]);
+
+        }
+    };
+
+
+    var timerFunction = function(){
+      xhttpMultiProcessor.open("GET", "http://icemain.hopto.org:8058/factoryapi/factory/Multi_Processor", true);
+      xhttpMultiProcessor.send();
+      setTimeout(timerFunction, 100);
+    }
+
+    //todo reinstate as needed //timerFunction();
+
+    </script>
+
+    <!-- Include functions for the animation -->
+    <script src="js/animation/factoryAnimation.js"></script>
+    
+		<!-- ICE page give me a DIV with ID mycanvas -->
+		<div style="width:100%">
+      <div style=" position: absolute; top: 0px; right: 0px;">
+    <img src="resources/pictures/ice.jpg"/>
+            </div>
+    <!--
+			<div style=" position: relative; top: 44px; right: 0px;">
+    -->
+       <div style=" position: absolute; top: 0px; right: 0px;">
+			</div>
+
+			<div class="container">
+				<section id="widget-grid" class="">
+	   				<div class="page-header">
+	    				<div>
+	    					<h1 id="heading" style="font-weight: 600; text-transform: capitalize;">Data Sources <br></h1>
+	        				<small style="font-size:140%;" id="hierarchy"></small><br>
+	        				<a id="headingHREF" href="">Back to Data Sources</a>
+	    				</div>
+					</div>
+					<div id="mycanvas" class="container">
+						<!-- 3D GOES HERE -->
+            <script>
+             
+            function getParameterByName(name, url) {
+              if (!url) {
+                url = window.location.href;
+              }
+
+              name = name.replace(/[\[\]]/g, "\\$&");
+              var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                  results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+              return decodeURIComponent(results[2].replace(/\+/g, " "));
+            }
+
+            var place = getParameterByName('place');
+            if ((place == null) || (place=="")){
+              place = "1";
+            }
+            </script>
+              <span class='ui-button-text' style='position: relative; z-index: 10'>
+                <img id='birdMap' width='64' height='64' src='img/34230.svg' style='position: relative; z-index: 10' onclick='
+                  var position = new THREE.Vector3(0, 1, 0);
+                  var cposition = new THREE.Vector3(0, 10, 0);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint1' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:150px; left:250px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(-1.325, 1, -2.5);
+                  var cposition = new THREE.Vector3(-1.325, 5, -2.485);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint2' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:140px; left:385px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(2.375, 1, -2.6);
+                  var cposition = new THREE.Vector3(2.375, 2.5, -2.6);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint3' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:230px; left:150px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(-2, 1, -0.772);
+                  var cposition = new THREE.Vector3(-2, 3.775, -0.772);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint4' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:245px; left:285px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(1.778, 1, -0.337);
+                  var cposition = new THREE.Vector3(1.778, 5, -0.337);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint5' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:385px; left:162px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(-0.198, 1, 2.295);
+                  var cposition = new THREE.Vector3(-0.198, 5, 2.295);
+                  setCameraTarget(cposition, position);
+                '>
+                <img id='viewPoint6' width='32' height='50' src='img/locationMarker.png' style='visibility:hidden; position: relative; top:350px; left:227px; z-index: 10' onclick='
+                  var position = new THREE.Vector3(1.81, 1, 1.873);
+                  var cposition = new THREE.Vector3(1.81, 3.75, 1.873);
+                  setCameraTarget(cposition, position);
+                '>
+
+               </span>
+          </div>
+          </style>
+
+					<!-- Buttons for starting different set animations -->
+					<button id="service_btn" class="btn btn-primary">Start Data Stream</button>
+          <button id="buttonAnimate" class="btn btn-primary">Power On</button>
+					<button id="buttonAnimate1" class="btn btn-primary" onclick="animateBelt()">Start Belt</button>
+					<button id="buttonAnimate2" class="btn btn-primary" onclick="animateCounterInsertion()">Select Counter</button>
+          <button id="buttonAnimate3" class="btn btn-primary" onclick="animateCounterCooking()">Cook Counter</button>
+
+          <script>
+            if (place != "1"){
+
+              $( "#buttonAnimate1" ).hide();
+              $( "#buttonAnimate2" ).hide();
+            }
+          </script>
+
+					<div id="infobox" class="container">
+					    <!-- 3D GOES HERE -->
+					</div>
+
+					<div class="col-md-8">
+	   					<p class="text-center"><br><br>
+							ICE Data Platform<br>
+	    					<a href="www.informationcatalyst.com" target="_blank">www.informationcatalyst.com</a><br>
+	    					2018
+	    				</p>
+					</div>
+				</section>
+			</div>
+		</div>
+    
+    <script>
+
+      var id = getParameterByName('id');
+      queryParam =  getParameterByName('title');
+      dataSource =  getParameterByName('url');
+      dataSource += "?&pagesize=10";
+      $("#heading").html(queryParam);
+      var uname = getParameterByName('uname');
+         
+      //Link back to previous page
+      var parts = getParameterByName('topLevel');
+      var linkBack = "";
+      if (parts != null){
+        for(var i = 0;i<parts.length;i++)
+        {
+          linkBack += parts[i];
+        }
+      }
+      prevPage = getParameterByName('backLink') + "&id="+ getParameterByName('id') +"&topLevel="+linkBack+"&uname="+uname;
+      $("#headingHREF").attr("href", prevPage); 
+      hierarchy = getParameterByName('hierarchy') + " "+queryParam;
+      $("#hierarchy").html(hierarchy);
+        
+    </script>
+    
+    <!-- 3D STUFF FROM HEREDOWN -->  
+    <!-- ADDED CODE get a value from 
+    http://icemain.hopto.org:8033/BaconDashboard/rest/postdata/latestValue?field=Table_Rotation_Speed
+    -->
+    
+  	<script>
+
+    	var selectObjects = [];
+      var selectGraphs = [];
+  	  
+  		var turnTableSpeed = 1.0;
+  	  
+  		var clock = new THREE.Clock();
+
+  		// set up a timer or two
+
+    	var pollDataFor3D = true;
+   		var platform = null;
+
+  		// check streaming status
+  		function loopFunct3D(){
+      	
+    		$.ajax({
+    			type: "post",
+    			url: "CheckStreamingStatus.jsp?db=test&coll=status",
+    			success: function(msg) {
+      			var out = msg.split("xyz123");
+       			out = out[1].split(" ");
+       			out = out[0].split(".");
+       			out = String(out).replace(/\s/g, '');
+       			if(out == "false"){
+        			pollDataFor3D = false;
+       			} else {
+          			pollDataFor3D = true;
+       			}
+        
+    			},
+    			error: function(request,error){
+      			alert(error);
+    			}
+    		}); 
+     		setTimeout(loopFunct3D,1000);
+  		};
+
+  		function refreshData() {
+    		if( pollDataFor3D == false){
+      		$.get("http://icemain.hopto.org:8033/iceDashboard/rest/postdata/latestValueColl?field="+event.object.name+"&database=test&collection=rangedData", 
+      			function(data) {
+						// process results here
+      				turnTableSpeed = parseFloat(data);
+      				setTimeout(refreshData,1000);
+      			});
+    		} else {
+				    turnTableSpeed = 0;;
+        		setTimeout(refreshData,1000);
+    		}
+  		};
+
+  		// initial call, or just call refresh directly
+  		setTimeout(refreshData, 1000);
+
+    	// renderer set up
+      var shadows = getParameterByName('shadows');
+      var graphOnWall = getParameterByName('graphOnWall');
+      var showFPS = getParameterByName('ShowFPS');
+      glRenderer = createGlRenderer3(shadows);
+     	cssRenderer = createCssRenderer3();
+      
+      document.body.appendChild(cssRenderer.domElement);
+    	cssRenderer.domElement.appendChild(glRenderer.domElement);
+    
+    	// gl scene (object to hold scene)
+    	glScene = new THREE.Scene();
+
+    	cssScene =  new THREE.Scene();
+     
+    	// camera
+    	var aspectRatio = 800.0/600.0;
+	    var camera = new THREE.PerspectiveCamera( 75, aspectRatio, 0.1, 1500 );
+    	glScene.add(camera);
+       	
+     	//Predefining counterCount a variable that stores the increment value for counters
+  	  predefineChangingCounter();
+
+    	createWareHouse(place);
+
+    	if(place==2){
+      		camera.position.x = 3;
+      		camera.position.y = 4.1;
+      		camera.position.z = 9;
+    	}else{
+      		camera.position.z = 6;
+      		camera.position.y = 6;
+    	}
+
+  		camera.lookAt(new THREE.Vector3(0,5,0));
+
+      //Removing power resize error message
+      glScene.minFilter = THREE.LinearFilter
+
+      // select graph controls
+
+      var toggleGraphView = true
+
+      var selectGraphControls = new THREE.SelectControls( selectGraphs, camera, glRenderer.domElement );
+      selectGraphControls.addEventListener( 'selectstart', function ( event ) { 
+        selectGraphControls.enabled = false;   
+
+        if (toggleGraphView) {
+          var position = new THREE.Vector3();
+          position.setFromMatrixPosition( event.object.matrixWorld );
+
+          var cposition = new THREE.Vector3();
+          cposition.setFromMatrixPosition( event.object.children[0].matrixWorld );
+
+          setCameraTarget(cposition,position);
+
+          toggleGraphView = false;
+
+        } else {
+
+            if (place == 2) {
+              var position = new THREE.Vector3(0, 2, 0);
+              var cposition = new THREE.Vector3(0, 5, 8);
+              setCameraTarget(cposition,position);
+            } 
+
+            if (place == 1){
+              if (direction == 0){
+                var position = new THREE.Vector3(0, 1, 0);
+                var cposition = new THREE.Vector3(0, 6, 6);
+                setCameraTarget(cposition, position);
+              } if (direction == 1){
+                  var position = new THREE.Vector3(0, 1, 0);
+                  var cposition = new THREE.Vector3(-6, 6, 0);
+                  setCameraTarget(cposition, position); 
+              } if (direction == 2){
+                  var position = new THREE.Vector3(0, 1, 0);
+                  var cposition = new THREE.Vector3(0, 6, -6);
+                  setCameraTarget(cposition, position);
+              } if (direction == 3){
+                  var position = new THREE.Vector3(0, 1, 0);
+                  var cposition = new THREE.Vector3(6, 6, 0);
+                  setCameraTarget(cposition, position);
+              }
+            } else {
+              var position = new THREE.Vector3(0, 1, 0);
+              var cposition = new THREE.Vector3(0, 6, 6);
+              setCameraTarget(cposition, position);
+            }
+
+            toggleGraphView = true;
+
+        }
+
+      });
+        
+
+
+
+    	// select an object controls
+	    var selectControls = new THREE.SelectControls( selectObjects, camera, glRenderer.domElement );
+  		selectControls.addEventListener( 'selectstart', function ( event ) { selectControls.enabled = false;   } );
+  		selectControls.addEventListener( 'selectend',selectItem   );
+  		selectControls.addEventListener( 'hoveron',hoverOnItem, {passive: true}   );
+  		selectControls.addEventListener( 'hoveroff',hoverOffItem, {passive: true}   );
+        
+    	function selectItem (event){
+
+      	selectControls.enabled = true;
+      	var targetdiv = document.getElementById( "infobox" );
+      	targetdiv.innerHTML = "This is a " + event.object.name;
+
+      	window.location.href = event.object.url; // "http://stackoverflow.com";
+
+      };
+
+  		var  bubbleText = null;
+  		var showGraph = false;
+
+  		var showBubble = function(data,event){
+
+        showGraph = true;
+
+        removeBubble();
+
+        var dataValue = "";
+        var floatValue = parseFloat(data);
+        if (!isNaN(floatValue)){
+          dataValue =  parseFloat(data).toFixed(2);
+        } else {
+            dataValue = data;
+        }
+                
+        bubbleText = makeTextSprite(event.object.name +":" + dataValue, 
+        { fontsize: 48, borderColor: {r:255, g:0, b:0, a:1.0}, backgroundColor: {r:255, g:100, b:100, a:0.8} } );
+              
+        // get world not local position
+        var position = new THREE.Vector3();
+        position.setFromMatrixPosition( event.object.matrixWorld );
+        bubbleText.position.x = position.x;
+        bubbleText.position.y = position.y  - 1;
+        bubbleText.position.z = position.z;
+
+        bubbleText.scale.set(10,10,10);
+          
+        glScene.add( bubbleText );
+              
+  		};
+
+
+		  var showFixedBubble = function(data,event){
+        showGraph = true;
+      
+        removeBubble();
+
+        var dataValue = "";
+        var floatValue = parseFloat(data);
+        if (!isNaN(floatValue)){
+          dataValue =  parseFloat(data).toFixed(2);
+        } else {
+            dataValue = data;
+        }
+
+       	var bubbleLabel = event.object.name +":" + dataValue;
+
+      	if (bubbleLabel.length<20){
+        	var extra = (20 - bubbleLabel.length)/2;
+        	if (extra<1)
+          	extra = 1;
+        	if (extra>20)
+          	extra=20;
+        	var spaces = "                        ";
+        	bubbleLabel = spaces.substring(extra) + bubbleLabel + spaces.substring(extra)
+      	}++
+        position.setFromMatrixPosition( event.object.matrixWorld );
+        bubbleText.position.x = 0;
+        bubbleText.position.y = 2;
+        bubbleText.position.z = -10;
+         
+        bubbleText.scale.set(6,6,6);
+          
+        camera.add( bubbleText );  
+              
+  		};
+
+  		var showBillBoardHTML = function(data,event){
+  			showGraph = true;
+  		}
+
+  		var lastGraphName = "test";
+      var lastDirection = "test";
+  		var showGraphIn3D = function(data,event){
+  			showGraph = true;
+
+      	if (event.object.name != lastGraphName){
+      		lastGraphName = event.object.name;
+
+        	remove3dPage("flatgraph");
+          remove3dPage("roundgraph");
+
+          if (selectGraphs.length == 2){
+            selectGraphs.pop()
+            selectGraphs.pop()
+          }
+
+        	create3dPage(
+          		500, 400,
+          		new THREE.Vector3(-5, 6, 0),
+          		new THREE.Vector3(0, 45 * Math.PI / 180, 0),
+          		"http://icemain.hopto.org:8033/iceDashboard/SimpleRangeSelector.html?title="+event.object.name+"&time=Hour&db="+event.object.database+"&collection="+event.object.collection+"",
+          	"flatgraph");
+
+          selectGraphs.push(glScene.getObjectByName("flatgraph"));
+              
+
+          /* */
+          // Pretty graph <3
+
+          create3dPage(
+            230, 250,
+            new THREE.Vector3(5, 6, 0),
+            new THREE.Vector3(0, -45 * Math.PI / 180, 0),
+           "http://icemain.hopto.org:8033/iceDashboard/donutMultiplesOccurrSingleBySensor.html?param="+event.object.name+"&db="+event.object.database+"&collection="+event.object.collection+"&title=_4DIAC_Ambient_Temperature",
+           "roundgraph");
+
+          selectGraphs.push(glScene.getObjectByName("roundgraph"));
+
+          /* */
+      	}
+  		}		
+
+  		var showGraphIn3DCamera = function(data,event){
+      	showGraph = true;
+
+      	if (event.object.name != lastGraphName){
+      		lastGraphName = event.object.name;
+
+        	remove3dPage("flatgraph");
+          if (selectGraphs.length == 1){
+            selectGraphs.pop();
+          }
+
+        	var position = new THREE.Vector3();
+        	position.setFromMatrixPosition( event.object.matrixWorld );
+        	position.y = position.y  + 3;
+
+        	var rotation = new THREE.Vector3();
+
+        	if (event.object.parent != null){
+          		rotation = event.object.parent.rotation;
+        	}else{
+          		rotation = event.object.rotation;
+        	}
+
+        	rotation.x = rotation.x;
+       		rotation.y = rotation.y;
+        	rotation.z = rotation.z;
+
+        	create3dPage(
+          		500, 400,
+          		position, 
+          		rotation, 
+          		"http://icemain.hopto.org:8033/iceDashboard/SimpleRangeSelector.html?title="+event.object.name+"&time=Hour&db="+event.object.database+"&collection="+event.object.collection+"",
+          	"flatgraph");
+
+          selectGraphs.push(glScene.getObjectByName("flatgraph"));
+
+      	}
+   		}
+
+      function getDirection(){
+        var vector = new THREE.Vector3();
+        direction = camera.getWorldDirection(vector);
+        var x = Math.round(direction.x);
+        var z = Math.round(direction.z);
+        if (x == 0 && z == -1 || x == -1 && z == -1){
+          direction = 0;
+        } if (x == 1 && z == 0 || x == 1 && z == -1){
+          direction = 1;
+        } if (x == 0 && z == 1 || x == 1 && z == 1){
+          direction = 2;
+        } if (x == -1 && z == 0 || x == -1 && z == 1){
+          direction = 3;
+        }
+        return direction;
+      }
+
+      walls = [
+      [(0), section[2] * (section[0]/1.5), -section[0] * (section[1]/2) + 0.2, 0],
+      [section[0] * (section[1]/2) - 0.2, section[2] * (section[0]/1.5), (0), 4.7125],
+      [(0), section[2] * (section[0]/1.5), section[0] * (section[1]/2) - 0.2, 3.15],
+      [-section[0] * (section[1]/2) + 0.2, section[2] * (section[0]/1.5), (0), 1.575]
+      ];
+
+      function setWallPosition(graphAmount, graphNumb, event, graphLength, type){
+      
+        var direction = getDirection();
+        var position = new THREE.Vector3();
+        var rotation = new THREE.Vector3();
+
+        if ( graphOnWall != "1"){
+
+          position.setFromMatrixPosition( event.object.matrixWorld );
+          position.y = position.y  + 3;
+          position.x = -2.5;
+          return position;
+
+        } else {
+
+            position.x = walls[direction][0];
+            position.y = walls[direction][1];
+            position.z = walls[direction][2];
+            rotation.y = walls[direction][3];
+
+            if (graphOnWall == "1"){
+
+            if (walls[direction][0] == -section[0]){
+
+              if (graphAmount == 1){
+                position.x = 0;
+              }
+
+              position.x = section[0];
+
+            } if (walls[direction][2] == -section[0]){
+
+              if (graphAmount == 1){
+                position.z = 0;
+              }
+
+              position.z = section[0];
+
+            } if (walls[direction][0] == section[0]){
+
+              if (graphAmount == 1){
+                position.z = 0;
+              }
+
+              position.x = -section[0];
+
+            } if (walls[direction][2] == section[0]){
+
+              if (graphAmount == 1){
+                position.z = 0;
+              }
+
+              position.z = -section[0];
+
+            }
+
+            if (graphAmount != 1){
+              for (var i = 0; i != graphAmount; i++) {
+                if (i < graphAmount / 2) {
+
+                }
+              }
+            }
+            }
+        }
+
+        if (type == "position"){
+          return position;
+        } else {
+            return rotation;
+        }
+      }
+
+      var showGraphIn3DCameraWall = function(data,event){
+
+        showGraph = true;
+
+        var direction = getDirection();
+
+        if (direction != lastDirection || event.object.name != lastGraphName){
+          lastDirection = direction;
+          lastGraphName = event.object.name;
+
+          remove3dPage("flatgraph");
+          if (selectGraphs.length == 1){
+            selectGraphs.pop();
+          }
+
+          var position = setWallPosition(1, 1, event, selectGraphs.length, "position");
+          var rotation = setWallPosition(1, 1, event, selectGraphs.length);
+
+          create3dPage(
+              500, 400,
+              position, 
+              rotation, 
+              "http://icemain.hopto.org:8033/iceDashboard/SimpleRangeSelector.html?title="+event.object.name+"&time=Hour&db="+event.object.database+"&collection="+event.object.collection+"",
+            "flatgraph");
+
+          selectGraphs.push(glScene.getObjectByName("flatgraph"));
+
+        }
+      }
+
+      var showModularGraphIn3D = function(data, event){
+        showGraph = true;
+
+        var walls = [
+        [(-section[0]), section[2] * (section[0]/1.5), -section[0] * (section[1]/2) + 0.2, 0],
+        [section[0] * (section[1]/2) - 0.2, section[2] * (section[0]/1.5), (-section[0]), 4.7125],
+        [(section[0]), section[2] * (section[0]/1.5), section[0] * (section[1]/2) - 0.2, 3.15],
+        [-section[0] * (section[1]/2) + 0.2, section[2] * (section[0]/1.5), (section[0]), 1.575]
+        ];
+
+        var direction = getDirection();
+
+        if (direction != lastDirection || event.object.name != lastGraphName){
+          lastDirection = direction;
+          lastGraphName = event.object.name;
+
+          remove3dPage("roundgraph");
+          remove3dPage("flatgraph");
+          if (selectGraphs.length == 2){
+            selectGraphs.pop()
+            selectGraphs.pop()
+          }
+
+          var position = new THREE.Vector3();
+          var rotation = new THREE.Vector3();
+          if (graphOnWall == 1){
+            position.x = walls[direction][0];
+            position.y = walls[direction][1];
+            position.z = walls[direction][2];
+            rotation.y = walls[direction][3];
+          } else {
+              position.setFromMatrixPosition( event.object.matrixWorld );
+              position.y = position.y  + 3;
+              position.x = -2.5;
+          }
+
+          createFake3dPage(
+            264, 266,
+            position, 
+            rotation, 
+            "http://icemain.hopto.org:8047/roundGraph", "roundgraph");
+
+          selectGraphs.push(glScene.getObjectByName("roundgraph"));
+
+          if (graphOnWall != 1){
+            position.x = section[0];
+          } 
+
+          if (graphOnWall == "1" && walls[direction][0] == -section[0]){
+            position.x = section[0];
+          } if (graphOnWall == "1" && walls[direction][2] == -section[0]){
+            position.z = section[0];
+          } if (graphOnWall == "1" && walls[direction][0] == section[0]){
+            position.x = -section[0];
+          } if (graphOnWall == "1" && walls[direction][2] == section[0]){
+            position.z = -section[0];
+          }
+
+          createFake3dPage(
+            411, 261,
+            position,
+            rotation,
+            "http://icemain.hopto.org:8047/flatGraph", "flatgraph");
+
+          selectGraphs.push(glScene.getObjectByName("flatgraph"));
+
+        }
+      }
+
+    	function removeBubble(){
+
+      	showGraph = false;
+
+      	if(bubbleText){
+      		camera.remove( bubbleText );
+      		bubbleText = null;
+      	}
+
+   		}
+
+   		function hoverOnItem (event){
+
+    		selectControls.enabled = true;
+
+     		var displayCode = showFixedBubble;
+
+        if(pollDataFor3D){
+          if (place == 1){
+            pollDataFor3D = false;
+          }
+
+          $.get("http://icemain.hopto.org:8033/iceDashboard/rest/postdata/latestValueColl?field="+event.object.name+"&database="+event.object.database+"&collection="+event.object.collection, function(data) {
+
+                  displayCode(data,event) ;
+
+          });
+
+        } else {
+          
+            $.get("http://192.168.99.100:49160/displayCode/factoryData", function(data) {
+
+              displayCode(data, event);
+
+            });
+        }
+
+        if (place == "1"){
+          showModularGraphIn3D("", event) ;
+        } if (place == "2"){
+      		  showGraphIn3D("",event) ;
+      	}
+
+        var centerSensors = [("Table_Rotation_Speed"), ("Table_Rotation_Torque"), ("Table_Motor_Temperature")];
+
+        if (graphOnWall == "1" && place == "3"){
+          if (event.object.name == centerSensors[0] || event.object.name == centerSensors[1] || event.object.name == centerSensors[2]){
+       		  showGraphIn3DCameraWall("",event) ;
+          } else {
+            showGraphIn3DCamera("",event);
+          }
+        }
+
+      };
+
+    	function hoverOffItem (event){
+
+      	selectControls.enabled = true;
+
+    	};
+        
+    	controls = new THREE.OrbitControls( camera );
+      controls.maxDistance = 15;
+      controls.maxPolarAngle = Math.PI/2;
+      controls.target.set(0, 1, 0);
+
+
+      // multiple view points
+      var viewpoint1 = function(){
+        controls.target.set(0, 1.1, 0);
+      }
+
+      var viewpoint2 = function(){
+        controls.target.set(2, 1.1, -2);
+      }
+
+      var viewpoint3 = function(){
+        controls.target.set(2, 1.1, 2);
+      }
+
+      var viewpoint4 = function(){
+        controls.target.set(-2, 1.1, -2);
+      }
+
+      var viewpoint5 = function(){
+        controls.target.set(0, 4.5, 0);
+      }
+
+      //Array storing object names
+      var beltParts = [
+        "belt1part1",
+        "belt1part2"
+      ];
+
+      cameraPositionUpdate = false;
+
+      //Variable to store value for belt wrap
+      beltWrapping = 0;
+      containerBayDowel = 0;
+      containerBayDowelState = false;
+      counterLoad = 0;
+
+      selectCounterState = 100;
+      returnCounterState = 100;
+      cookCounterState = 100;
+      drillCounterState = 100;
+
+      motorOnState = new THREE.TextureLoader().load('img/motorOn.png')
+      motorOffState = new THREE.TextureLoader().load('img/motorOff.png')
+
+      //Function to change the name of button and complete a function on button click
+      function animateBelt(){
+        if (document.getElementById('buttonAnimate1').innerHTML == "Start Belt"){
+          document.getElementById('buttonAnimate1').innerHTML = "Stop Belt";
+        } else {
+          document.getElementById('buttonAnimate1').innerHTML = "Start Belt";
+        }
+      }
+
+      //Function to change the name of button and complete a function on button click
+      function animateCounterInsertion(){
+        if (document.getElementById('buttonAnimate2').innerHTML == "Select Counter"){
+          document.getElementById("buttonAnimate2").innerHTML = "Return Counter";
+          counterCount++;
+          selectCounterState = true;
+        } else {
+          document.getElementById('buttonAnimate2').innerHTML = "Select Counter"
+          if (counterCount == 9){
+            counterCount = -1;
+          }
+          selectCounterState = false;
+          returnCounterState = true;
+        }
+      }
+
+      function animateCounterCooking(){
+        if (document.getElementById('buttonAnimate3').innerHTML == "Cook Counter"){
+          document.getElementById("buttonAnimate3").innerHTML = "Drill Counter";
+          cookCounterState = true;
+          drillCounterState = false;
+        } else {
+          document.getElementById('buttonAnimate3').innerHTML = "Cook Counter";
+          cookCounterState = false;
+          drillCounterState = true;
+        }
+      }
+
+      var commandMessageHandler = function(evt) {
+          console.log("onMessage");
+          //var f = document.getElementById("chatbox").contentDocument;
+          var text = "";
+          var msg = JSON.parse(evt.data);
+
+          text = msg.message;
+          console.log(text);
+          // quick spoof response
+          if(text.endsWith(":done") == false){
+
+            counterCount = 0;
+            if(text.startsWith("Task_SelectCounter")){
+                selectCounterState = true;
+                startSelectCounter();
+            } else if(text.startsWith("Task_ReturnCounter")){
+                selectCounterState = false;
+                returnCounterState = true;
+                startReturnCounter();
+            } else if(text.startsWith("Task_CookCounter")){
+                cookCounterState = true;
+                drillCounterState = false;
+                startCookCounter();
+            } else if(text.startsWith("Task_DrillCounter")){
+                cookCounterState = false;
+                drillCounterState = true;
+                startDrillCounter();
+            } 
+
+            //console.log("setTimeout");
+            //setTimeout(function() { that.send(text+":done"); },15000);
+          }
+      };
+
+      // code for PDE communication  via kafka
+      kfws = new kafkaws();
+      kfws.connect("commands",commandMessageHandler);
+
+      function startSelectCounter(){
+        SelectCounterTime = performance.now();
+        var nowEpoch = Date.now();
+        kfws.send("task:Task_SelectCounter,status:started,timestamp:"+nowEpoch,"test");
+      }
+      function startReturnCounter(){
+        ReturnCounterTime = performance.now();
+        var nowEpoch = Date.now();
+        kfws.send("task:Task_ReturnCounter,status:started,timestamp:"+nowEpoch,"test");
+      }
+      function startCookCounter(){
+        CookCounterTime = performance.now();
+        var nowEpoch = Date.now();
+        kfws.send("task:Task_CookCounter,status:started,timestamp:"+nowEpoch,"test");
+      }
+      function startDrillCounter(){
+        DrillCounterTime = performance.now();
+        var nowEpoch = Date.now();
+        kfws.send("task:Task_DrillCounter,status:started,timestamp:"+nowEpoch,"test");
+      }
+
+
+      function endSelectCounter(){
+        var now = performance.now();
+        var nowEpoch = Date.now();
+        SelectCounterTime = Math.round(now - SelectCounterTime);
+        kfws.send("task:Task_SelectCounter,status:ended,timestamp:"+nowEpoch,"test");
+        kfws.send("task:Task_SelectCounter,ElapsedTime:"+SelectCounterTime+",timestamp:"+nowEpoch,"test");
+        kfws.send("Task_SelectCounter:done","commands");
+
+        var payload = {
+          time: 1234,
+          reading: 5678,
+          textstuff: "StringStuff"
+        };
+        kfws.sendJSON(JSON.stringify(payload),"other");
+
+      }
+      function endReturnCounter(){
+        var now = performance.now();
+        var nowEpoch = Date.now();
+        ReturnCounterTime = Math.round(now - ReturnCounterTime);
+        kfws.send("task:Task_ReturnCounter,status:ended,timestamp:"+nowEpoch,"test");
+        kfws.send("task:Task_ReturnCounter,ElapsedTime:"+ReturnCounterTime+",timestamp:"+nowEpoch,"test");
+
+        kfws.send("Task_ReturnCounter:done","commands");
+      }
+      function endCookCounter(){
+        var now = performance.now();
+        var nowEpoch = Date.now();
+        CookCounterTime = Math.round(now - CookCounterTime);
+        kfws.send("task:Task_CookCounter,status:ended,timestamp:"+nowEpoch,"test");
+        kfws.send("task:Task_CookCounter,ElapsedTime:"+CookCounterTime+",timestamp:"+nowEpoch,"test");
+
+        kfws.send("Task_CookCounter:done","commands");
+      }
+      function endDrillCounter(){
+        var now = performance.now();
+        var nowEpoch = Date.now();
+        DrillCounterTime = Math.round(now - DrillCounterTime);
+        kfws.send("task:Task_DrillCounter,status:ended,timestamp:"+nowEpoch,"test");
+        kfws.send("task:Task_DrillCounter,ElapsedTime:"+DrillCounterTime+",timestamp:"+nowEpoch,"test");
+
+        kfws.send("Task_DrillCounter:done","commands");
+      }
+
+
+      if (glScene.getObjectByName('pressHead')  ){
+          glScene.getObjectByName('pressHead').position.y = -15 + (30*Math.sin(time));
+      }
+
+      if (showFPS == 1){
+        var array = [];
+
+        var stats = new Stats();
+        stats.dom.style.position = 'relative';
+        stats.dom.style.float = 'left';
+        document.body.appendChild( stats.dom );
+
+        array.push( stats );
+      }
+
+  		var render = function () {
+
+  			var time = clock.getElapsedTime();
+  			var delta = clock.getDelta();
+  	  
+  			controls.update();
+
+        if (showFPS == 1){
+          var stats = array[ 0 ];
+          stats.update();
+        }
+  			
+    		if (platform!=null){
+      		platform.rotation.y -= delta * turnTableSpeed * 200;
+    		}
+
+        if (glScene.getObjectByName('FTFactory', document.getElementById('birdMap'))){
+          factoryMaterialWrapping();
+          counterStates();
+          cookingState(cookCounterState, counterCount, glScene);
+          drillingState(drillCounterState, counterCount, glScene);
+          viewPointVisibility();
+          positionFactoryCamera();
+        }
+
+        if(glScene.getObjectByName('crane') != undefined){
+          if (rotationMotorBackward != 0 || rotationMotorForward != 0){
+            glScene.getObjectByName('craneRotationMotor').material.map = motorOnState
+          } else {
+            glScene.getObjectByName('craneRotationMotor').material.map = motorOffState
+          }
+
+          if (elevationMotorBackward != 0 || elevationMotorForward != 0){
+            glScene.getObjectByName('craneElevationMotor').material.map = motorOnState
+          } else {
+            glScene.getObjectByName('craneElevationMotor').material.map = motorOffState
+          }
+
+          if (extensionMotorBackward != 0 || extensionMotorForward != 0){
+            glScene.getObjectByName('armExtensionMotor').material.map = motorOnState
+          } else {
+            glScene.getObjectByName('armExtensionMotor').material.map = motorOffState
+          }
+        }
+
+
+        // general animating camera
+        moveToTarget();
+
+        glRenderer.render(glScene, camera);
+        cssRenderer.render(cssScene, camera);
+
+        if (glScene.getObjectByName('FTFactory') && cameraPositionUpdate == true){
+          positionViewPointMarkers();
+        }
+
+  			requestAnimationFrame( render );
+  		};
+        
+      window.addEventListener( 'resize', onWindowResize, false );
+        
+  		render();
+        
+      function onWindowResize() {
+
+  			camera.aspect = 800 / 600;
+  			camera.updateProjectionMatrix();
+  			glRenderer.setSize( 800, 600 );
+
+  		}
+        
+
+		</script>
+	</body>
+</html>

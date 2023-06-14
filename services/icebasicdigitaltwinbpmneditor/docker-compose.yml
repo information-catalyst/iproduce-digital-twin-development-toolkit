@@ -1,0 +1,16 @@
+# version: '2'
+
+# services:
+#     kafkapde:
+#         image: informationcatalyst/kafkapde
+#         ports:
+#             - "7064:80"
+
+version: "3.8"
+services:
+  angular-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8099:80

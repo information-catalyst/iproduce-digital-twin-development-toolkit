@@ -1,0 +1,54 @@
+pde-toolbar
+pde-new-open-command
+
+pde-marketplace-renderer
+pde-annotations-sync
+
+// Central panel for opening multiple processes ...
+.main-panel
+
+  pde-palette
+
+  // Panel to host tab titles, processes and bottom panel
+  .central-panel
+
+    // List of tabs
+    .process-tabs
+      .process-tabs-container
+        ul.nav.nav-tabs
+          li(ng-repeat="model in $ctrl.getModels()", ng-class="{'active':$ctrl.isActiveIndex($index)}", index="{{$index}}")
+            a(ng-click="$ctrl.selectModel($index)", style="cursor:pointer;")
+              span.process-tab-title(ng-bind="$ctrl.getModelTitle($index)")
+              .btn.btn-link.btn-xs(ng-click="$ctrl.closeModel($index)")
+                i.fa.fa-close
+
+      .process-tabs-menu(uib-dropdown, ng-if="$ctrl.getModels().length")
+        span.btn.btn-sm.btn-link(uib-dropdown-toggle)
+          i.fa.fa-caret-down
+        ul.dropdown-menu.dropdown-menu-left
+          li(ng-repeat="model in $ctrl.getModels()")
+            a(ng-click="$ctrl.selectModel($index)", style="cursor:pointer;")
+              span.process-tab-title(ng-bind="$ctrl.getModelTitle($index)")
+
+
+    pde-process-messages
+    pde-readonly-message
+    pde-keyboard-bind
+
+    // List of modelers
+    .process-panels
+      pde-drop-file(on-drop-file="$ctrl.openProcessFromFile($event)")
+        pde-minimap
+        pde-modeler-container(ng-repeat="model in $ctrl.getModels()", model="model", read-only="$ctrl.isReadOnly($index)",
+          error="$ctrl.onModelerError($event)", ready="$ctrl.onModelerReady($event)")
+
+    // simulation panel
+    pde-simulation
+
+    // status panel to display error list and other wider tools
+    pde-status-panel
+  
+  pde-resize-handler(sibling-selector="pde-tools-panel", customize-key="tools-panel.width")
+
+  //tools panel at the right
+  pde-tools-panel

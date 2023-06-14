@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:crema="http://crema.project.eu" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.1.1">
+  <bpmn:process id="testprocess_optimised_v2" isExecutable="true">
+    <bpmn:extensionElements>
+      <crema:metadata>
+
+        <crema:implementation>
+         <crema:service implements="ScriptTask_SA1" seq="1">
+         	<crema:abstractService>
+	         	<crema:MarketplaceServiceID>as_ID01</crema:MarketplaceServiceID>
+         	</crema:abstractService>
+            <crema:concreteService origin="optimisation">
+               <crema:MarketplaceServiceID>cs_ID01</crema:MarketplaceServiceID>
+               <crema:OWL-S_description>http://127.0.0.1:8080/services/Service/cs_ID01.owl</crema:OWL-S_description>
+               <crema:bindings>
+                  <crema:binding>
+                     <crema:origin>
+                        <crema:env />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="a" service="cs_ID01" />
+                     </crema:target>
+                  </crema:binding>
+                  <crema:binding>
+                     <crema:origin>
+                        <crema:env />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="b" service="cs_ID01" />
+                     </crema:target>
+                  </crema:binding>
+               </crema:bindings>
+            </crema:concreteService>
+         </crema:service>
+         <crema:service implements="ServiceTask_SA2" seq="1">
+         	<crema:abstractService>
+	         	<crema:MarketplaceServiceID>as_ID02</crema:MarketplaceServiceID>
+         	</crema:abstractService>
+            <crema:concreteService origin="optimisation">
+               <crema:MarketplaceServiceID>cs_ID02</crema:MarketplaceServiceID>
+               <crema:OWL-S_description>http://127.0.0.1:8080/services/Service/cs_ID01.owl</crema:OWL-S_description>
+               <crema:bindings>
+                  <crema:binding>
+                     <crema:origin>
+						<crema:variable name="result" service="cs_ID01" />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="a" service="cs_ID02" />
+                     </crema:target>
+                  </crema:binding>
+                  <crema:binding>
+                     <crema:origin>
+						<crema:variable name="result" service="cs_ID01" />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="b" service="cs_ID02" />
+                     </crema:target>
+                  </crema:binding>
+               </crema:bindings>
+            </crema:concreteService>
+         </crema:service>
+         <crema:service implements="ServiceTask_SA2" seq="2">
+         	<crema:abstractService>
+	         	<crema:MarketplaceServiceID>as_ID02</crema:MarketplaceServiceID>
+         	</crema:abstractService>
+            <crema:concreteService origin="optimisation">
+               <crema:MarketplaceServiceID>cs_ID03</crema:MarketplaceServiceID>
+               <crema:OWL-S_description>http://127.0.0.1:8080/services/Service/cs_ID03.owl</crema:OWL-S_description>
+               <crema:bindings>
+                  <crema:binding>
+                     <crema:origin>
+						<crema:variable name="result" service="cs_ID02" />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="a" service="cs_ID03" />
+                     </crema:target>
+                  </crema:binding>
+                  <crema:binding>
+                     <crema:origin>
+						<crema:variable name="result" service="cs_ID02" />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="b" service="cs_ID03" />
+                     </crema:target>
+                  </crema:binding>
+               </crema:bindings>
+            </crema:concreteService>
+         </crema:service>
+    	 <crema:service implements="ScriptTask_SA3" seq="1">
+            <crema:concreteService origin="designer">
+               <crema:MarketplaceServiceID>cs_ID03</crema:MarketplaceServiceID>
+               <crema:OWL-S_description>http://127.0.0.1:8080/services/Service/cs_ID03.owl</crema:OWL-S_description>
+               <crema:bindings>
+                  <crema:binding>
+                     <crema:origin>
+						<crema:variable name="result" service="cs_ID01" />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="a" service="cs_ID03" />
+                     </crema:target>
+                  </crema:binding>
+                  <crema:binding>
+                     <crema:origin>
+						<crema:variable name="result" service="cs_ID01" />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="b" service="cs_ID03" />
+                     </crema:target>
+                  </crema:binding>
+               </crema:bindings>
+            </crema:concreteService>
+         </crema:service>
+         <crema:service implements="ServiceTask_SA4" seq="1">
+            <crema:concreteService origin="designer">
+               <crema:MarketplaceServiceID>cs_ID04</crema:MarketplaceServiceID>
+               <crema:OWL-S_description>http://127.0.0.1:8080/services/Service/cs_ID04.owl</crema:OWL-S_description>
+               <crema:bindings>
+                  <crema:binding>
+                     <crema:origin>
+						<crema:variable name="result" service="cs_ID03" />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="a" service="cs_ID04" />
+                     </crema:target>
+                  </crema:binding>
+                  <crema:binding>
+                     <crema:origin>
+						<crema:variable name="result" service="cs_ID03" />
+                     </crema:origin>
+                     <crema:target>
+                        <crema:variable name="b" service="cs_ID04" />
+                     </crema:target>
+                  </crema:binding>
+               </crema:bindings>
+            </crema:concreteService>
+         </crema:service>
+        </crema:implementation>
+        
+        
+      </crema:metadata>
+    </bpmn:extensionElements>
+    <bpmn:endEvent id="EndEvent_07eo4n9" name="">
+      <bpmn:incoming>SequenceFlow_0qofvjm</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_0tsejxm" default="SequenceFlow_0rjcx0u">
+      <bpmn:incoming>SequenceFlow_101obe1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0qofvjm</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_0rjcx0u</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:serviceTask id="ServiceTask_SA4" name="SA4: push data to CRI" camunda:type="external" camunda:topic="CremaServiceExecution">
+      <bpmn:incoming>SequenceFlow_1bxelrj</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_101obe1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:parallelGateway id="ParallelGateway_1mmlyus">
+      <bpmn:incoming>SequenceFlow_169qu3n</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_1chxbxk</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1bxelrj</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:parallelGateway id="ParallelGateway_1f1144j">
+      <bpmn:incoming>SequenceFlow_16s965p</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ebdl9t</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_1b758ge</bpmn:outgoing>
+    </bpmn:parallelGateway>
+    <bpmn:serviceTask id="ServiceTask_SA2" name="SA2: transform data &#10;(from T4.2)" camunda:type="external" camunda:topic="CremaServiceExecution">
+      <bpmn:incoming>SequenceFlow_1ebdl9t</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_169qu3n</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:exclusiveGateway id="ExclusiveGateway_06h4gow" default="SequenceFlow_16s965p">
+      <bpmn:incoming>SequenceFlow_1oy7w3z</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_16s965p</bpmn:outgoing>
+      <bpmn:outgoing>SequenceFlow_05zz9sq</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="EndEvent_005yfy0">
+      <bpmn:incoming>SequenceFlow_05zz9sq</bpmn:incoming>
+      <bpmn:errorEventDefinition errorRef="Error_1v12b11" />
+    </bpmn:endEvent>
+    <bpmn:startEvent id="StartEvent_0org7p4" name="data&#10;acquisition&#10;start">
+      <bpmn:outgoing>SequenceFlow_0u9lln9</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_0qofvjm" sourceRef="ExclusiveGateway_0tsejxm" targetRef="EndEvent_07eo4n9">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${c==2}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_101obe1" sourceRef="ServiceTask_SA4" targetRef="ExclusiveGateway_0tsejxm" />
+    <bpmn:sequenceFlow id="SequenceFlow_0rjcx0u" name="data collection on by user" sourceRef="ExclusiveGateway_0tsejxm" targetRef="ScriptTask_SA1" />
+    <bpmn:sequenceFlow id="SequenceFlow_1bxelrj" sourceRef="ParallelGateway_1mmlyus" targetRef="ServiceTask_SA4" />
+    <bpmn:sequenceFlow id="SequenceFlow_169qu3n" sourceRef="ServiceTask_SA2" targetRef="ParallelGateway_1mmlyus" />
+    <bpmn:sequenceFlow id="SequenceFlow_1chxbxk" sourceRef="ScriptTask_SA3" targetRef="ParallelGateway_1mmlyus" />
+    <bpmn:sequenceFlow id="SequenceFlow_1b758ge" sourceRef="ParallelGateway_1f1144j" targetRef="ScriptTask_SA3" />
+    <bpmn:sequenceFlow id="SequenceFlow_16s965p" name="data connection works" sourceRef="ExclusiveGateway_06h4gow" targetRef="ParallelGateway_1f1144j" />
+    <bpmn:sequenceFlow id="SequenceFlow_1ebdl9t" sourceRef="ParallelGateway_1f1144j" targetRef="ServiceTask_SA2" />
+    <bpmn:sequenceFlow id="SequenceFlow_1oy7w3z" sourceRef="ScriptTask_SA1" targetRef="ExclusiveGateway_06h4gow" />
+    <bpmn:sequenceFlow id="SequenceFlow_05zz9sq" sourceRef="ExclusiveGateway_06h4gow" targetRef="EndEvent_005yfy0">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${c==1}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="SequenceFlow_0u9lln9" sourceRef="StartEvent_0org7p4" targetRef="ScriptTask_SA1" />
+    <bpmn:serviceTask id="ScriptTask_SA1" name="SA1: Get press machine data" camunda:type="external" camunda:topic="CremaServiceExecution">
+      <bpmn:incoming>SequenceFlow_0rjcx0u</bpmn:incoming>
+      <bpmn:incoming>SequenceFlow_0u9lln9</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1oy7w3z</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ScriptTask_SA3" name="SA3: execute GOIZ algorithm" camunda:type="external" camunda:topic="CremaServiceExecution">
+      <bpmn:incoming>SequenceFlow_1b758ge</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1chxbxk</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:textAnnotation id="TextAnnotation_0vqqevm">    <bpmn:text>ERROR: Data connection does not work</bpmn:text>
+</bpmn:textAnnotation>
+    <bpmn:association id="Association_0i21cyw" sourceRef="EndEvent_005yfy0" targetRef="TextAnnotation_0vqqevm" />
+  </bpmn:process>
+  <bpmn:error id="Error_1v12b11" name="Error_2aqgj5t" errorCode="404" />
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="testprocess_optimised_v2">
+      <bpmndi:BPMNShape id="StartEvent_0org7p4_di" bpmnElement="StartEvent_0org7p4">
+        <dc:Bounds x="25" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="-2" y="168" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0u9lln9_di" bpmnElement="SequenceFlow_0u9lln9">
+        <di:waypoint xsi:type="dc:Point" x="61" y="150" />
+        <di:waypoint xsi:type="dc:Point" x="115" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="36" y="140" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_0tsejxm_di" bpmnElement="ExclusiveGateway_0tsejxm" isMarkerVisible="true">
+        <dc:Bounds x="940" y="125" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="920" y="175" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_101obe1_di" bpmnElement="SequenceFlow_101obe1">
+        <di:waypoint xsi:type="dc:Point" x="848" y="150" />
+        <di:waypoint xsi:type="dc:Point" x="940" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="838" y="139" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_07eo4n9_di" bpmnElement="EndEvent_07eo4n9">
+        <dc:Bounds x="1026" y="132" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1049" y="161" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0qofvjm_di" bpmnElement="SequenceFlow_0qofvjm">
+        <di:waypoint xsi:type="dc:Point" x="990" y="150" />
+        <di:waypoint xsi:type="dc:Point" x="1026" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="920" y="82" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ExclusiveGateway_06h4gow_di" bpmnElement="ExclusiveGateway_06h4gow" isMarkerVisible="true">
+        <dc:Bounds x="267" y="125" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="247" y="175" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1oy7w3z_di" bpmnElement="SequenceFlow_1oy7w3z">
+        <di:waypoint xsi:type="dc:Point" x="215" y="150" />
+        <di:waypoint xsi:type="dc:Point" x="267" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="217" y="140" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_16s965p_di" bpmnElement="SequenceFlow_16s965p">
+        <di:waypoint xsi:type="dc:Point" x="317" y="150" />
+        <di:waypoint xsi:type="dc:Point" x="408" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="316" y="121" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_1f1144j_di" bpmnElement="ParallelGateway_1f1144j">
+        <dc:Bounds x="408" y="125" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="388" y="175" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ebdl9t_di" bpmnElement="SequenceFlow_1ebdl9t">
+        <di:waypoint xsi:type="dc:Point" x="433" y="125" />
+        <di:waypoint xsi:type="dc:Point" x="433" y="92" />
+        <di:waypoint xsi:type="dc:Point" x="501" y="92" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="388" y="96" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1b758ge_di" bpmnElement="SequenceFlow_1b758ge">
+        <di:waypoint xsi:type="dc:Point" x="433" y="175" />
+        <di:waypoint xsi:type="dc:Point" x="433" y="208" />
+        <di:waypoint xsi:type="dc:Point" x="501" y="208" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="423" y="161" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_05zz9sq_di" bpmnElement="SequenceFlow_05zz9sq">
+        <di:waypoint xsi:type="dc:Point" x="292" y="125" />
+        <di:waypoint xsi:type="dc:Point" x="292" y="65" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="247" y="105" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_169qu3n_di" bpmnElement="SequenceFlow_169qu3n">
+        <di:waypoint xsi:type="dc:Point" x="601" y="92" />
+        <di:waypoint xsi:type="dc:Point" x="668" y="92" />
+        <di:waypoint xsi:type="dc:Point" x="668" y="125" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="578" y="76" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ParallelGateway_1mmlyus_di" bpmnElement="ParallelGateway_1mmlyus">
+        <dc:Bounds x="643" y="125" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="623" y="175" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1chxbxk_di" bpmnElement="SequenceFlow_1chxbxk">
+        <di:waypoint xsi:type="dc:Point" x="601" y="208" />
+        <di:waypoint xsi:type="dc:Point" x="668" y="208" />
+        <di:waypoint xsi:type="dc:Point" x="668" y="175" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="578" y="199" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_1bxelrj_di" bpmnElement="SequenceFlow_1bxelrj">
+        <di:waypoint xsi:type="dc:Point" x="693" y="150" />
+        <di:waypoint xsi:type="dc:Point" x="748" y="150" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="705" y="140" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_SA2_di" bpmnElement="ServiceTask_SA2">
+        <dc:Bounds x="501" y="52" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_SA4_di" bpmnElement="ServiceTask_SA4">
+        <dc:Bounds x="748" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0rjcx0u_di" bpmnElement="SequenceFlow_0rjcx0u">
+        <di:waypoint xsi:type="dc:Point" x="965" y="175" />
+        <di:waypoint xsi:type="dc:Point" x="965" y="262" />
+        <di:waypoint xsi:type="dc:Point" x="165" y="262" />
+        <di:waypoint xsi:type="dc:Point" x="165" y="190" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="877" y="229" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="EndEvent_005yfy0_di" bpmnElement="EndEvent_005yfy0">
+        <dc:Bounds x="274" y="29" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="247" y="65" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0vqqevm_di" bpmnElement="TextAnnotation_0vqqevm">
+        <dc:Bounds x="71" y="18" width="122" height="78" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_0i21cyw_di" bpmnElement="Association_0i21cyw">
+        <di:waypoint xsi:type="dc:Point" x="275" y="43" />
+        <di:waypoint xsi:type="dc:Point" x="193" y="23" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ServiceTask_11gn7hx_di" bpmnElement="ScriptTask_SA1">
+        <dc:Bounds x="115" y="110" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ServiceTask_0tt4osb_di" bpmnElement="ScriptTask_SA3">
+        <dc:Bounds x="501" y="168" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

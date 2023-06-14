@@ -1,0 +1,706 @@
+<ns0:definitions xmlns:ns0="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns1="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <ns0:process id="Process_1" isExecutable="true">
+    <ns0:startEvent id="StartEvent_1">
+      <ns0:outgoing>SequenceFlow_0lljdyg</ns0:outgoing>
+    </ns0:startEvent>
+    <ns0:task averageTime="7" behaviour="Task_crane1_MoveToWarehouse_behaviour" completionFail="0" id="Task_crane1_MoveToWarehouse" name="crane1_MoveToWarehouse" silentFail="0">
+      <ns0:incoming>SequenceFlow_0lljdyg</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_08aw6n8</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="3" behaviour="Task_drill_runMotor_behaviour" completionFail="0" id="Task_drill_runMotor" name="drill_runMotor" silentFail="0">
+      <ns0:incoming>SequenceFlow_19zr5c0</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_06hht0q</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="3" behaviour="Task_crane1_PickupWhite_behaviour" completionFail="2" id="Task_crane1_PickupWhite" name="crane1_PickupWhite" silentFail="2">
+      <ns0:incoming>SequenceFlow_08aw6n8</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0k407en</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="9" behaviour="Task_crane1_MoveToOven_behaviour" completionFail="0" id="Task_crane1_MoveToOven" name="crane1_MoveToOven" silentFail="0">
+      <ns0:incoming>SequenceFlow_0k407en</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_1n2mqvu</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="5" behaviour="Task_crane1_Drop_behaviour" completionFail="3" id="Task_crane1_Drop" name="crane1_Drop" silentFail="3">
+      <ns0:incoming>SequenceFlow_1n2mqvu</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_19oa0rw</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="7" behaviour="Task_crane1_Reset_behaviour" completionFail="0" id="Task_crane1_Reset" name="crane1_Reset" silentFail="0">
+      <ns0:incoming>SequenceFlow_19oa0rw</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_19zr5c0</ns0:outgoing>
+    </ns0:task>
+    <ns0:sequenceFlow id="SequenceFlow_08aw6n8" sourceRef="Task_crane1_MoveToWarehouse" targetRef="Task_crane1_PickupWhite" />
+    <ns0:sequenceFlow id="SequenceFlow_0k407en" sourceRef="Task_crane1_PickupWhite" targetRef="Task_crane1_MoveToOven" />
+    <ns0:sequenceFlow id="SequenceFlow_19oa0rw" sourceRef="Task_crane1_Drop" targetRef="Task_crane1_Reset" />
+    <ns0:sequenceFlow id="SequenceFlow_0lljdyg" sourceRef="StartEvent_1" targetRef="Task_crane1_MoveToWarehouse" />
+    <ns0:sequenceFlow id="SequenceFlow_19zr5c0" sourceRef="Task_crane1_Reset" targetRef="Task_drill_runMotor" />
+    <ns0:task averageTime="4" behaviour="Task_oven_Cooking_behaviour" completionFail="0" id="Task_oven_Cooking" name="oven_Cooking" silentFail="0">
+      <ns0:incoming>SequenceFlow_06hht0q</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0i7xu22</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_oven_MoveToOven_behaviour" completionFail="0" id="Task_oven_MoveToOven" name="oven_MoveToOven" silentFail="0">
+      <ns0:incoming>SequenceFlow_0i7xu22</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_002azj9</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="3" behaviour="Task_oven_PickupCounter_behaviour" completionFail="0" id="Task_oven_PickupCounter" name="oven_PickupCounter" silentFail="0">
+      <ns0:incoming>SequenceFlow_002azj9</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_17zrg6t</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="5" behaviour="Task_oven_MoveToDrilling_behaviour" completionFail="2" id="Task_oven_MoveToDrilling" name="oven_MoveToDrilling" silentFail="2">
+      <ns0:incoming>SequenceFlow_17zrg6t</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0dw3s52</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="3" behaviour="Task_oven_Drop_behaviour" completionFail="0" id="Task_oven_Drop" name="oven_Drop" silentFail="0">
+      <ns0:incoming>SequenceFlow_0dw3s52</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_18qbel2</ns0:outgoing>
+    </ns0:task>
+    <ns0:sequenceFlow id="SequenceFlow_0i7xu22" sourceRef="Task_oven_Cooking" targetRef="Task_oven_MoveToOven" />
+    <ns0:sequenceFlow id="SequenceFlow_002azj9" sourceRef="Task_oven_MoveToOven" targetRef="Task_oven_PickupCounter" />
+    <ns0:sequenceFlow id="SequenceFlow_17zrg6t" sourceRef="Task_oven_PickupCounter" targetRef="Task_oven_MoveToDrilling" />
+    <ns0:sequenceFlow id="SequenceFlow_0dw3s52" sourceRef="Task_oven_MoveToDrilling" targetRef="Task_oven_Drop" />
+    <ns0:sequenceFlow id="SequenceFlow_06hht0q" sourceRef="Task_drill_runMotor" targetRef="Task_oven_Cooking" />
+    <ns0:sequenceFlow id="SequenceFlow_1n2mqvu" sourceRef="Task_crane1_MoveToOven" targetRef="Task_crane1_Drop" />
+    <ns0:task averageTime="2" behaviour="Task_drill_stopMotor_behaviour" completionFail="0" id="Task_drill_stopMotor" name="drill_stopMotor" silentFail="0">
+      <ns0:incoming>SequenceFlow_18qbel2</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0qzf0vu</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_drill_drillCounter_behaviour" completionFail="0" id="Task_drill_drillCounter" name="drill_drillCounter" silentFail="0">
+      <ns0:incoming>SequenceFlow_0l0vb2k</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_160tqi0</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="6" behaviour="Task_drill_moveToConveyor_behaviour" completionFail="1" id="Task_drill_moveToConveyor" name="drill_moveToConveyor" silentFail="1">
+      <ns0:incoming>SequenceFlow_160tqi0</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0rp0wwr</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_drill_deposit_behaviour" completionFail="0" id="Task_drill_deposit" name="drill_deposit" silentFail="0">
+      <ns0:incoming>SequenceFlow_0rp0wwr</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0g7g0vo</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="3" behaviour="Task_drill_runConveyor_behaviour" completionFail="0" id="Task_drill_runConveyor" name="drill_runConveyor" silentFail="0">
+      <ns0:incoming>SequenceFlow_0g7g0vo</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_09qb9bk</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="3" behaviour="Task_drill_Reset_behaviour" completionFail="0" id="Task_drill_Reset" name="drill_Reset" silentFail="0">
+      <ns0:incoming>SequenceFlow_09qb9bk</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_02w55z4</ns0:outgoing>
+    </ns0:task>
+    <ns0:sequenceFlow id="SequenceFlow_160tqi0" sourceRef="Task_drill_drillCounter" targetRef="Task_drill_moveToConveyor" />
+    <ns0:sequenceFlow id="SequenceFlow_0rp0wwr" sourceRef="Task_drill_moveToConveyor" targetRef="Task_drill_deposit" />
+    <ns0:sequenceFlow id="SequenceFlow_0g7g0vo" sourceRef="Task_drill_deposit" targetRef="Task_drill_runConveyor" />
+    <ns0:task averageTime="5" behaviour="Task_drill_moveToDrill_behaviour" completionFail="0" id="Task_drill_moveToDrill" name="drill_moveToDrill" silentFail="0">
+      <ns0:incoming>SequenceFlow_0qzf0vu</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0l0vb2k</ns0:outgoing>
+    </ns0:task>
+    <ns0:sequenceFlow id="SequenceFlow_0qzf0vu" sourceRef="Task_drill_stopMotor" targetRef="Task_drill_moveToDrill" />
+    <ns0:sequenceFlow id="SequenceFlow_0l0vb2k" sourceRef="Task_drill_moveToDrill" targetRef="Task_drill_drillCounter" />
+    <ns0:sequenceFlow id="SequenceFlow_09qb9bk" sourceRef="Task_drill_runConveyor" targetRef="Task_drill_Reset" />
+    <ns0:task averageTime="3" behaviour="Task_conveyor_Waiting_behaviour" completionFail="0" id="Task_conveyor_Waiting" name="conveyor_Waiting" silentFail="0">
+      <ns0:incoming>SequenceFlow_02w55z4</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0l06lth</ns0:outgoing>
+    </ns0:task>
+    <ns0:sequenceFlow id="SequenceFlow_0l06lth" sourceRef="Task_conveyor_Waiting" targetRef="Task_conveyor_Sort" />
+    <ns0:sequenceFlow id="SequenceFlow_02w55z4" sourceRef="Task_drill_Reset" targetRef="Task_conveyor_Waiting" />
+    <ns0:sequenceFlow id="SequenceFlow_18qbel2" sourceRef="Task_oven_Drop" targetRef="Task_drill_stopMotor" />
+    <ns0:task averageTime="10" behaviour="Task_conveyor_Sort_behaviour" completionFail="0" id="Task_conveyor_Sort" name="conveyor_Sort" silentFail="0">
+      <ns0:incoming>SequenceFlow_0l06lth</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0a01mzy</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="7" behaviour="Task_crane1_Move2_behaviour" completionFail="0" id="Task_crane1_Move2" name="crane1_Move2" silentFail="0">
+      <ns0:incoming>SequenceFlow_0a01mzy</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0g3jeww</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_crane1_Pickup2_behaviour" completionFail="3" id="Task_crane1_Pickup2" name="crane1_Pickup2" silentFail="3">
+      <ns0:incoming>SequenceFlow_0g3jeww</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_11s6vfl</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="10" behaviour="Task_crane1_MoveToCar_behaviour" completionFail="4" id="Task_crane1_MoveToCar" name="crane1_MoveToCar" silentFail="5">
+      <ns0:incoming>SequenceFlow_11s6vfl</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0554eb7</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_crane1_Drop2_behaviour" completionFail="2" id="Task_crane1_Drop2" name="crane1_Drop2" silentFail="2">
+      <ns0:incoming>SequenceFlow_0554eb7</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_1n9xbqj</ns0:outgoing>
+    </ns0:task>
+    <ns0:sequenceFlow id="SequenceFlow_0a01mzy" sourceRef="Task_conveyor_Sort" targetRef="Task_crane1_Move2" />
+    <ns0:sequenceFlow id="SequenceFlow_0g3jeww" sourceRef="Task_crane1_Move2" targetRef="Task_crane1_Pickup2" />
+    <ns0:sequenceFlow id="SequenceFlow_11s6vfl" sourceRef="Task_crane1_Pickup2" targetRef="Task_crane1_MoveToCar" />
+    <ns0:sequenceFlow id="SequenceFlow_0554eb7" sourceRef="Task_crane1_MoveToCar" targetRef="Task_crane1_Drop2" />
+    <ns0:sequenceFlow id="SequenceFlow_1n9xbqj" sourceRef="Task_crane1_Drop2" targetRef="Task_crane1_Reset2" />
+    <ns0:task averageTime="8" behaviour="Task_crane1_Reset2_behaviour" completionFail="0" id="Task_crane1_Reset2" name="crane1_Reset2" silentFail="0">
+      <ns0:incoming>SequenceFlow_1n9xbqj</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_1fowrgc</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="12" behaviour="Task_car_Forward10_behaviour" completionFail="2" id="Task_car_Forward10" name="car_Forward10" silentFail="2">
+      <ns0:incoming>SequenceFlow_1fowrgc</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0cuk62y</ns0:outgoing>
+    </ns0:task>
+    <ns0:sequenceFlow id="SequenceFlow_0cuk62y" sourceRef="Task_car_Forward10" targetRef="Task_crane_MoveToRover" />
+    <ns0:sequenceFlow id="SequenceFlow_1fowrgc" sourceRef="Task_crane1_Reset2" targetRef="Task_car_Forward10" />
+    <ns0:task averageTime="3" behaviour="Task_conveyora_WaitingAState_behaviour" completionFail="0" id="Task_conveyora_WaitingAState" name="conveyora_WaitingAState" silentFail="0">
+      <ns0:incoming>SequenceFlow_0ndcyib</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0yol2um</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_conveyora_StartBeltA1_behaviour" completionFail="0" id="Task_conveyora_StartBeltA1" name="conveyora_StartBeltA1" silentFail="0">
+      <ns0:incoming>SequenceFlow_0yol2um</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_1bcz0ak</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_conveyora_ResetAState_behaviour" completionFail="0" id="Task_conveyora_ResetAState" name="conveyora_ResetAState" silentFail="0">
+      <ns0:incoming>SequenceFlow_1kdwcj3</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_1630xqb</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="5" behaviour="Task_conveyora_PushAState_behaviour" completionFail="0" id="Task_conveyora_PushAState" name="conveyora_PushAState" silentFail="0">
+      <ns0:incoming>SequenceFlow_1bcz0ak</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_1kdwcj3</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="5" behaviour="Task_conveyora_StartBeltA2_behaviour" completionFail="0" id="Task_conveyora_StartBeltA2" name="conveyora_StartBeltA2" silentFail="0">
+      <ns0:incoming>SequenceFlow_1630xqb</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0cl17vp</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="5" behaviour="Task_conveyora_ToolAState_behaviour" completionFail="0" id="Task_conveyora_ToolAState" name="conveyora_ToolAState" silentFail="0">
+      <ns0:incoming>SequenceFlow_0cl17vp</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_1rr354b</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_conveyora_SlowBeltA2_behaviour" completionFail="0" id="Task_conveyora_SlowBeltA2" name="conveyora_SlowBeltA2" silentFail="0">
+      <ns0:incoming>SequenceFlow_1rr354b</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_14854da</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="5" behaviour="Task_conveyorb_StartBeltB1_behaviour" completionFail="0" id="Task_conveyorb_StartBeltB1" name="conveyorb_StartBeltB1" silentFail="0">
+      <ns0:incoming>SequenceFlow_14854da</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0bi061m</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="5" behaviour="Task_conveyorb_StopBeltA2_behaviour" completionFail="0" id="Task_conveyorb_StopBeltA2" name="conveyorb_StopBeltA2" silentFail="0">
+      <ns0:incoming>SequenceFlow_0bi061m</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_16gl4qk</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="3" behaviour="Task_conveyorb_Push_behaviour" completionFail="2" id="Task_conveyorb_Push" name="conveyorb_Push" silentFail="2">
+      <ns0:incoming>SequenceFlow_16gl4qk</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0qcbp5f</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="3" behaviour="Task_conveyorb_ResetBState_behaviour" completionFail="0" id="Task_conveyorb_ResetBState" name="conveyorb_ResetBState" silentFail="0">
+      <ns0:incoming>SequenceFlow_0qcbp5f</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0ylwv72</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="5" behaviour="Task_conveyorb_StartBeltB2_behaviour" completionFail="0" id="Task_conveyorb_StartBeltB2" name="conveyorb_StartBeltB2" silentFail="0">
+      <ns0:incoming>SequenceFlow_0ylwv72</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0scyrk4</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="8" behaviour="Task_crane_MoveToRover_behaviour" completionFail="0" id="Task_crane_MoveToRover" name="crane_MoveToRover" silentFail="0">
+      <ns0:incoming>SequenceFlow_0cuk62y</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0aks0rq</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_crane_PickupWhiteState_behaviour" completionFail="3" id="Task_crane_PickupWhiteState" name="crane_PickupWhiteState" silentFail="3">
+      <ns0:incoming>SequenceFlow_0aks0rq</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_16xorvx</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="8" behaviour="Task_crane_MoveToConveyor_behaviour" completionFail="0" id="Task_crane_MoveToConveyor" name="crane_MoveToConveyor" silentFail="0">
+      <ns0:incoming>SequenceFlow_16xorvx</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0tbdbg5</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_crane_DropState_behaviour" completionFail="3" id="Task_crane_DropState" name="crane_DropState" silentFail="3">
+      <ns0:incoming>SequenceFlow_0tbdbg5</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0w4vcvx</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="7" behaviour="Task_crane_ResetState_behaviour" completionFail="0" id="Task_crane_ResetState" name="crane_ResetState" silentFail="0">
+      <ns0:incoming>SequenceFlow_0w4vcvx</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0ndcyib</ns0:outgoing>
+    </ns0:task>
+    <ns0:sequenceFlow id="SequenceFlow_0ndcyib" sourceRef="Task_crane_ResetState" targetRef="Task_conveyora_WaitingAState" />
+    <ns0:sequenceFlow id="SequenceFlow_0yol2um" sourceRef="Task_conveyora_WaitingAState" targetRef="Task_conveyora_StartBeltA1" />
+    <ns0:sequenceFlow id="SequenceFlow_1bcz0ak" sourceRef="Task_conveyora_StartBeltA1" targetRef="Task_conveyora_PushAState" />
+    <ns0:sequenceFlow id="SequenceFlow_1kdwcj3" sourceRef="Task_conveyora_PushAState" targetRef="Task_conveyora_ResetAState" />
+    <ns0:sequenceFlow id="SequenceFlow_1630xqb" sourceRef="Task_conveyora_ResetAState" targetRef="Task_conveyora_StartBeltA2" />
+    <ns0:sequenceFlow id="SequenceFlow_0cl17vp" sourceRef="Task_conveyora_StartBeltA2" targetRef="Task_conveyora_ToolAState" />
+    <ns0:sequenceFlow id="SequenceFlow_1rr354b" sourceRef="Task_conveyora_ToolAState" targetRef="Task_conveyora_SlowBeltA2" />
+    <ns0:sequenceFlow id="SequenceFlow_14854da" sourceRef="Task_conveyora_SlowBeltA2" targetRef="Task_conveyorb_StartBeltB1" />
+    <ns0:sequenceFlow id="SequenceFlow_0bi061m" sourceRef="Task_conveyorb_StartBeltB1" targetRef="Task_conveyorb_StopBeltA2" />
+    <ns0:sequenceFlow id="SequenceFlow_16gl4qk" sourceRef="Task_conveyorb_StopBeltA2" targetRef="Task_conveyorb_Push" />
+    <ns0:sequenceFlow id="SequenceFlow_0qcbp5f" sourceRef="Task_conveyorb_Push" targetRef="Task_conveyorb_ResetBState" />
+    <ns0:sequenceFlow id="SequenceFlow_0ylwv72" sourceRef="Task_conveyorb_ResetBState" targetRef="Task_conveyorb_StartBeltB2" />
+    <ns0:sequenceFlow id="SequenceFlow_0aks0rq" sourceRef="Task_crane_MoveToRover" targetRef="Task_crane_PickupWhiteState" />
+    <ns0:sequenceFlow id="SequenceFlow_16xorvx" sourceRef="Task_crane_PickupWhiteState" targetRef="Task_crane_MoveToConveyor" />
+    <ns0:sequenceFlow id="SequenceFlow_0tbdbg5" sourceRef="Task_crane_MoveToConveyor" targetRef="Task_crane_DropState" />
+    <ns0:sequenceFlow id="SequenceFlow_0w4vcvx" sourceRef="Task_crane_DropState" targetRef="Task_crane_ResetState" />
+    <ns0:endEvent id="EndEvent_0yliauv">
+      <ns0:incoming>SequenceFlow_0scyrk4</ns0:incoming>
+    </ns0:endEvent>
+    <ns0:sequenceFlow id="SequenceFlow_0scyrk4" sourceRef="Task_conveyorb_StartBeltB2" targetRef="EndEvent_0yliauv" />
+  </ns0:process>
+  <ns1:BPMNDiagram id="BPMNDiagram_1">
+    <ns1:BPMNPlane bpmnElement="Process_1" id="BPMNPlane_1">
+      <ns1:BPMNShape bpmnElement="StartEvent_1" id="_BPMNShape_StartEvent_2">
+        <ns2:Bounds height="36" width="36" x="165" y="114" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="20" width="90" x="138" y="150" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_MoveToWarehouse" id="Task_1jhxhdi_di">
+        <ns2:Bounds height="80" width="100" x="299" y="92" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_drill_runMotor" id="Task_0wg9ztu_di">
+        <ns2:Bounds height="80" width="100" x="156" y="310" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_PickupWhite" id="Task_1lcm22k_di">
+        <ns2:Bounds height="80" width="100" x="492" y="92" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_MoveToOven" id="Task_0ms81lm_di">
+        <ns2:Bounds height="80" width="100" x="677" y="92" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_Drop" id="Task_0baw16z_di">
+        <ns2:Bounds height="80" width="100" x="889" y="92" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_Reset" id="Task_1pnm531_di">
+        <ns2:Bounds height="80" width="100" x="1120" y="92" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_08aw6n8" id="SequenceFlow_08aw6n8_di">
+        <ns3:waypoint x="399" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="492" y="132" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="357" y="111" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0k407en" id="SequenceFlow_0k407en_di">
+        <ns3:waypoint x="592" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="629" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="629" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="677" y="132" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="599" y="125.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_19oa0rw" id="SequenceFlow_19oa0rw_di">
+        <ns3:waypoint x="989" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="1120" y="132" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="1009.5" y="110.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0lljdyg" id="SequenceFlow_0lljdyg_di">
+        <ns3:waypoint x="201" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="299" y="132" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="205" y="110" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_19zr5c0" id="SequenceFlow_19zr5c0_di">
+        <ns3:waypoint x="1120" y="162" xsi:type="dc:Point" />
+        <ns3:waypoint x="997" y="237" xsi:type="dc:Point" />
+        <ns3:waypoint x="414" y="237" xsi:type="dc:Point" />
+        <ns3:waypoint x="256" y="323" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="660.5" y="215.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNShape bpmnElement="Task_oven_Cooking" id="Task_1q7v4z1_di">
+        <ns2:Bounds height="80" width="100" x="355" y="310" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_oven_MoveToOven" id="Task_0l3f3v3_di">
+        <ns2:Bounds height="80" width="100" x="533" y="310" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_oven_PickupCounter" id="Task_15098hs_di">
+        <ns2:Bounds height="80" width="100" x="703" y="310" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_oven_MoveToDrilling" id="Task_0yczre3_di">
+        <ns2:Bounds height="80" width="100" x="875" y="310" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_oven_Drop" id="Task_13aanwj_di">
+        <ns2:Bounds height="80" width="100" x="1066" y="310" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0i7xu22" id="SequenceFlow_0i7xu22_di">
+        <ns3:waypoint x="455" y="350" xsi:type="dc:Point" />
+        <ns3:waypoint x="486" y="350" xsi:type="dc:Point" />
+        <ns3:waypoint x="486" y="350" xsi:type="dc:Point" />
+        <ns3:waypoint x="533" y="350" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="456" y="343.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_002azj9" id="SequenceFlow_002azj9_di">
+        <ns3:waypoint x="633" y="350" xsi:type="dc:Point" />
+        <ns3:waypoint x="703" y="350" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="623" y="328.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_17zrg6t" id="SequenceFlow_17zrg6t_di">
+        <ns3:waypoint x="803" y="350" xsi:type="dc:Point" />
+        <ns3:waypoint x="875" y="350" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="794" y="328.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0dw3s52" id="SequenceFlow_0dw3s52_di">
+        <ns3:waypoint x="975" y="350" xsi:type="dc:Point" />
+        <ns3:waypoint x="1066" y="350" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="975.5" y="328.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_06hht0q" id="SequenceFlow_06hht0q_di">
+        <ns3:waypoint x="256" y="350" xsi:type="dc:Point" />
+        <ns3:waypoint x="355" y="350" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="305.5" y="328" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1n2mqvu" id="SequenceFlow_1n2mqvu_di">
+        <ns3:waypoint x="777" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="828" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="828" y="132" xsi:type="dc:Point" />
+        <ns3:waypoint x="889" y="132" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="798" y="125.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNShape bpmnElement="Task_drill_stopMotor" id="Task_0qevrqq_di">
+        <ns2:Bounds height="80" width="100" x="1258" y="310" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_drill_drillCounter" id="Task_0i8udv1_di">
+        <ns2:Bounds height="80" width="100" x="355" y="477" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_drill_moveToConveyor" id="Task_0a7brr0_di">
+        <ns2:Bounds height="80" width="100" x="524" y="477" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_drill_deposit" id="Task_0h4enax_di">
+        <ns2:Bounds height="80" width="100" x="715" y="477" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_drill_runConveyor" id="Task_1mknm8w_di">
+        <ns2:Bounds height="80" width="100" x="914" y="477" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_drill_Reset" id="Task_00nr083_di">
+        <ns2:Bounds height="80" width="100" x="1136" y="477" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_160tqi0" id="SequenceFlow_160tqi0_di">
+        <ns3:waypoint x="455" y="517" xsi:type="dc:Point" />
+        <ns3:waypoint x="524" y="517" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="444.5" y="495.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0rp0wwr" id="SequenceFlow_0rp0wwr_di">
+        <ns3:waypoint x="624" y="517" xsi:type="dc:Point" />
+        <ns3:waypoint x="715" y="517" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="625" y="495" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0g7g0vo" id="SequenceFlow_0g7g0vo_di">
+        <ns3:waypoint x="815" y="517" xsi:type="dc:Point" />
+        <ns3:waypoint x="914" y="517" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="820" y="495" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNShape bpmnElement="Task_drill_moveToDrill" id="Task_04lo618_di">
+        <ns2:Bounds height="80" width="100" x="156" y="477" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0qzf0vu" id="SequenceFlow_0qzf0vu_di">
+        <ns3:waypoint x="1340" y="390" xsi:type="dc:Point" />
+        <ns3:waypoint x="1211" y="443" xsi:type="dc:Point" />
+        <ns3:waypoint x="360" y="443" xsi:type="dc:Point" />
+        <ns3:waypoint x="256" y="493" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="740.5" y="421.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0l0vb2k" id="SequenceFlow_0l0vb2k_di">
+        <ns3:waypoint x="256" y="517" xsi:type="dc:Point" />
+        <ns3:waypoint x="355" y="517" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="305.5" y="495" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_09qb9bk" id="SequenceFlow_09qb9bk_di">
+        <ns3:waypoint x="1014" y="517" xsi:type="dc:Point" />
+        <ns3:waypoint x="1136" y="517" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="1030" y="495.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNShape bpmnElement="Task_conveyor_Waiting" id="Task_1owebmw_di">
+        <ns2:Bounds height="80" width="100" x="156" y="631" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0l06lth" id="SequenceFlow_0l06lth_di">
+        <ns3:waypoint x="256" y="671" xsi:type="dc:Point" />
+        <ns3:waypoint x="524" y="671" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="345" y="649.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_02w55z4" id="SequenceFlow_02w55z4_di">
+        <ns3:waypoint x="1136" y="545" xsi:type="dc:Point" />
+        <ns3:waypoint x="1027" y="609" xsi:type="dc:Point" />
+        <ns3:waypoint x="329" y="609" xsi:type="dc:Point" />
+        <ns3:waypoint x="256" y="646" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="633" y="587.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_18qbel2" id="SequenceFlow_18qbel2_di">
+        <ns3:waypoint x="1166" y="350" xsi:type="dc:Point" />
+        <ns3:waypoint x="1258" y="350" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="1212" y="328" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNShape bpmnElement="Task_conveyor_Sort" id="Task_142wob6_di">
+        <ns2:Bounds height="80" width="100" x="524" y="631" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_Move2" id="Task_0gbnkdm_di">
+        <ns2:Bounds height="80" width="100" x="155.50571428571425" y="812.3742857142857" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_Pickup2" id="Task_09foave_di">
+        <ns2:Bounds height="80" width="100" x="355" y="812" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_MoveToCar" id="Task_1wwit28_di">
+        <ns2:Bounds height="80" width="100" x="524" y="812" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane1_Drop2" id="Task_0fzo8tk_di">
+        <ns2:Bounds height="80" width="100" x="715" y="812" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0a01mzy" id="SequenceFlow_0a01mzy_di">
+        <ns3:waypoint x="524" y="699" xsi:type="dc:Point" />
+        <ns3:waypoint x="256" y="829" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="345" y="742.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0g3jeww" id="SequenceFlow_0g3jeww_di">
+        <ns3:waypoint x="256" y="852" xsi:type="dc:Point" />
+        <ns3:waypoint x="355" y="852" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="260.5" y="830.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_11s6vfl" id="SequenceFlow_11s6vfl_di">
+        <ns3:waypoint x="455" y="852" xsi:type="dc:Point" />
+        <ns3:waypoint x="524" y="852" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="444.5" y="830.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0554eb7" id="SequenceFlow_0554eb7_di">
+        <ns3:waypoint x="624" y="852" xsi:type="dc:Point" />
+        <ns3:waypoint x="715" y="852" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="669.5" y="830" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1n9xbqj" id="SequenceFlow_1n9xbqj_di">
+        <ns3:waypoint x="815" y="852" xsi:type="dc:Point" />
+        <ns3:waypoint x="889" y="852" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="807" y="831" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNShape bpmnElement="Task_crane1_Reset2" id="Task_00huy26_di">
+        <ns2:Bounds height="80" width="100" x="889" y="812" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_car_Forward10" id="Task_1543sz6_di">
+        <ns2:Bounds height="80" width="100" x="174" y="974" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0cuk62y" id="SequenceFlow_0cuk62y_di">
+        <ns3:waypoint x="274" y="1014" xsi:type="dc:Point" />
+        <ns3:waypoint x="993" y="1014" xsi:type="dc:Point" />
+        <ns3:waypoint x="903" y="1079" xsi:type="dc:Point" />
+        <ns3:waypoint x="309" y="1079" xsi:type="dc:Point" />
+        <ns3:waypoint x="267" y="1115" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="903" y="1025" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1fowrgc" id="SequenceFlow_1fowrgc_di">
+        <ns3:waypoint x="909" y="892" xsi:type="dc:Point" />
+        <ns3:waypoint x="877" y="935" xsi:type="dc:Point" />
+        <ns3:waypoint x="383" y="935" xsi:type="dc:Point" />
+        <ns3:waypoint x="274" y="989" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="90" x="585" y="914" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNShape bpmnElement="Task_conveyora_WaitingAState" id="Task_0kwgysf_di">
+        <ns2:Bounds height="80" width="100" x="339" y="1246" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyora_StartBeltA1" id="Task_1o7s7bn_di">
+        <ns2:Bounds height="80" width="100" x="499" y="1246" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyora_ResetAState" id="Task_0jdgth8_di">
+        <ns2:Bounds height="80" width="100" x="858" y="1246" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyora_PushAState" id="Task_1dan3pp_di">
+        <ns2:Bounds height="80" width="100" x="688" y="1246" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyora_StartBeltA2" id="Task_1me3mps_di">
+        <ns2:Bounds height="80" width="100" x="696" y="1395" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyora_ToolAState" id="Task_0d1s4s9_di">
+        <ns2:Bounds height="80" width="100" x="499" y="1395" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyora_SlowBeltA2" id="Task_163x2lb_di">
+        <ns2:Bounds height="80" width="100" x="339" y="1395" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyorb_StartBeltB1" id="Task_151cns7_di">
+        <ns2:Bounds height="80" width="100" x="160" y="1517" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyorb_StopBeltA2" id="Task_0yl60yv_di">
+        <ns2:Bounds height="80" width="100" x="348" y="1517" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyorb_Push" id="Task_0qkmuhv_di">
+        <ns2:Bounds height="80" width="100" x="517" y="1517" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyorb_ResetBState" id="Task_12mxjau_di">
+        <ns2:Bounds height="80" width="100" x="668" y="1517" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_conveyorb_StartBeltB2" id="Task_0zc95m0_di">
+        <ns2:Bounds height="80" width="100" x="845" y="1517" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane_MoveToRover" id="Task_0jt26fj_di">
+        <ns2:Bounds height="80" width="100" x="174" y="1112" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane_PickupWhiteState" id="Task_1cu2jga_di">
+        <ns2:Bounds height="80" width="100" x="339" y="1112" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane_MoveToConveyor" id="Task_1liq826_di">
+        <ns2:Bounds height="80" width="100" x="542" y="1112" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane_DropState" id="Task_03o7sh6_di">
+        <ns2:Bounds height="80" width="100" x="729" y="1112" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_crane_ResetState" id="Task_02fuv92_di">
+        <ns2:Bounds height="80" width="100" x="947" y="1112" />
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0ndcyib" id="SequenceFlow_0ndcyib_di">
+        <ns3:waypoint x="952" y="1187" xsi:type="dc:Point" />
+        <ns3:waypoint x="867" y="1223" xsi:type="dc:Point" />
+        <ns3:waypoint x="196" y="1223" xsi:type="dc:Point" />
+        <ns3:waypoint x="339" y="1270" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="531.5" y="1201.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0yol2um" id="SequenceFlow_0yol2um_di">
+        <ns3:waypoint x="439" y="1286" xsi:type="dc:Point" />
+        <ns3:waypoint x="499" y="1286" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="424" y="1265" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1bcz0ak" id="SequenceFlow_1bcz0ak_di">
+        <ns3:waypoint x="599" y="1286" xsi:type="dc:Point" />
+        <ns3:waypoint x="645" y="1286" xsi:type="dc:Point" />
+        <ns3:waypoint x="645" y="1286" xsi:type="dc:Point" />
+        <ns3:waypoint x="688" y="1286" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="660" y="1279.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1kdwcj3" id="SequenceFlow_1kdwcj3_di">
+        <ns3:waypoint x="788" y="1286" xsi:type="dc:Point" />
+        <ns3:waypoint x="824" y="1286" xsi:type="dc:Point" />
+        <ns3:waypoint x="824" y="1286" xsi:type="dc:Point" />
+        <ns3:waypoint x="858" y="1286" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="839" y="1279.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1630xqb" id="SequenceFlow_1630xqb_di">
+        <ns3:waypoint x="908" y="1326" xsi:type="dc:Point" />
+        <ns3:waypoint x="908" y="1435" xsi:type="dc:Point" />
+        <ns3:waypoint x="796" y="1435" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="878" y="1375.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0cl17vp" id="SequenceFlow_0cl17vp_di">
+        <ns3:waypoint x="696" y="1435" xsi:type="dc:Point" />
+        <ns3:waypoint x="599" y="1435" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="603.5" y="1414" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1rr354b" id="SequenceFlow_1rr354b_di">
+        <ns3:waypoint x="499" y="1435" xsi:type="dc:Point" />
+        <ns3:waypoint x="439" y="1435" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="424" y="1414" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_14854da" id="SequenceFlow_14854da_di">
+        <ns3:waypoint x="339" y="1435" xsi:type="dc:Point" />
+        <ns3:waypoint x="210" y="1435" xsi:type="dc:Point" />
+        <ns3:waypoint x="210" y="1517" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="230.5" y="1414" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0bi061m" id="SequenceFlow_0bi061m_di">
+        <ns3:waypoint x="260" y="1557" xsi:type="dc:Point" />
+        <ns3:waypoint x="348" y="1557" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="259" y="1536" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_16gl4qk" id="SequenceFlow_16gl4qk_di">
+        <ns3:waypoint x="448" y="1557" xsi:type="dc:Point" />
+        <ns3:waypoint x="474" y="1557" xsi:type="dc:Point" />
+        <ns3:waypoint x="474" y="1557" xsi:type="dc:Point" />
+        <ns3:waypoint x="517" y="1557" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="444" y="1551" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0qcbp5f" id="SequenceFlow_0qcbp5f_di">
+        <ns3:waypoint x="617" y="1557" xsi:type="dc:Point" />
+        <ns3:waypoint x="668" y="1557" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="598.5" y="1536" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0ylwv72" id="SequenceFlow_0ylwv72_di">
+        <ns3:waypoint x="768" y="1557" xsi:type="dc:Point" />
+        <ns3:waypoint x="845" y="1557" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="762.5" y="1536" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0aks0rq" id="SequenceFlow_0aks0rq_di">
+        <ns3:waypoint x="274" y="1152" xsi:type="dc:Point" />
+        <ns3:waypoint x="339" y="1152" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="306.5" y="1130.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_16xorvx" id="SequenceFlow_16xorvx_di">
+        <ns3:waypoint x="439" y="1152" xsi:type="dc:Point" />
+        <ns3:waypoint x="542" y="1152" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="490.5" y="1130.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0tbdbg5" id="SequenceFlow_0tbdbg5_di">
+        <ns3:waypoint x="642" y="1152" xsi:type="dc:Point" />
+        <ns3:waypoint x="729" y="1152" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="685.5" y="1130.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0w4vcvx" id="SequenceFlow_0w4vcvx_di">
+        <ns3:waypoint x="829" y="1152" xsi:type="dc:Point" />
+        <ns3:waypoint x="947" y="1152" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="13" width="0" x="888" y="1130.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNShape bpmnElement="EndEvent_0yliauv" id="EndEvent_0yliauv_di">
+        <ns2:Bounds height="36" width="36" x="1061.9595141700404" y="1539" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="12" width="0" x="1079.9595141700404" y="1579" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0scyrk4" id="SequenceFlow_0scyrk4_di">
+        <ns3:waypoint x="945" y="1557" xsi:type="dc:Point" />
+        <ns3:waypoint x="1062" y="1557" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="12" width="0" x="1003.5" y="1536" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+    </ns1:BPMNPlane>
+  </ns1:BPMNDiagram>
+</ns0:definitions>

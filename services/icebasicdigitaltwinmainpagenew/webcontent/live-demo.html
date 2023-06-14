@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Grafana Iframe</title>
+	<link href="css/shared.css" rel="stylesheet">
+
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  doBodyOnLoad();
+});
+
+function doBodyOnLoad() {
+  var pdeUrl =":7080/pde";
+  var threedeeUrl =":7081/crane101.html?place=1";
+  var grafanaUrl =":7066/d/w24U8uZik/process-data?orgId=1&from=now-15m&to=now&refresh=5s&var-machine=All&var-states=All&var-Process=All";
+  var videoUrl =":7076/view.html";
+/* */
+  var baseUrl = location.hostname;
+  document.getElementById('pdeframe').src = "http://"+baseUrl+pdeUrl;
+  document.getElementById('digitaltwinframe').src = "http://"+baseUrl+threedeeUrl;
+  document.getElementById('grafana').src = "http://"+baseUrl+grafanaUrl;
+  document.getElementById('videoframe').src = "http://"+baseUrl+videoUrl;
+/* */  
+
+}
+</script>   
+
+
+</head>
+<body>
+<div class="box" id="console">    
+    <div class="col">
+    	<div class="col box" id="digitaltwin">
+    		<iframe id="digitaltwinframe" src="http://icemain.hopto.org:7081/crane101.html?place=1	"></iframe>
+    		<!-- <img src="img/image.jpg" height="640" width="480"> -->
+    	</div>
+		<div class="col box" id="pde">
+    		<iframe id="pdeframe" src="http://icemain.hopto.org:7064"></iframe>
+    		<!-- <img src="img/image.jpg" height="640" width="480"> -->
+		</div>
+	</div>
+    <div class="col">
+    	<div class="col box">
+    		<iframe id="grafana" src="http://icemain.hopto.org:7066/d/w24U8uZik/process-data?orgId=1&from=now-15m&to=now&refresh=5s&var-machine=All&var-states=All&var-Process=All">
+    		</iframe>
+    	</div>
+		<div class="col box" id="factoryWebFeed">
+    		<iframe id="videoframe" src="https://icemain.hopto.org:7075/video.html "></iframe>
+<!--			<img id="factoryframe" src="img/image.jpg" height="640" width="480"> -->
+		</div>
+
+	</div>
+    <div class="row fixed-content" id="titlerow"><h1 id="title">Live demonstration of Smart Factory Concepts</h1></div>
+    <div id="buttons" class="box"><button id="button" onclick="">On/Off</button></div>
+</div>
+
+
+<body>
+    <!--
+<body onload="doBodyOnLoad()">
+-->    
+
+</html>

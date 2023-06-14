@@ -1,0 +1,213 @@
+[
+    {
+        "id": "57a98674611fe07a63cd7a6a",
+        "timestamp": "1484056838",
+        "approval": null,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.99},
+            {"http://.../objx" : 0.45}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6b",
+        "timestamp": "1484056838",
+        "approval": true,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89}, 
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6c",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6d",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6e",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6f",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6g",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6h",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6i",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6j",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6k",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6l",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6m",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6n",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6o",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6p",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6q",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6r",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6s",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6t",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    },
+    {
+        "id": "57a98674611fe07a63cd7a6u",
+        "timestamp": "1484077138",
+        "approval": false,
+        "OptimisationResult":
+        [
+            {"http://.../obj1" : 0.89},
+            {"http://.../objx" : 0.95}
+        ]
+    }
+
+]

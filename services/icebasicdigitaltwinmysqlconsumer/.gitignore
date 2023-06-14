@@ -1,0 +1,6 @@
+*.class
+/build/
+target/
+*.iml
+.idea/
+/target - Copy/

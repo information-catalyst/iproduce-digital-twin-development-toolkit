@@ -1,0 +1,1 @@
+ docker run -it -p 7080:7080 --net kafkacluster_default kafka-websocket 

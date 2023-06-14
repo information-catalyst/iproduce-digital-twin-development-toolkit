@@ -1,0 +1,22 @@
+div(ng-show="$ctrl.showDefaults")
+  h4.text-center.margin-t--normal Service Defaults
+  table.table.table-condensed.no-border.margin-t--normal(ng-show="$ctrl.defaults.length > 0")
+    tr
+      th.col-md-5 AbstractID
+      th.col-md-5 Default (ConcreteID)
+      th.col-md-2
+
+  .flex-auto.flex-column.scrollable.marketplace-table(ng-show="$ctrl.defaults.length > 0")
+    table.table.table-striped.table-condensed.table-hover.cursor--initial
+      tr(ng-repeat="default in $ctrl.defaults")
+        td.col-md-5(style="font-size: 10px;") {{default.for}}
+        td.col-md-5(style="font-size: 10px;") {{default.value}}
+        td.col-md-1
+          btn.btn.btn-xs.btn-danger(ng-click="$ctrl.removeDefault(default.for)")
+            i.fa.fa-trash
+  div.margin-t--normal(ng-show="$ctrl.defaults.length === 0")
+    p.text-center No defaults found.
+  .text-center.margin-t--soft
+    button.btn.btn-default(ng-click="$ctrl.showDefaults = false;")
+      i.fa.fa-arrow-left.margin-r--soft
+      span Back

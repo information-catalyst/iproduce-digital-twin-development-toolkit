@@ -1,0 +1,40 @@
+.panel.panel-primary.slide-right(ng-show="$ctrl.canRequestOptimisation() && $ctrl.isDetailViewMode()")
+  .panel-heading
+    .row
+      .col-md-4
+        span.btn.btn-link.btn-xs(ng-click="$ctrl.goToServicePlans()")
+          i.fa.fa-arrow-circle-left
+          span &nbsp;Back to list
+
+      .col-md-8.text-right
+          span Selected plan detail
+
+    hr(style="margin-top:6px;margin-bottom:6px;")
+
+    .row(ng-switch="$ctrl.isApprovedOrRejected()" style="margin-bottom:2px;")
+      .col-md-12(ng-switch-when="false")
+        .pull-left
+        | These are the optimisations can be applied to the current process. Please review them and take an action by clicking 'Approve' or 'Reject' button below
+      .col-md-6(ng-switch-when="false")
+        .pull-right
+          .btn.btn-xs.btn-success(ng-click="$ctrl.approveServicePlan()" ng-disabled="$ctrl.detailLoading")
+            i.fa.fa-check-square
+            |  Approve
+      .col-md-6(ng-switch-when="false")
+          .btn.btn-xs.btn-danger(ng-click="$ctrl.rejectServicePlan()" ng-disabled="$ctrl.detailLoading")
+            i.fa.fa-remove
+            |  Reject
+      .col-md-12(ng-switch-when="true" ng-switch="$ctrl.isApproved()")
+         .alert.alert-success(ng-switch-when="true") Approved
+         .alert.alert-danger(ng-switch-when="false") Rejected
+
+  .panel-body.no-padding.flex-auto.flex-column(ng-switch="$ctrl.detailLoading")
+
+    // loading indicator
+    .panel-body.padding-xs.flex-auto.flex-column.flex-center(ng-switch-when="true")
+      .loader(loader-css="line-scale-party")
+
+    // changes detail
+    .panel-body.no-padding.flex-auto.flex-column(ng-switch-when="false")
+      pde-optimization-changes.flex-auto.flex-column(process="$ctrl.process" selected-plan-detail="$ctrl.selectedPlanDetail")
+

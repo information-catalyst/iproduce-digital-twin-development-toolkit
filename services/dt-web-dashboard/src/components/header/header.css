@@ -1,0 +1,36 @@
+.logo {
+  padding: 8px 16px;
+  width: 200px; /* Set the desired width */
+  height: 60px;
+}
+
+.App-header {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 8px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: #fff;
+  background-image: linear-gradient(to right, #fbb276, #df5c31);
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+  margin-left: 40px;
+}
+
+.menu-item {
+  font-size: 18px;
+  color: #333;
+  text-decoration: none;
+}
+
+.menu-item:hover {
+  color: #666;
+}

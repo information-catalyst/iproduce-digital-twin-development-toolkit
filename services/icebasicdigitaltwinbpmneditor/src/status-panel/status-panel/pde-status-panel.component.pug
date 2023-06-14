@@ -1,0 +1,7 @@
+.panel-container(ng-show="$ctrl.hasVisibleButtons()")
+
+  .panel-toolbar
+    pde-status-panel-button(ng-repeat="btn in $ctrl.getButtons()", data="btn")
+
+  // dynamic panels go here
+  pde-dynamic-container.panel-detail(elements="$ctrl.getPanels()")

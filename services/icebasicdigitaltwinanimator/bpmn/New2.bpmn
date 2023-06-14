@@ -1,0 +1,84 @@
+<ns0:definitions xmlns:ns0="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:ns1="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:ns2="http://www.omg.org/spec/DD/20100524/DC" xmlns:ns3="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <ns0:process id="Process_1" isExecutable="true">
+    <ns0:startEvent id="StartEvent_1">
+      <ns0:outgoing>SequenceFlow_1vw0nzw</ns0:outgoing>
+    </ns0:startEvent>
+    <ns0:task averageTime="1" behaviour="Task_thing1_behaviour" completionFail="3" id="Task_thing1" name="thing1" silentFail="2">
+      <ns0:incoming>SequenceFlow_1vw0nzw</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_1or2t5a</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="4" behaviour="Task_thing2_behaviour" completionFail="6" id="Task_thing2" name="thing2" silentFail="5">
+      <ns0:incoming>SequenceFlow_1or2t5a</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_11gpfxa</ns0:outgoing>
+    </ns0:task>
+    <ns0:task averageTime="7" behaviour="Task_thing3_behaviour" completionFail="9" id="Task_thing3" name="thing3" silentFail="8">
+      <ns0:incoming>SequenceFlow_11gpfxa</ns0:incoming>
+      <ns0:outgoing>SequenceFlow_0ghk5xa</ns0:outgoing>
+    </ns0:task>
+    <ns0:endEvent id="EndEvent_1ev7tua">
+      <ns0:incoming>SequenceFlow_0ghk5xa</ns0:incoming>
+    </ns0:endEvent>
+    <ns0:sequenceFlow id="SequenceFlow_0ghk5xa" sourceRef="Task_thing3" targetRef="EndEvent_1ev7tua" />
+    <ns0:sequenceFlow id="SequenceFlow_11gpfxa" sourceRef="Task_thing2" targetRef="Task_thing3" />
+    <ns0:sequenceFlow id="SequenceFlow_1or2t5a" sourceRef="Task_thing1" targetRef="Task_thing2" />
+    <ns0:sequenceFlow id="SequenceFlow_1vw0nzw" sourceRef="StartEvent_1" targetRef="Task_thing1" />
+  </ns0:process>
+  <ns1:BPMNDiagram id="BPMNDiagram_1">
+    <ns1:BPMNPlane bpmnElement="Process_1" id="BPMNPlane_1">
+      <ns1:BPMNShape bpmnElement="StartEvent_1" id="_BPMNShape_StartEvent_2">
+        <ns2:Bounds height="36" width="36" x="173" y="102" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_thing1" id="Task_10szmp1_di">
+        <ns2:Bounds height="80" width="100" x="341" y="128" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_thing2" id="Task_1k5ybie_di">
+        <ns2:Bounds height="80" width="100" x="562" y="139" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="Task_thing3" id="Task_0y4kyna_di">
+        <ns2:Bounds height="80" width="100" x="789" y="148" />
+      </ns1:BPMNShape>
+      <ns1:BPMNShape bpmnElement="EndEvent_1ev7tua" id="EndEvent_1ev7tua_di">
+        <ns2:Bounds height="36" width="36" x="1089" y="187" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="12" width="0" x="1107" y="227" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNShape>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_0ghk5xa" id="SequenceFlow_0ghk5xa_di">
+        <ns3:waypoint x="889" y="188" xsi:type="dc:Point" />
+        <ns3:waypoint x="989" y="188" xsi:type="dc:Point" />
+        <ns3:waypoint x="989" y="205" xsi:type="dc:Point" />
+        <ns3:waypoint x="1089" y="205" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="12" width="0" x="1004" y="190.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_11gpfxa" id="SequenceFlow_11gpfxa_di">
+        <ns3:waypoint x="662" y="179" xsi:type="dc:Point" />
+        <ns3:waypoint x="726" y="179" xsi:type="dc:Point" />
+        <ns3:waypoint x="726" y="188" xsi:type="dc:Point" />
+        <ns3:waypoint x="789" y="188" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="12" width="0" x="741" y="177.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1or2t5a" id="SequenceFlow_1or2t5a_di">
+        <ns3:waypoint x="441" y="168" xsi:type="dc:Point" />
+        <ns3:waypoint x="502" y="168" xsi:type="dc:Point" />
+        <ns3:waypoint x="502" y="179" xsi:type="dc:Point" />
+        <ns3:waypoint x="562" y="179" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="12" width="0" x="517" y="167.5" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+      <ns1:BPMNEdge bpmnElement="SequenceFlow_1vw0nzw" id="SequenceFlow_1vw0nzw_di">
+        <ns3:waypoint x="209" y="120" xsi:type="dc:Point" />
+        <ns3:waypoint x="275" y="120" xsi:type="dc:Point" />
+        <ns3:waypoint x="275" y="168" xsi:type="dc:Point" />
+        <ns3:waypoint x="341" y="168" xsi:type="dc:Point" />
+        <ns1:BPMNLabel>
+          <ns2:Bounds height="12" width="0" x="290" y="138" />
+        </ns1:BPMNLabel>
+      </ns1:BPMNEdge>
+    </ns1:BPMNPlane>
+  </ns1:BPMNDiagram>
+</ns0:definitions>

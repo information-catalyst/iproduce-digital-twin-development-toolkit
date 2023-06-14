@@ -1,0 +1,21 @@
+
+
+/* Give support for ng-show to correctly set back the previous display value */
+.ng-hide-add-active, .ng-hide-remove {
+  display: inherit !important;
+}
+.ng-hide:not(.ng-animate) {
+  display: none !important;
+}
+
+
+// animations for show/hide
+.fade {
+    transition: opacity linear 0.1s;
+    opacity:100;
+}
+
+
+.fade.ng-hide {
+    opacity:0;
+}

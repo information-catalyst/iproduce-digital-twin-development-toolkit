@@ -1,0 +1,46 @@
+{
+  "GLOBAL": {
+    "Busy": "Busy",
+    "Cancel": "Cancel",
+    "No": "No",
+    "Yes": "Yes"
+  },
+
+  "ALIGN_DISTRIBUTE": {
+    "DialogTitle": "Align / Distribute",
+    "Align": "Align",
+    "Distribute": "Distribute",
+    "Left": "Left",
+    "Right": "Right",
+    "Top": "Top",
+    "Bottom": "Bottom",
+    "Center": "Center",
+    "Middle": "Middle",
+    "Horizontal": "Horizontal",
+    "Vertical": "Vertical"
+  },
+
+  "DIALOGS": {
+    "SaveChanges": "Save changes?"
+  },
+
+  "PROPERTIES": {
+  },
+
+  "SIMULATION": {
+  },
+
+  "TOOLBAR": {
+    "New": "New",
+    "Export": "Export",
+    "ExportToBpmn": "Export to BPMN-File",
+    "ExportToSvg": "Export to SVG-File",
+    "FitToWindow": "Fit to window",
+    "Open": "Open",
+    "Save": "Save",
+    "Search": "Search",
+    "OpenFromStore":"Open From Store",
+    "SaveAs":"Save As"
+  }
+
+}

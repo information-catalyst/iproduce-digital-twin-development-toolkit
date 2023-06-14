@@ -1,0 +1,31 @@
+form.form-horizontal(ng-submit="$ctrl.save()")
+  .modal-header
+    h6.modal-title.text-center(ng-if="$ctrl.isNew") Save new Process Model to Cloud Storage
+    h6.modal-title.text-center(ng-if="!$ctrl.isNew") Edit Process Model
+  .modal-body
+    .form-group
+      label.control-label.col-md-3(for="processName") Process Name
+      .col-md-9
+        input.form-control(type="text" name="processName" placeholder="Process Name" ng-model="$ctrl.process.processName" autofocus)
+    .form-group
+      label.control-label.col-md-3(for="company") Company
+      .col-md-9
+        input.form-control(type="text" name="company" placeholder="Company" ng-model="$ctrl.process.company")
+    .form-group
+      // currently disabled
+      label.control-label.col-md-3(for="processDescription") Process Description
+      .col-md-9
+        textarea.form-control(rows="5" type="text" name="processDescription" placeholder="Process Description" ng-model="$ctrl.process.processDescription")
+  .row: .col-md-12
+    .alert.alert-warning.alert-dismissible.text-center(ng-show="$ctrl.showError")
+      button.close(ng-click="$ctrl.showError = false" type="button") &times;
+      .fa.fa-exclamation-triangle
+      |  Process Name must be filled in!
+  .modal-footer
+    .text-center
+      button.btn.btn-sm.btn-success(ng-disabled="!$ctrl.inputIsOkay()" type="submit")
+        | Save in Cloud Storage
+        i.fa.fa-cloud-upload.margin-l--soft
+      button.btn.btn-sm.btn-warning(type="button" ng-click="$ctrl.dismiss()")
+        | Cancel
+        i.fa.fa-ban.margin-l--soft

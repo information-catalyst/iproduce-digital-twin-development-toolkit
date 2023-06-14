@@ -1,0 +1,13 @@
+.panel.panel-primary
+
+  .panel-heading
+    .row
+      .col-md-12
+        span(ng-show="!$ctrl.selection")
+          | No element selected
+        span(ng-show="$ctrl.selection")
+          span(ng-bind="$ctrl.selection.id")
+
+  .panel-body.properties-container(ng-show="$ctrl.selection")
+    form.form-horizontal(name="propertiesForm")
+      fieldset

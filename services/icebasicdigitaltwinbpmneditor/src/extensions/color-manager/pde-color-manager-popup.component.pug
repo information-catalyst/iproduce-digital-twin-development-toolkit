@@ -1,0 +1,36 @@
+.modal-header
+  h6.modal-title Color manager presets
+
+.modal-body.text-center
+
+  form.form-horizontal(novalidate="novalidate")
+
+    .form-group.form-group-sm
+      label.control-label.col-sm-4 Activities
+      .col-sm-8
+        button.btn(type="button", colorpicker="hex", style="min-width:40px;min-height:30px;",
+          ng-style="{'background-color':$ctrl.colorPreset.activityColor}",
+          colorpicker-close-on-select, ng-model="$ctrl.colorPreset.activityColor")
+
+    .form-group.form-group-sm
+      label.control-label.col-sm-4 Gateways
+      .col-sm-8
+        button.btn(type="button", colorpicker="hex", style="min-width:40px;min-height:30px;",
+          ng-style="{'background-color':$ctrl.colorPreset.gatewayColor}",
+          colorpicker-close-on-select, ng-model="$ctrl.colorPreset.gatewayColor")
+
+    .form-group.form-group-sm
+      label.control-label.col-sm-4 Events
+      .col-sm-8
+        button.btn(type="button", colorpicker="hex", style="min-width:40px;min-height:30px;",
+          ng-style="{'background-color':$ctrl.colorPreset.eventColor}",
+          colorpicker-close-on-select, ng-model="$ctrl.colorPreset.eventColor")
+
+
+.modal-footer
+  .row
+    .col-sm-6
+      button.btn.btn-sm.btn-primary(type="button", ng-click="$ctrl.resetToDefault()") Default
+    .col-sm-6.text-right
+      button.btn.btn-sm.btn-primary(type="button", ng-click="$ctrl.applyChanges()") Apply
+      button.btn.btn-sm.btn-default(type="button", ng-click="$ctrl.dismiss()") Close

@@ -1,0 +1,5 @@
+FROM openjdk:10-jre-slim
+COPY ./target/kafkaJavaFrame-0.0.1-SNAPSHOT.jar /usr/src/kafkatest/
+WORKDIR /usr/src/kafkatest
+EXPOSE 8080
+CMD ["java", "-jar", "kafkaJavaFrame-0.0.1-SNAPSHOT.jar"]
